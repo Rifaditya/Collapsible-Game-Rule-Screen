@@ -1,0 +1,35 @@
+{
+    "schemaVersion": 1,
+    "id": "collapsible-game-rules",
+    "version": "${version}",
+    "name": "Collapsible Game Rules",
+    "description": "Makes the GameRules UI screens collapsible by category.",
+    "authors": [
+        "DasikIgaijin"
+    ],
+    "contact": {
+        "homepage": "https://github.com/Rifaditya/Instant-Gratification-collapsible-game-rules",
+        "sources": "https://github.com/Rifaditya/Instant-Gratification-collapsible-game-rules"
+    },
+    "license": "GPL-3.0-or-later",
+    "icon": "assets/collapsiblegamerules/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "main": [
+            "net.instantgratification.collapsiblegamerules.CollapsibleGameRulesFabric"
+        ],
+        "client": [
+            "net.instantgratification.collapsiblegamerules.CollapsibleGameRulesFabricClient"
+        ]
+    },
+    "mixins": [
+        "collapsible-game-rules.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.9",
+        "minecraft": "~26.1-",
+        "java": ">=25",
+        "fabric-api": "*",
+        "dasik-library": "*"
+    }
+}

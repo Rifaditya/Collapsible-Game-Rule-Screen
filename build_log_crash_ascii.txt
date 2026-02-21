@@ -1,0 +1,105 @@
+
+> Configure project :
+Fabric Loom: 1.14.7
+The mixin annotation is no longer enabled by default, you should remove any loom.mixin configuration. If you wish to continue to use the mixin AP you can set useLegacyMixinAp = true.
+
+> Task :compileJava
+./gradlew : E:\Minecraft 
+Project\Collapsible Game 
+Rule Screen\collapsible-gam
+e-rules\src\main\java\net\i
+nstantgratification\collaps
+iblegamerules\mixin\Abstrac
+tGameRulesScreenRuleListMix
+in.java:81: error: cannot 
+find symbol
+At line:1 char:1
++ ./gradlew build > 
+build_log_crash.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecifi    ed: 
+(E:\Minecraft     Pr...not 
+find symb    ol:String) 
+[], Rem    oteException
+    + FullyQualifiedEr    
+rorId : NativeComm    
+andError
+ 
+        this.setScrollAmoun
+t(this.getScrollAmount()); 
+// Re-clamp scroll
+                           
+      ^
+  symbol: method 
+getScrollAmount()
+E:\Minecraft 
+Project\Collapsible Game 
+Rule Screen\collapsible-gam
+e-rules\src\main\java\net\i
+nstantgratification\collaps
+iblegamerules\mixin\Abstrac
+tGameRulesScreenRuleListMix
+in.java:110: error: method 
+does not override or 
+implement a method from a 
+supertype
+        @Override
+        ^
+2 errors
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///E:/Minecraft%20Project/Collapsible%20Game%20Rule%20Screen/collapsible-game-rules/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with 
+an exception.
+
+* What went wrong:
+Execution failed for task 
+':compileJava'.
+> Compilation failed; see 
+the compiler output below.
+  E:\Minecraft 
+Project\Collapsible Game 
+Rule Screen\collapsible-gam
+e-rules\src\main\java\net\i
+nstantgratification\collaps
+iblegamerules\mixin\Abstrac
+tGameRulesScreenRuleListMix
+in.java:81: error: cannot 
+find symbol
+          this.setScrollAmo
+unt(this.getScrollAmount())
+; // Re-clamp scroll
+                           
+        ^
+    symbol: method 
+getScrollAmount()
+  E:\Minecraft 
+Project\Collapsible Game 
+Rule Screen\collapsible-gam
+e-rules\src\main\java\net\i
+nstantgratification\collaps
+iblegamerules\mixin\Abstrac
+tGameRulesScreenRuleListMix
+in.java:110: error: method 
+does not override or 
+implement a method from a 
+supertype
+          @Override
+          ^
+  2 errors
+
+* Try:
+> Check your code and 
+dependencies to fix the 
+compilation error(s)
+> Run with --scan to get 
+full insights from a Build 
+Scan (powered by 
+Develocity).
+
+BUILD FAILED in 8s
+1 actionable task: 1 executed

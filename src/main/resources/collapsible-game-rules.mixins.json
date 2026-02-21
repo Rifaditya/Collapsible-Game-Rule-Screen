@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "package": "net.instantgratification.collapsiblegamerules.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "client": [
+        "AbstractGameRulesScreenRuleListMixin",
+        "CategoryRuleEntryAccessor"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

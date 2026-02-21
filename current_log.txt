@@ -1,0 +1,327 @@
+[04:05:17] [main/INFO]: Loading Minecraft 26.1-snapshot-9 with Fabric Loader 0.18.4
+[04:05:17] [main/INFO]: Loading 51 mods:
+	- collapsible-game-rules 1.0.0+build.4
+	- dasik-library 1.6.9+build.4
+	- durability-multiplier 1.0.3+build.2
+	- fabric-api 0.143.5+26.1
+	   |-- fabric-api-base 2.0.2+ece06323cd
+	   |-- fabric-api-lookup-api-v1 2.0.7+e2bdee78cd
+	   |-- fabric-biome-api-v1 18.0.2+11a26f31cd
+	   |-- fabric-block-api-v1 3.0.0+e2bdee78cd
+	   |-- fabric-block-getter-api-v2 2.0.4+c82f0461cd
+	   |-- fabric-command-api-v2 3.0.4+e2bdee78cd
+	   |-- fabric-content-registries-v0 11.0.8+9cbf5da5cd
+	   |-- fabric-convention-tags-v2 4.3.0+c37e6e5fcd
+	   |-- fabric-crash-report-info-v1 1.0.2+9f78a5a8cd
+	   |-- fabric-creative-tab-api-v1 5.0.7+11a26f31cd
+	   |-- fabric-data-attachment-api-v1 2.1.5+be4b75aecd
+	   |-- fabric-data-generation-api-v1 24.0.12+a344fffccd
+	   |-- fabric-debug-api-v1 1.0.0+c792624dcd
+	   |-- fabric-dimensions-v1 5.1.2+9cbf5da5cd
+	   |-- fabric-entity-events-v1 5.0.1+e2bdee78cd
+	   |-- fabric-events-interaction-v0 5.1.6+c82f0461cd
+	   |-- fabric-game-rule-api-v1 4.0.3+00a1fba6cd
+	   |-- fabric-item-api-v1 14.0.2+18b981c8cd
+	   |-- fabric-key-mapping-api-v1 2.0.3+e2bdee78cd
+	   |-- fabric-lifecycle-events-v1 4.0.4+c82f0461cd
+	   |-- fabric-loot-api-v3 3.0.8+00a1fba6cd
+	   |-- fabric-menu-api-v1 2.0.7+c82f0461cd
+	   |-- fabric-message-api-v1 7.0.3+e2bdee78cd
+	   |-- fabric-networking-api-v1 6.2.1+e2bdee78cd
+	   |-- fabric-object-builder-api-v1 23.0.8+e2bdee78cd
+	   |-- fabric-particles-v1 5.0.9+be4b75aecd
+	   |-- fabric-recipe-api-v1 9.0.9+be4b75aecd
+	   |-- fabric-registry-sync-v0 7.0.7+e2bdee78cd
+	   |-- fabric-rendering-fluids-v1 4.0.2+c82f0461cd
+	   |-- fabric-rendering-v1 20.0.0+e2bdee78cd
+	   |-- fabric-resource-conditions-api-v1 6.0.4+00a1fba6cd
+	   |-- fabric-resource-loader-v0 3.3.13+4fc5413fcd
+	   |-- fabric-resource-loader-v1 2.0.6+e2bdee78cd
+	   |-- fabric-screen-api-v1 4.0.3+9cbf5da5cd
+	   |-- fabric-serialization-api-v1 2.0.2+11a26f31cd
+	   |-- fabric-sound-api-v1 2.0.3+11a26f31cd
+	   |-- fabric-tag-api-v1 2.0.6+11a26f31cd
+	   |-- fabric-transfer-api-v1 7.0.8+e2bdee78cd
+	   \-- fabric-transitive-access-wideners-v1 8.0.8+e2bdee78cd
+	- fabricloader 0.18.4
+	   \-- mixinextras 0.5.0
+	- ig_magnet 1.0.0
+	- java 25
+	- minecraft 26.1-alpha.9
+	- ore-amplifier 1.0.0+build.63
+	- vanilla-outsider-better-dogs 3.1.36+build.2
+	- vanilla-outsider-true-sleep 1.3.2+build.2
+[04:05:17] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/C:/Users/fmrif/AppData/Roaming/PrismLauncher/libraries/net/fabricmc/sponge-mixin/0.17.0+mixin.0.8.7/sponge-mixin-0.17.0+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[04:05:17] [main/WARN]: The requested compatibility level JAVA_25 is higher than the level supported by the active subsystem 'Knot/Fabric' which supports JAVA_22. This is not a supported configuration and instability may occur.
+[04:05:17] [main/INFO]: Compatibility level set to JAVA_25
+[04:05:17] [main/WARN]: Reference map 'durability-multiplier-refmap.json' for durability-multiplier.mixins.json could not be read. If this is a development environment you can ignore this message
+[04:05:18] [main/WARN]: Reference map 'vanilla-outsider-better-dogs-refmap.json' for vanilla-outsider-better-dogs.mixins.json could not be read. If this is a development environment you can ignore this message
+[04:05:18] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[04:05:19] [Datafixer Bootstrap/INFO]: 291 Datafixer optimizations took 388 milliseconds
+[04:05:24] [Render thread/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[04:05:25] [Render thread/INFO]: Setting user: DasikIgaijinn
+[04:05:25] [Render thread/INFO]: Instant Gratification: Collapsible Game Rules Initialized
+[04:05:25] [Render thread/INFO]: Initializing Dasik Library (Engine v200)
+[04:05:25] [Render thread/INFO]: Durability Multiplier initializing...
+[04:05:25] [Render thread/INFO]: Durability Multiplier initialized. 11 GameRules registered.
+[04:05:25] [Render thread/INFO]: Magnet, Let me get that! Initializing...
+[04:05:25] [Render thread/INFO]: Ore Amplifier Initializing (Snapshot 26.1 Native)...
+[04:05:25] [Render thread/INFO]: Vanilla Outsider: Better Dogs initializing [Fabric Only]...
+[04:05:25] [Render thread/INFO]: Better Dogs initialized! Social Hive Mind active (DasikLibrary).
+[04:05:25] [Render thread/INFO]: Initializing True Sleep (Time Warp)...
+[04:05:25] [Render thread/INFO]: Dreamweaver Protocol: Global Template Loaded.
+[04:05:25] [Render thread/INFO]: Ore Amplifier Client: Initializing Dynamic Translations...
+[04:05:25] [Render thread/INFO]: Ore Amplifier Client: Injected 45 translations (Early Phase).
+[04:05:25] [Render thread/INFO]: Better Dogs client initialized (Fabric)
+[04:05:25] [Render thread/INFO]: Backend library: LWJGL version 3.4.1-snapshot
+[04:05:26] [Render thread/INFO]: Using optional rendering extensions: GL_ARB_buffer_storage, GL_KHR_debug, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
+[04:05:26] [Render thread/INFO]: Found non-pack entry 'C:\Users\fmrif\AppData\Roaming\PrismLauncher\instances\26.1-snapshot-9\minecraft\resourcepacks\.index', ignoring
+[04:05:26] [Render thread/WARN]: Failed to read pack file/FullBrightness.zip metadata
+com.google.gson.JsonParseException: Pack declares support for version newer than 64, but is missing mandatory fields min_format and max_format
+	at knot//com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287)
+	at knot//net.minecraft.server.packs.resources.ResourceMetadata$2.getSection(ResourceMetadata.java:40)
+	at knot//net.minecraft.server.packs.AbstractPackResources.getMetadataSection(AbstractPackResources.java:26)
+	at knot//net.minecraft.server.packs.repository.Pack.readPackMetadata(Pack.java:53)
+	at knot//net.minecraft.server.packs.repository.Pack.readMetaAndCreate(Pack.java:40)
+	at knot//net.minecraft.server.packs.repository.FolderRepositorySource.lambda$loadPacks$0(FolderRepositorySource.java:63)
+	at knot//net.minecraft.server.packs.repository.FolderRepositorySource.discoverPacks(FolderRepositorySource.java:94)
+	at knot//net.minecraft.server.packs.repository.FolderRepositorySource.loadPacks(FolderRepositorySource.java:59)
+	at knot//net.minecraft.server.packs.repository.PackRepository.discoverAvailable(PackRepository.java:43)
+	at knot//net.minecraft.server.packs.repository.PackRepository.reload(PackRepository.java:36)
+	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:540)
+	at knot//net.minecraft.client.main.Main.main(Main.java:232)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:514)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at org.prismlauncher.launcher.impl.StandardLauncher.launch(StandardLauncher.java:115)
+	at org.prismlauncher.EntryPoint.listen(EntryPoint.java:129)
+	at org.prismlauncher.EntryPoint.main(EntryPoint.java:70)
+[04:05:26] [Render thread/INFO]: Reloading ResourceManager: vanilla, collapsible-game-rules, dasik-library, durability-multiplier, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-getter-api-v2, fabric-command-api-v2, fabric-content-registries-v0, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-creative-tab-api-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-debug-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-item-api-v1, fabric-key-mapping-api-v1, fabric-lifecycle-events-v1, fabric-loot-api-v3, fabric-menu-api-v1, fabric-message-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-resource-loader-v1, fabric-screen-api-v1, fabric-serialization-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, ig_magnet, ore-amplifier, vanilla-outsider-better-dogs, vanilla-outsider-true-sleep
+[04:05:27] [Worker-Main-7/INFO]: Found unifont_all_no_pua-17.0.01.hex, loading
+[04:05:27] [Worker-Main-10/INFO]: Found unifont_pua-17.0.01.hex, loading
+[04:05:27] [Worker-Main-3/INFO]: Found unifont_jp_patch-17.0.01.hex, loading
+[04:05:28] [Render thread/INFO]: OpenAL initialized on device OpenAL Soft on Speakers (AB13X USB Audio)
+[04:05:28] [Render thread/INFO]: Sound engine started
+[04:05:28] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 2048x1024x0 minecraft:textures/atlas/armor_trims.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/beds.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/signs.png-atlas
+[04:05:28] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[04:05:38] [Render thread/INFO]: Loaded 1515 recipes
+[04:05:38] [Render thread/INFO]: Loaded 1617 advancements
+[04:05:39] [Render thread/INFO]: Applied 0 biome modifications to 0 of 65 new biomes in 1.752 ms
+[04:05:39] [Server thread/INFO]: Starting integrated minecraft server version 26.1 Snapshot 9
+[04:05:39] [Server thread/INFO]: Generating keypair
+[04:05:39] [Server thread/INFO]: Loading 0 persistent chunks...
+[04:05:40] [Server thread/INFO]: Loading 49 chunks for player spawn...
+[04:05:40] [Server thread/INFO]: Preparing spawn area: 16%
+[04:05:40] [Server thread/INFO]: Preparing spawn area: 16%
+[04:05:40] [Server thread/INFO]: Preparing spawn area: 16%
+[04:05:40] [Server thread/INFO]: Time elapsed: 1266 ms
+[04:05:40] [Server thread/INFO]: DasikIgaijinn[local:E:4376ed00] logged in with entity id 105 at (-7.113366832926491, 67.0, 29.368369024075896)
+[04:05:41] [Server thread/INFO]: DasikIgaijinn joined the game
+[04:05:41] [Server thread/INFO]: GlobalSocialSystem: Starting pulse. SocialEventRegistry frozen.
+[04:05:41] [Server thread/INFO]: Changing view distance to 16, from 10
+[04:05:41] [Server thread/INFO]: Changing simulation distance to 12, from 0
+[04:05:41] [Render thread/INFO]: Loaded 12 advancements
+[04:05:41] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
+[04:05:41] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 4 reached during a single frame. New capacity will be 8.
+[04:05:41] [Render thread/WARN]: Unable to play empty soundEvent: minecraft:entity.tropical_fish.ambient
+[04:05:41] [Render thread/INFO]: Resizing Chunk Sections UBO, capacity limit of 2 reached during a single frame. New capacity will be 8.
+[04:05:41] [Render thread/INFO]: Resizing Chunk Sections UBO, capacity limit of 8 reached during a single frame. New capacity will be 16.
+[04:05:42] [Render thread/INFO]: Resizing Chunk Sections UBO, capacity limit of 16 reached during a single frame. New capacity will be 32.
+[04:05:42] [Render thread/INFO]: Resizing Chunk Sections UBO, capacity limit of 32 reached during a single frame. New capacity will be 64.
+[04:05:42] [Render thread/INFO]: Resizing Chunk Sections UBO, capacity limit of 64 reached during a single frame. New capacity will be 128.
+[04:05:42] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 8 reached during a single frame. New capacity will be 16.
+[04:05:44] [Server thread/INFO]: Saving and pausing game...
+[04:05:44] [Server thread/INFO]: Saving chunks for level 'ServerLevel[yes modifier ore1]'/minecraft:overworld
+[04:05:44] [Server thread/INFO]: Saving chunks for level 'ServerLevel[yes modifier ore1]'/minecraft:the_end
+[04:05:44] [Server thread/INFO]: Saving chunks for level 'ServerLevel[yes modifier ore1]'/minecraft:the_nether
+[04:05:45] [Render thread/INFO]: [STDOUT]: Updating visible entries! allEntries size: 163
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:05:45] [Render thread/INFO]: [STDOUT]: Checking entry class: net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry
+[04:06:00] [Server thread/INFO]: Stopping server
+[04:06:00] [Server thread/INFO]: Saving players
+[04:06:00] [Server thread/INFO]: DasikIgaijinn lost connection: Disconnected
+[04:06:00] [Server thread/INFO]: DasikIgaijinn left the game
+[04:06:00] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[04:06:00] [Server thread/INFO]: Saving worlds
+[04:06:00] [Server thread/INFO]: Saving chunks for level 'ServerLevel[yes modifier ore1]'/minecraft:overworld
+[04:06:02] [Server thread/INFO]: Saving chunks for level 'ServerLevel[yes modifier ore1]'/minecraft:the_end
+[04:06:02] [Server thread/INFO]: Saving chunks for level 'ServerLevel[yes modifier ore1]'/minecraft:the_nether
+[04:06:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[04:06:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[04:06:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[04:06:02] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[04:06:03] [Render thread/INFO]: Stopping!
