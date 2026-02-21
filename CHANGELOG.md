@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0+build.6] - 2026-02-21
+
+### Changed
+
+- **Documentation**: Replaced "Architect" with "Creator" in Platform Page Author roles.
+
 ## [1.0.0+build.4] - 2026-02-21
 
 ### Fixed

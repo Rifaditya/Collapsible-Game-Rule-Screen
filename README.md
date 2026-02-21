@@ -19,6 +19,10 @@
 
 **Collapsible Game Rules** makes the GameRules UI screens collapsible by category. Are you tired of scrolling through a massive, unorganized list of game rules every time you create a world or tweak settings? This mod solves the clutter by turning the standard Game Rules screen into a clean, easy-to-navigate interface.
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Rifaditya/Collapsible-Game-Rule-Screen/refs/heads/main/Images/2026-02-21_12.57.59.png" alt="Collapsible Game Rules In-Game">
+</div>
+
 ---
 
 ## ✨ Features
