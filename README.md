@@ -55,7 +55,7 @@ No config files or messy setup required. It seamlessly integrates into the Vanil
 ## 📦 Install
 
 1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
-2. Download `collapsible-game-rules-1.0.0+build.1.jar` and place it in your `mods` folder.
+2. Download `collapsible-game-rules-1.0.0+build.7.jar` and place it in your `mods` folder.
 3. Launch the game.
 
 ---
@@ -76,7 +76,7 @@ If you enjoy this mod, consider fueling the next update!
 
 | Role | Author |
 | :--- | :--- |
-| **Architect** | **Rifaditya** (Dasik) |
+| **Creator** | **Rifaditya** (Dasik) |
 | **License** | GPLv3 |
 
 ---
