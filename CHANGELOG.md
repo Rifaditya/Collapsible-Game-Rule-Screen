@@ -1,10 +1,27 @@
 # Changelog
 
+## [1.0.0+build.7] - 2026-02-21
+
+### Fixed
+
+- **Compatibility**: Reverted Mixin compatibility level from `JAVA_25` to `JAVA_22` to resolve warning.
+
 ## [1.0.0+build.6] - 2026-02-21
 
 ### Changed
 
 - **Documentation**: Replaced "Architect" with "Creator" in Platform Page Author roles.
+
+## [1.0.0+build.5] - 2026-02-21
+
+### Added
+
+- Added GPLv3 LICENSE file to repository root.
+- Expanded documentation to clarify modded category support.
+
+### Changed
+
+- Converted project standalone documentation to remove collection references.
 
 ## [1.0.0+build.4] - 2026-02-21
 
@@ -28,11 +45,4 @@
 
 ### Added
 
-- Initial release
-
-## [1.0.0+build.5] - 2026-02-21
-### Added
-- Added GPLv3 LICENSE file to repository root.
-- Expanded documentation to clarify modded category support.
-### Changed
-- Converted project standalone documentation to remove collection references.
+- Initial release.
