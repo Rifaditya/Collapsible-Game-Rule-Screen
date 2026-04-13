@@ -1,7 +1,7 @@
 package net.instantgratification.collapsiblegamerules.mixin;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarratedElementType;
@@ -15,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.minecraft.client.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import net.instantgratification.collapsiblegamerules.GameRuleStateConfig;
 
 @Mixin(AbstractGameRulesScreen.RuleList.class)
 public abstract class AbstractGameRulesScreenRuleListMixin
@@ -29,21 +29,25 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         super(null, 0, 0, 0, 0);
     }
 
-    // Store expanded categories
-    @Unique
-    private final Map<Component, Boolean> collapsiblegamerules$expandedCategories = new HashMap<>();
+    // Removed internal map, using GameRuleStateConfig instead
+
 
     @Unique
     private List<AbstractGameRulesScreen.RuleEntry> collapsiblegamerules$allEntries = new ArrayList<>();
+
+    @Unique
+    private String collapsiblegamerules$currentFilter = "";
 
     @Inject(method = "populateChildren(Ljava/lang/String;)V", at = @At("TAIL"))
     private void collapsiblegamerules$onPopulateChildren(String filter, CallbackInfo ci) {
         LoggerFactory.getLogger("collapsible-game-rules")
                 .info("Inside onPopulateChildren TAIL! Children size: " + this.children().size());
+        this.collapsiblegamerules$currentFilter = (filter != null) ? filter.toLowerCase(java.util.Locale.ROOT) : "";
         // Save the currently generated list of all entries
         this.collapsiblegamerules$allEntries = new ArrayList<>(this.children());
         this.collapsiblegamerules$updateVisibleEntries();
     }
+
 
     @Unique
     private void collapsiblegamerules$updateVisibleEntries() {
@@ -55,16 +59,24 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         for (AbstractGameRulesScreen.RuleEntry entry : this.collapsiblegamerules$allEntries) {
             if (entry instanceof AbstractGameRulesScreen.CategoryRuleEntry) {
                 Component label = ((CategoryRuleEntryAccessor) entry).collapsiblegamerules$getLabel();
-                this.collapsiblegamerules$expandedCategories.putIfAbsent(label, false); // Default collapsed
+                String categoryKey = label.getString();
+                
+                // Smart Search: if there's an active filter and we are populating children,
+                // vanilla already filters the list. If this category header is here, it means
+                // a child rule matched OR the category name matched. We should expand it to show results.
+                boolean isSearching = !this.collapsiblegamerules$currentFilter.isEmpty();
+                
+                boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(categoryKey);
 
                 CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(label,
-                        this.collapsiblegamerules$expandedCategories.get(label), () -> {
-                            this.collapsiblegamerules$expandedCategories.put(label,
-                                    !this.collapsiblegamerules$expandedCategories.get(label));
+                        isExpanded, () -> {
+                            boolean newState = !GameRuleStateConfig.isExpanded(categoryKey);
+                            GameRuleStateConfig.setExpanded(categoryKey, newState);
+                            GameRuleStateConfig.save();
                             this.collapsiblegamerules$updateVisibleEntries();
                         });
                 this.addEntry(newEntry);
-                currentCategoryExpanded = this.collapsiblegamerules$expandedCategories.get(label);
+                currentCategoryExpanded = isExpanded;
             } else {
                 // Normal game rule entry
                 if (currentCategoryExpanded) {
@@ -92,18 +104,26 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         }
 
         @Override
-        public void renderContent(GuiGraphics graphics, int mouseX, int mouseY, boolean hovered, float a) {
-            // Draw the label
-            String prefix = this.expanded ? "[-] " : "[+] ";
+        public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
+            // Zenith Premium Highlight on hover
+            if (hovered) {
+                graphics.fill(this.getX() - 2, this.getY(), this.getX() + this.getWidth() + 2, this.getY() + 24, 0x22FFFFFF);
+            }
+
+            // Draw the directional arrow and label
+            String prefix = this.expanded ? "▼ " : "▶ ";
             Component display = Component.literal(prefix).append(this.label);
 
-            graphics.drawCenteredString(net.minecraft.client.Minecraft.getInstance().font, display,
+            graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, display,
                     this.getContentXMiddle(), this.getContentY() + 5, hovered ? 0xFFFFFFAA : 0xFFFFFFFF);
+            
+            // Subtle separating line at the bottom
+            graphics.fill(this.getX() + 10, this.getY() + 23, this.getX() + this.getWidth() - 10, this.getY() + 24, 0x44AAAAAA);
         }
 
         @Override
         public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean doubleClick) {
-            if (event.button() == 0) { // Left click
+            if (event.button() == 0 || event.button() == 1) { // Left or right click toggles
                 this.toggleAction.run();
                 net.minecraft.client.Minecraft.getInstance().getSoundManager()
                         .play(net.minecraft.client.resources.sounds.SimpleSoundInstance
@@ -111,6 +131,19 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 return true;
             }
             return false;
+        }
+
+        @Override
+        public boolean keyPressed(KeyEvent event) {
+            int keyCode = event.key();
+            if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER || keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_KP_ENTER || keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE) {
+                this.toggleAction.run();
+                net.minecraft.client.Minecraft.getInstance().getSoundManager()
+                        .play(net.minecraft.client.resources.sounds.SimpleSoundInstance
+                                .forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                return true;
+            }
+            return super.keyPressed(event);
         }
 
         @Override
