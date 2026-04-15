@@ -59,11 +59,11 @@ None required. Client-side only.
 ---
 
 ## Feature Parity Checklist
-- [ ] Feature 1: Persistent Collapsible Headers
-- [ ] Feature 2: Smart Search Expansion
-- [ ] Feature 3: Global "Collapse/Expand All" Actions
-- [ ] Feature 4: Keyboard Navigation Support
-- [ ] Feature 5: DasikLibrary Metadata Integration
+- [x] Feature 1: Persistent Collapsible Headers
+- [x] Feature 2: Smart Search Expansion
+- [x] Feature 3: Global "Collapse/Expand All" Actions
+- [x] Feature 4: Keyboard Navigation Support
+- [x] Feature 5: DasikLibrary Metadata Integration
 
 
 ---

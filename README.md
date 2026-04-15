@@ -13,7 +13,7 @@
 
 # ⚒️ Collapsible Game Rules
 
-**No Backports:** This mod targets **Minecraft 26.1+** (Snapshot 8). Older versions are unsupported.
+**No Backports:** This mod strictly targets **Minecraft 26.1.2 ("Tiny Takeover" Release)**. Older versions are unsupported to ensure absolute stability with the modern UI engine.
 
 > **Respect the Player's Time, Not the Game's Rules.**
 
@@ -36,11 +36,17 @@ Click on any category header to instantly expand or collapse its contents. Find 
 ### 🛡️ Client-Side Only
 Works out of the box on your client. You do not need to install this on a server. Just drop it into your `mods` folder and enjoy a cleaner UI immediately.
 
+### 🧠 Persistent Memory
+Tired of collapsing the same categories every time you start the game? Collapsible Game Rules saves your exact UI state locally (`collapsible-game-rules-state.json`). Your preferred layout persists continuously across gaming sessions!
+
+### 🔍 Smart Search Integration
+Seamlessly integrated with the Vanilla search bar. If you type a keyword, any category containing a matching game rule will automatically expand to reveal the results, minimizing clicks while maintaining organization.
+
 ### 🧩 Seamless Mod Support
 Our collapsing logic hooks directly into the game's native Game Rules map. This means **any custom categories or rules added by other mods** will be automatically organized and collapsible out-of-the-box!
 
 ### ⚙️ Zero Configuration
-No config files or messy setup required. It seamlessly integrates into the Vanilla UI and automatically formats everything without needing manual tweaks.
+No config files or messy setup required. It seamlessly integrates into the Vanilla UI, leverages `DasikLibrary` for internal stability, and automatically formats everything without needing manual tweaks.
 
 ---
 
@@ -55,7 +61,7 @@ No config files or messy setup required. It seamlessly integrates into the Vanil
 ## 📦 Install
 
 1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
-2. Download `collapsible-game-rules-1.0.0+build.7.jar` and place it in your `mods` folder.
+2. Download `collapsible-game-rules-1.0.0+build.10.jar` and place it in your `mods` folder.
 3. Launch the game.
 
 ---

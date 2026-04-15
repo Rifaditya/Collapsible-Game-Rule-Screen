@@ -3,6 +3,7 @@
     "package": "net.instantgratification.collapsiblegamerules.mixin",
     "compatibilityLevel": "JAVA_22",
     "client": [
+        "AbstractGameRulesScreenMixin",
         "AbstractGameRulesScreenRuleListMixin",
         "CategoryRuleEntryAccessor"
     ],

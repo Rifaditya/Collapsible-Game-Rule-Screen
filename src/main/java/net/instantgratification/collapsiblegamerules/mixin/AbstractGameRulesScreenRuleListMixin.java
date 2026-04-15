@@ -19,7 +19,10 @@ import net.minecraft.client.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import net.instantgratification.collapsiblegamerules.GameRuleStateConfig;
+import net.instantgratification.collapsiblegamerules.ui.GlobalActionsRuleEntry;
+import net.instantgratification.collapsiblegamerules.CollapsibleGameRulesFabric;
 
 @Mixin(AbstractGameRulesScreen.RuleList.class)
 public abstract class AbstractGameRulesScreenRuleListMixin
@@ -40,8 +43,6 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
     @Inject(method = "populateChildren(Ljava/lang/String;)V", at = @At("TAIL"))
     private void collapsiblegamerules$onPopulateChildren(String filter, CallbackInfo ci) {
-        LoggerFactory.getLogger("collapsible-game-rules")
-                .info("Inside onPopulateChildren TAIL! Children size: " + this.children().size());
         this.collapsiblegamerules$currentFilter = (filter != null) ? filter.toLowerCase(java.util.Locale.ROOT) : "";
         // Save the currently generated list of all entries
         this.collapsiblegamerules$allEntries = new ArrayList<>(this.children());
@@ -51,15 +52,36 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
     @Unique
     private void collapsiblegamerules$updateVisibleEntries() {
-        Logger logger = LoggerFactory.getLogger("collapsible-game-rules");
-        logger.info("Updating visible entries! allEntries size: " + this.collapsiblegamerules$allEntries.size());
         this.clearEntries();
+
+        // 1. Hook GlobalActions UI at index 0 (if there are any rules)
+        if (!this.collapsiblegamerules$allEntries.isEmpty()) {
+            this.addEntry(new GlobalActionsRuleEntry(
+                () -> {
+                    List<String> allKeys = this.collapsiblegamerules$allEntries.stream()
+                        .filter(e -> e instanceof AbstractGameRulesScreen.CategoryRuleEntry)
+                        .map(e -> ((CategoryRuleEntryAccessor) e).collapsiblegamerules$getLabel().getString())
+                        .collect(Collectors.toList());
+                    GameRuleStateConfig.expandAll(allKeys);
+                    this.collapsiblegamerules$updateVisibleEntries();
+                },
+                () -> {
+                    GameRuleStateConfig.collapseAll();
+                    this.collapsiblegamerules$updateVisibleEntries();
+                }
+            ));
+        }
+
         boolean currentCategoryExpanded = true; // Assume true if no category found initially
 
         for (AbstractGameRulesScreen.RuleEntry entry : this.collapsiblegamerules$allEntries) {
             if (entry instanceof AbstractGameRulesScreen.CategoryRuleEntry) {
                 Component label = ((CategoryRuleEntryAccessor) entry).collapsiblegamerules$getLabel();
                 String categoryKey = label.getString();
+                
+                // 3. DasikLibrary Metadata Integration Hook
+                // If DasikLibrary is present, we would check: DasikLibrary.getGameRuleMetadata(categoryKey)
+                // For now, it respects native GameRules.Category out of the box.
                 
                 // Smart Search: if there's an active filter and we are populating children,
                 // vanilla already filters the list. If this category header is here, it means
@@ -141,6 +163,14 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 net.minecraft.client.Minecraft.getInstance().getSoundManager()
                         .play(net.minecraft.client.resources.sounds.SimpleSoundInstance
                                 .forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                return true;
+            } else if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT && this.expanded) {
+                this.toggleAction.run();
+                net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                return true;
+            } else if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT && !this.expanded) {
+                this.toggleAction.run();
+                net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
             }
             return super.keyPressed(event);

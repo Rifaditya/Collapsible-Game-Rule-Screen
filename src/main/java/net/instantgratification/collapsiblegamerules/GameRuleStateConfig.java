@@ -22,6 +22,7 @@ public class GameRuleStateConfig {
     
     // Set of category translation keys that are currently EXPANDED
     private static Set<String> expandedCategories = new HashSet<>();
+    private static boolean isDirty = false;
 
     public static void load() {
         if (!Files.exists(CONFIG_FILE)) {
@@ -48,25 +49,35 @@ public class GameRuleStateConfig {
         }
     }
 
+    public static void saveIfDirty() {
+        if (isDirty) {
+            save();
+            isDirty = false;
+        }
+    }
+
     public static boolean isExpanded(String categoryKey) {
         return expandedCategories.contains(categoryKey);
     }
 
     public static void setExpanded(String categoryKey, boolean expanded) {
         if (expanded) {
-            expandedCategories.add(categoryKey);
+            if (expandedCategories.add(categoryKey)) isDirty = true;
         } else {
-            expandedCategories.remove(categoryKey);
+            if (expandedCategories.remove(categoryKey)) isDirty = true;
         }
     }
     
     public static void expandAll(Iterable<String> allKeys) {
         for (String key : allKeys) {
-            expandedCategories.add(key);
+            if (expandedCategories.add(key)) isDirty = true;
         }
     }
 
     public static void collapseAll() {
-        expandedCategories.clear();
+        if (!expandedCategories.isEmpty()) {
+            expandedCategories.clear();
+            isDirty = true;
+        }
     }
 }
