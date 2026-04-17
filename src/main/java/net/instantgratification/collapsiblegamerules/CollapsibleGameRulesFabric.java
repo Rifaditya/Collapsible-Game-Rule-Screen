@@ -1,3 +1,7 @@
+/*
+ * Zenith Sovereign Engineering
+ * Verified against: ModInitializer.java (26.*)
+ */
 package net.instantgratification.collapsiblegamerules;
 
 import net.fabricmc.api.ModInitializer;

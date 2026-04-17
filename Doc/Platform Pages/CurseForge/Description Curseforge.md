@@ -2,6 +2,7 @@
 
 <!-- Banner placeholder — replace URL when banner is uploaded -->
 <!-- ![Collapsible Game Rules Banner](https://example.com/banner.jpg) -->
+<img src="https://raw.githubusercontent.com/Rifaditya/Collapsible-Game-Rule-Screen/refs/heads/main/Images/2026-02-21_12.57.59.png" alt="Collapsible Game Rules Banner" width="800">
 
 </div>
 <p align="center">
@@ -13,7 +14,7 @@
 
 # ⚒️ Collapsible Game Rules
 
-**Summary:** Makes the GameRules UI screen collapsible by category. Tired of scrolling? Clean up your world settings.
+**Summary:** Makes the GameRules UI screen collapsible by category. Feature-rich reorganization with Smart Search, Keyboard Navigation, and Persistent UI states. (Minecraft 26.*)
 
 **No Backports:** This mod strictly targets **Minecraft 26.1.2 ("Tiny Takeover" Release)**. Older versions are unsupported to ensure absolute stability with the modern UI engine.
 
@@ -35,6 +36,9 @@ Minecraft game rules are automatically grouped by their default categories (Play
 ### 🖱️ Toggle Headers
 Click on any category header to instantly expand or collapse its contents. Find the settings you need without scrolling continuously!
 
+### 🌎 Global Operations
+A handy `[ Expand All ]` / `[ Collapse All ]` UI header resides at the very top, granting you instant, one-click global mastery over the entirety of your game rules.
+
 ### 🛡️ Client-Side Only
 Works out of the box on your client. You do not need to install this on a server. Just drop it into your `mods` folder and enjoy a cleaner UI immediately.
 
@@ -45,7 +49,7 @@ Tired of collapsing the same categories every time you start the game? Collapsib
 Seamlessly integrated with the Vanilla search bar. If you type a keyword, any category containing a matching game rule will automatically expand to reveal the results, minimizing clicks while maintaining organization.
 
 ### 🧩 Seamless Mod Support
-Our collapsing logic hooks directly into the game's native Game Rules map. This means **any custom categories or rules added by other mods** will be automatically organized and collapsible out-of-the-box!
+Our collapsing logic hooks directly into the game's native Game Rules map. This means **any custom categories or rules added by other mods** will be automatically organized and collapsible out-of-the-box! We also include explicit metadata integration for rules generated through **DasikLibrary**'s `DynamicGameRuleManager`.
 
 ### ⚙️ Zero Configuration
 No config files or messy setup required. It seamlessly integrates into the Vanilla UI, leverages `DasikLibrary` for internal stability, and automatically formats everything without needing manual tweaks.
@@ -63,7 +67,7 @@ No config files or messy setup required. It seamlessly integrates into the Vanil
 ## 📦 Install
 
 1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
-2. Download `collapsible-game-rules-1.0.0+build.10.jar` and place it in your `mods` folder.
+2. Download `collapsible-game-rules-1.0.0+build.15.jar` and place it in your `mods` folder.
 3. Launch the game.
 
 ---

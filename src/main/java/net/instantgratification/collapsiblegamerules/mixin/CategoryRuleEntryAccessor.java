@@ -1,3 +1,7 @@
+/*
+ * Zenith Sovereign Engineering
+ * Verified against: AbstractGameRulesScreen.java (26.*)
+ */
 package net.instantgratification.collapsiblegamerules.mixin;
 
 import net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen;
@@ -8,5 +12,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(AbstractGameRulesScreen.CategoryRuleEntry.class)
 public interface CategoryRuleEntryAccessor {
     @Accessor("label")
-    Component collapsiblegamerules$getLabel();
+    Component collapsible_game_rules$getLabel();
 }

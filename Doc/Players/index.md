@@ -13,6 +13,7 @@
     - **Right Arrow**: Expand Category.
 - **🔘 Global Toggles**: Convenient **"Expand All"** and **"Collapse All"** buttons located at the top of the list for bulk operations.
 - **🧠 Persistence**: The mod remembers your exact toggle states and restores them the next time you open the screen.
+- **🧩 Seamless Mod Support**: Automatically groups and collapses rules from other mods. Includes native support for **DasikLibrary** dynamic metadata via lazy-loading for superior organization.
 
 ## Configuration
 There are no manual configuration files needed. All states are stored automatically in `config/collapsible-game-rules-state.json`.

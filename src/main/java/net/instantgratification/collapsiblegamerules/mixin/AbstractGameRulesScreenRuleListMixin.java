@@ -1,3 +1,7 @@
+/*
+ * Zenith Sovereign Engineering
+ * Verified against: AbstractGameRulesScreen.java (26.*)
+ */
 package net.instantgratification.collapsiblegamerules.mixin;
 
 import com.google.common.collect.ImmutableList;
@@ -19,9 +23,9 @@ import net.minecraft.client.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import net.instantgratification.collapsiblegamerules.GameRuleStateConfig;
 import net.instantgratification.collapsiblegamerules.ui.GlobalActionsRuleEntry;
+import net.instantgratification.collapsiblegamerules.util.DasikMetadataHelper;
 import net.instantgratification.collapsiblegamerules.CollapsibleGameRulesFabric;
 
 @Mixin(AbstractGameRulesScreen.RuleList.class)
@@ -36,66 +40,68 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
 
     @Unique
-    private List<AbstractGameRulesScreen.RuleEntry> collapsiblegamerules$allEntries = new ArrayList<>();
+    private List<AbstractGameRulesScreen.RuleEntry> collapsible_game_rules$allEntries = new ArrayList<>();
 
     @Unique
-    private String collapsiblegamerules$currentFilter = "";
+    private String collapsible_game_rules$currentFilter = "";
 
     @Inject(method = "populateChildren(Ljava/lang/String;)V", at = @At("TAIL"))
-    private void collapsiblegamerules$onPopulateChildren(String filter, CallbackInfo ci) {
-        this.collapsiblegamerules$currentFilter = (filter != null) ? filter.toLowerCase(java.util.Locale.ROOT) : "";
+    private void collapsible_game_rules$onPopulateChildren(String filter, CallbackInfo ci) {
+        this.collapsible_game_rules$currentFilter = (filter != null) ? filter.toLowerCase(java.util.Locale.ROOT) : "";
         // Save the currently generated list of all entries
-        this.collapsiblegamerules$allEntries = new ArrayList<>(this.children());
-        this.collapsiblegamerules$updateVisibleEntries();
+        this.collapsible_game_rules$allEntries = new ArrayList<>(this.children());
+        this.collapsible_game_rules$updateVisibleEntries();
     }
 
 
     @Unique
-    private void collapsiblegamerules$updateVisibleEntries() {
+    private void collapsible_game_rules$updateVisibleEntries() {
         this.clearEntries();
 
         // 1. Hook GlobalActions UI at index 0 (if there are any rules)
-        if (!this.collapsiblegamerules$allEntries.isEmpty()) {
+        if (!this.collapsible_game_rules$allEntries.isEmpty()) {
             this.addEntry(new GlobalActionsRuleEntry(
                 () -> {
-                    List<String> allKeys = this.collapsiblegamerules$allEntries.stream()
+                    List<String> allKeys = this.collapsible_game_rules$allEntries.stream()
                         .filter(e -> e instanceof AbstractGameRulesScreen.CategoryRuleEntry)
-                        .map(e -> ((CategoryRuleEntryAccessor) e).collapsiblegamerules$getLabel().getString())
-                        .collect(Collectors.toList());
+                        .map(e -> ((CategoryRuleEntryAccessor) e).collapsible_game_rules$getLabel().getString())
+                        .toList();
                     GameRuleStateConfig.expandAll(allKeys);
-                    this.collapsiblegamerules$updateVisibleEntries();
+                    this.collapsible_game_rules$updateVisibleEntries();
                 },
                 () -> {
                     GameRuleStateConfig.collapseAll();
-                    this.collapsiblegamerules$updateVisibleEntries();
+                    this.collapsible_game_rules$updateVisibleEntries();
                 }
             ));
         }
 
         boolean currentCategoryExpanded = true; // Assume true if no category found initially
 
-        for (AbstractGameRulesScreen.RuleEntry entry : this.collapsiblegamerules$allEntries) {
+        for (AbstractGameRulesScreen.RuleEntry entry : this.collapsible_game_rules$allEntries) {
             if (entry instanceof AbstractGameRulesScreen.CategoryRuleEntry) {
-                Component label = ((CategoryRuleEntryAccessor) entry).collapsiblegamerules$getLabel();
+                Component label = ((CategoryRuleEntryAccessor) entry).collapsible_game_rules$getLabel();
                 String categoryKey = label.getString();
                 
-                // 3. DasikLibrary Metadata Integration Hook
-                // If DasikLibrary is present, we would check: DasikLibrary.getGameRuleMetadata(categoryKey)
-                // For now, it respects native GameRules.Category out of the box.
+                // 3. DasikLibrary Metadata Integration Hook (lazy-loaded via helper)
+                if (net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("dasik-library")) {
+                    categoryKey = DasikMetadataHelper.getCategoryTranslation(categoryKey);
+                }
                 
                 // Smart Search: if there's an active filter and we are populating children,
                 // vanilla already filters the list. If this category header is here, it means
-                // a child rule matched OR the category name matched. We should expand it to show results.
-                boolean isSearching = !this.collapsiblegamerules$currentFilter.isEmpty();
+                // a child match OR the category name matched. We should expand it to show results.
+                boolean isSearching = !this.collapsible_game_rules$currentFilter.isEmpty();
                 
-                boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(categoryKey);
+                final String finalCategoryKey = categoryKey;
+                boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(finalCategoryKey);
 
                 CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(label,
                         isExpanded, () -> {
-                            boolean newState = !GameRuleStateConfig.isExpanded(categoryKey);
-                            GameRuleStateConfig.setExpanded(categoryKey, newState);
-                            GameRuleStateConfig.save();
-                            this.collapsiblegamerules$updateVisibleEntries();
+                            boolean newState = !GameRuleStateConfig.isExpanded(finalCategoryKey);
+                            GameRuleStateConfig.setExpanded(finalCategoryKey, newState);
+                            GameRuleStateConfig.saveIfDirty();
+                            this.collapsible_game_rules$updateVisibleEntries();
                         });
                 this.addEntry(newEntry);
                 currentCategoryExpanded = isExpanded;

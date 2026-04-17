@@ -1,3 +1,7 @@
+/*
+ * Zenith Sovereign Engineering
+ * Verified against: FabricLoader.java (26.*)
+ */
 package net.instantgratification.collapsiblegamerules;
 
 import com.google.gson.Gson;

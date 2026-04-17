@@ -1,3 +1,7 @@
+/*
+ * Zenith Sovereign Engineering
+ * Verified against: AbstractGameRulesScreen.RuleEntry.java (26.*)
+ */
 package net.instantgratification.collapsiblegamerules.ui;
 
 import com.google.common.collect.ImmutableList;

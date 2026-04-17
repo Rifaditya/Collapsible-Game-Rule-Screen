@@ -1,7 +1,6 @@
 # Concept: Collapsible Game Rules
 
 ## Identity
-**Collection**: Instant Gratification
 **modid**: `collapsible-game-rules`
 **Reasoning**: "Respect the Player's Time, Not the Game's Rules." 
 The Game Rules screen becomes bloated with every mod adding its own settings. This mod restores order by providing collapsible category headers, allowing players to focus on what matters instantly.
@@ -69,10 +68,11 @@ None required. Client-side only.
 ---
 
 ## Philosophy Fit
-**Collection**: Instant Gratification
-**Reasoning**: "Respect the Player's Time, Not the Game's Rules." The Game Rules screen can become overwhelming with many mods installed. This mod reduces friction by organizing these rules into collapsible category headers, allowing players to find what they need instantly without scrolling through a massive list.
+**Summary:** Makes the GameRules UI screen collapsible by category. Feature-rich reorganization with Smart Search, Keyboard Navigation, and Persistent UI states. (Minecraft 26.*)
+
+**No Backports:** This mod strictly targets **Minecraft 26.1.2 ("Tiny Takeover" Release)**. Older versions are unsupported to ensure absolute stability with the modern UI engine.
 
 ## Project Metadata
 - **Version Format**: `1.0.0+build.N`
 - **Internal Dependency**: `"dasik-library": "*"` (Standalone)
-- **Target Platform**: Minecraft 26.1 Snapshot 8+ (Fabric)
+- **Target Platform**: Minecraft 26.* (Fabric)
