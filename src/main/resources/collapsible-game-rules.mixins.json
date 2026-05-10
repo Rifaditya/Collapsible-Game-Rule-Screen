@@ -1,6 +1,7 @@
 {
     "required": true,
     "package": "net.instantgratification.collapsiblegamerules.mixin",
+    "refmap": "collapsible-game-rules-refmap.json",
     "compatibilityLevel": "JAVA_25",
     "client": [
         "ScreenMixin",

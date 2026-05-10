@@ -14,6 +14,12 @@ public class CollapsibleGameRulesFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Instant Gratification: Collapsible Game Rules Initialized");
+        LOGGER.info("Initializing Collapsible Game Rules [Zenith Protocol 2.1]");
+
+        // Hard Dependency Enforcement (Constitution Section 5.7)
+        if (!net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("dasik-library")) {
+            throw new RuntimeException("Collapsible Game Rules requires DasikLibrary to function. Please install it.");
+        }
     }
+    
 }

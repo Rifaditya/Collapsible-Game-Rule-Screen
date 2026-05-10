@@ -23,21 +23,16 @@ public final class DasikMetadataHelper {
     private DasikMetadataHelper() {}
 
     /**
-     * Attempts to resolve a category label through DasikLibrary's
-     * DynamicGameRuleManager metadata. If the library is missing or
-     * the lookup fails, the original label is returned unchanged.
+     * Retrieves the localized name for a category from DasikLibrary metadata.
+     * Enforced Hard Dependency: This method makes direct calls to DasikLibrary.
      */
     public static String getCategoryTranslation(String categoryLabel) {
-        try {
-            Map<String, String> translations =
-                    net.dasik.social.api.gamerule.DynamicGameRuleManager.getGeneratedTranslations();
-            return translations.getOrDefault(
-                    "gamerule.category." + categoryLabel.toLowerCase(Locale.ROOT),
-                    categoryLabel
-            );
-        } catch (Throwable t) {
-            LOGGER.warn("DasikLibrary metadata lookup failed for '{}': {}", categoryLabel, t.getMessage());
-            return categoryLabel;
-        }
+        Map<String, String> translations =
+                net.dasik.social.api.gamerule.DynamicGameRuleManager.getGeneratedTranslations();
+
+        return translations.getOrDefault(
+                "gamerule.category." + categoryLabel.toLowerCase(Locale.ROOT),
+                categoryLabel
+        );
     }
 }

@@ -9,7 +9,7 @@
     <a href="https://modrinth.com/mod/fabric-api"><img src="https://img.shields.io/badge/Requires-Fabric_API-blue?style=for-the-badge&logo=fabric" alt="Requires Fabric API"></a>
     <img src="https://img.shields.io/badge/Language-Java-orange?style=for-the-badge&logo=java" alt="Java">
     <img src="https://img.shields.io/badge/License-GPLv3-green?style=for-the-badge" alt="License">
-    <img src="https://img.shields.io/badge/Minecraft-26.1+-brightgreen?style=for-the-badge" alt="Minecraft 26.1+">
+    <img src="https://img.shields.io/badge/Minecraft-26.1.2+-brightgreen?style=for-the-badge" alt="Minecraft 26.1.2+">
 </p>
 
 # ⚒️ Collapsible Game Rules
@@ -54,6 +54,9 @@ Our collapsing logic hooks directly into the game's native Game Rules map. This 
 ### ⚙️ Zero Configuration
 No config files or messy setup required. It seamlessly integrates into the Vanilla UI, leverages `DasikLibrary` for internal stability, and automatically formats everything without needing manual tweaks.
 
+> [!CAUTION]
+> **Hard Dependency:** This mod REQUIRES **DasikLibrary** to function. It will explicitly crash with a descriptive error message if the library is missing.
+
 ---
 
 ## 📋 Quick Start
@@ -67,8 +70,9 @@ No config files or messy setup required. It seamlessly integrates into the Vanil
 ## 📦 Install
 
 1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
-2. Download `collapsible-game-rules-1.0.0+build.15.jar` and place it in your `mods` folder.
-3. Launch the game.
+2. Install **[DasikLibrary](https://modrinth.com/mod/dasik-library)** (Hard Requirement).
+3. Download `collapsible-game-rules-1.0.0+build.16.jar` and place it in your `mods` folder.
+4. Launch the game.
 
 ---
 
@@ -88,7 +92,7 @@ If you enjoy this mod, consider fueling the next update!
 
 | Role | Author |
 | :--- | :--- |
-| **Architect** | **Rifaditya** (Dasik) |
+| **Creator** | **Dasik (Rifaditya)** |
 | **License** | GPLv3 |
 
 ---

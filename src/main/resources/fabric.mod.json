@@ -5,7 +5,7 @@
     "name": "Collapsible Game Rules",
     "description": "Makes the GameRules UI screens collapsible by category.",
     "authors": [
-        "DasikIgaijin"
+        "Dasik (Rifaditya)"
     ],
     "contact": {
         "homepage": "https://github.com/Rifaditya/Instant-Gratification-collapsible-game-rules",
@@ -26,8 +26,8 @@
         "collapsible-game-rules.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.16.9",
-        "minecraft": ">=26.1",
+        "fabricloader": ">=0.19.1",
+        "minecraft": ">=26.1.2",
         "java": ">=25",
         "fabric-api": "*",
         "dasik-library": "*"
