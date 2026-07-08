@@ -1,3 +1,14 @@
+## [1.0.2+R-26.1.2] - 2026-06-04
+- **Minecraft Support**: Officially declared and aligned compatibility ranges to support both **Minecraft 26.1.2** and **Minecraft 26.2**.
+- **Category Prettification**: Added intelligent translation fallback prettification for unlocalized game rule category keys (e.g., converting `"gamerule.category.better-bats.better_bats"` to `"Better Bats"`).
+- **Persistence Robustness**: Refactored the UI collapse persistence layer to track states using translation keys instead of localized display strings, preventing state loss on language changes.
+- **DasikLibrary Alignment**: Bumped dependency version to `1.7.4` to match active workspace alignment.
+- **Compliance Updates**: Ignored `Doc/Marketing/` in `.gitignore` to prevent accidental tracking of marketing hype and sanitised internal codenames in files.
+
+## [1.0.1] - 2026-05-16
+- **Production Stability**: Standardized refmap inclusion for stable Mixin transformation.
+- **Dependency Hardening**: Enforced `dasik-library >= 1.7.0` for social AI parity.
+
 ## [1.0.0+build.15] - 2026-04-15
 - **Upgraded**: Fabric Loader `0.19.1`, Fabric API `0.145.4+26.1.2`.
 - **Restored**: Native `JAVA_25` Mixin compatibility.
@@ -16,7 +27,7 @@
 - **Added**: `DasikMetadataHelper` for ClassLoading safety. Isolates `DasikLibrary` references to prevent runtime crashes if the library is missing.
 - **Fixed**: Critical World Options lockout caused by Mixin inheritance violation. Migrated to `ScreenMixin` targeting the base `removed()` method.
 - **Synced**: Comprehensive documentation audit and sync across all platform pages (Modrinth, CurseForge) and player guides.
-- **Verified**: Achieved **Zenith Sovereign Engineering** compliance. Verified against Snapshot 26.1 (wildcard `26.*` standard).
+- **Verified**: Achieved **Core Sovereign Engineering** compliance. Verified against Snapshot 26.1 (wildcard `26.*` standard).
 - **Standardized**: Internal Mixin member prefixes to `collapsible_game_rules$`.
 - **Modernized**: Updated Stream API usage to Java 25 (`.toList()`).
 

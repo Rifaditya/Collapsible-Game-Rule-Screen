@@ -32,7 +32,7 @@ The Game Rules screen becomes bloated with every mod adding its own settings. Th
 
 ---
 
-## Technical Specifications (Zenith Standard)
+## Technical Specifications (Standard UI)
 
 ### Implementation Strategy
 1. **Screen Override**: Mixin into `AbstractGameRulesScreen$RuleList`.
@@ -41,7 +41,7 @@ The Game Rules screen becomes bloated with every mod adding its own settings. Th
 4. **Search Hook**: Wrap the `populateChildren(String filter)` method to ensure search-driven expansion.
 
 ### Visual Requirements
-- **Color Palette**: Respects Vanilla texture colors but uses a "Zenith Premium" highlight (e.g., 0xFFFFFFAA for hover).
+- **Color Palette**: Respects Vanilla texture colors but uses a premium highlight (e.g., 0xFFFFFFAA for hover).
 - **Animations**: (Optional/Stretch) Minor scale bounce or smooth expansion if compatible with Minecraft's standard list scrolling logic.
 
 ---

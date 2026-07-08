@@ -1,6 +1,6 @@
 # Collapsible Game Rules Documentation
 
-This directory contains all documentation for the **Collapsible Game Rules** mod, aligned with the **Zenith Protocol 2.1** standard.
+This directory contains all documentation for the **Collapsible Game Rules** mod, aligned with the **Core Align 2.1** standard.
 
 - **[Concept](Concept/concept_collapsible_gamerules.md)**: Original design documents and implementation plans.
 - **[Develop](Develop/)**: Information for developers, contributors, and the historical changelog.
