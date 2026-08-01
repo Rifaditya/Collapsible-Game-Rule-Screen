@@ -1,3 +1,28 @@
+## [1.0.6+26.2] - 2026-08-01
+### Fixed
+- Fixed syntax error in `ModVersionGuard.java` package declaration (`package net.instantgratification.collapsiblegamerules.util;`).
+
+## [1.0.4+26.2] - 2026-07-22
+### Core Changes
+- Updated `ModVersionGuard` check target in `CollapsibleGameRulesFabric.java` to `net.minecraft.world.level.GameRules` for robust early initialization.
+
+## [1.0.3+26.2] - 2026-07-22
+### Core Changes
+- Forward Compatibility & Version Guard setup for 26.2+.
+
+## [1.0.2+R-26.1.2] - 2026-06-04
+### Core Changes
+- Officially declared support for Minecraft 26.1.2 and 26.2.
+- Added translation fallback prettification for category headers.
+- Refactored UI collapse states to persist by raw keys instead of display strings.
+- Upgraded DasikLibrary dependency to 1.7.4.
+- Added Doc/Marketing/ to .gitignore and sanitised internal codenames.
+
+## [1.0.1] - 2026-05-16
+### Core Changes
+- Standardized refmap inclusion for stable Mixin transformation.
+- Enforced `dasik-library >= 1.7.0`.
+
 ## [1.0.0+build.15] - 2026-04-15
 ### Core Changes
 - Upgraded Fabric Loader to `0.19.1` — native Java 25 Mixin support, zero warnings.
@@ -9,36 +34,3 @@
 ### Core Changes
 - Downgraded Mixin compatibility level to `JAVA_22` for stable Fabric Knot integration.
 - Upgraded `DasikLibrary` dependency to `build.19`.
-
-## [1.0.0+build.13] - 2026-04-15
-### Core Changes
-- Added `pack.mcmeta` for full Minecraft 26.1.2 compliance (Major Format 84).
-- Upgraded `DasikLibrary` dependency to `build.18`.
-
-## [1.0.0+build.12] - 2026-04-15
-### Core Changes
-- Fixed critical World Options lockout via new `ScreenMixin`.
-- Implemented `DasikMetadataHelper` for safe library integration.
-- Standardized verification headers to `26.*` wildcard.
-- Upgraded `DasikLibrary` dependency to `build.17`.
-- Added Sovereign Engineering verification citations.
-
-## [1.0.0+build.10] - 2026-04-15
-### Core Changes
-- Added Global Actions UI entry ("Expand All" / "Collapse All").
-- Added Enhanced Keyboard Navigation.
-- Integrated Smart Search expansion.
-
-## [1.0.0+build.9] - 2026-04-13
-### Core Changes
-- Migrated mixin rendering pipelines to `GuiGraphicsExtractor` (MC 26.1.2 UI engine refactor).
-
-## [1.0.0+build.8] - 2026-03-02
-### Core Changes
-- Fixed compilation error caused by Minecraft 26.1 `KeyEvent` signature changes in `AbstractGameRulesScreenRuleListMixin.java`.
-
-
-## [1.0.0+build.5] - 2026-02-21
-### Core Changes
-- Processed user feedback removing references to Instant Gratification Collection.
-- Downloaded and placed GPL-3.0 LICENSE file in repository root.

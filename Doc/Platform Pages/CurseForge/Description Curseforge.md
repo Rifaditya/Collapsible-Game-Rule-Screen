@@ -5,17 +5,16 @@
 <img src="https://raw.githubusercontent.com/Rifaditya/Collapsible-Game-Rule-Screen/refs/heads/main/Images/2026-02-21_12.57.59.png" alt="Collapsible Game Rules Banner" width="800">
 
 </div>
+<p align="center">
     <a href="https://modrinth.com/mod/fabric-api"><img src="https://img.shields.io/badge/Requires-Fabric_API-blue?style=for-the-badge&logo=fabric" alt="Requires Fabric API"></a>
     <img src="https://img.shields.io/badge/Language-Java-orange?style=for-the-badge&logo=java" alt="Java">
     <img src="https://img.shields.io/badge/License-GPLv3-green?style=for-the-badge" alt="License">
-    <img src="https://img.shields.io/badge/Minecraft-26.1.2+-brightgreen?style=for-the-badge" alt="Minecraft 26.1.2+">
+    <img src="https://img.shields.io/badge/Minecraft-26.2+-brightgreen?style=for-the-badge" alt="Minecraft 26.2+">
 </p>
 
 # ⚒️ Collapsible Game Rules
 
-**Summary:** Makes the GameRules UI screen collapsible by category. Feature-rich reorganization with Smart Search, Keyboard Navigation, and Persistent UI states. (Minecraft 26.*)
-
-**No Backports:** This mod strictly targets **Minecraft 26.1.2 ("Tiny Takeover" Release)**. Older versions are unsupported to ensure absolute stability with the modern UI engine.
+**Summary:** Makes the GameRules UI screen collapsible by category. Feature-rich reorganization with Smart Search, Keyboard Navigation, and Persistent UI states. (Minecraft 26.2+)
 
 > **Respect the Player's Time, Not the Game's Rules.**
 
@@ -53,8 +52,9 @@ Our collapsing logic hooks directly into the game's native Game Rules map. This 
 ### ⚙️ Zero Configuration
 No config files or messy setup required. It seamlessly integrates into the Vanilla UI, leverages `DasikLibrary` for internal stability, and automatically formats everything without needing manual tweaks.
 
-> [!CAUTION]
-> **Hard Dependency:** This mod REQUIRES **DasikLibrary** to function. It will explicitly crash with a descriptive error message if the library is missing.
+<blockquote>
+<strong>⚠️ Hard Dependency:</strong> This mod REQUIRES <strong>DasikLibrary</strong> to function. It will explicitly crash with a descriptive error message if the library is missing.
+</blockquote>
 
 ---
 
@@ -68,9 +68,9 @@ No config files or messy setup required. It seamlessly integrates into the Vanil
 
 ## 📦 Install
 
-1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
-2. Install **[DasikLibrary](https://modrinth.com/mod/dasik-library)** (Hard Requirement).
-3. Download `collapsible-game-rules-1.0.0+build.16.jar` and place it in your `mods` folder.
+1. Install <a href="https://modrinth.com/mod/fabric-api"><strong>Fabric API</strong></a>.
+2. Install <a href="https://modrinth.com/mod/dasik-library"><strong>DasikLibrary</strong></a> (Hard Requirement).
+3. Download <code>collapsible-game-rules-1.0.5+26.2.jar</code> and place it in your <code>mods</code> folder.
 4. Launch the game.
 
 ---
@@ -79,12 +79,15 @@ No config files or messy setup required. It seamlessly integrates into the Vanil
 
 If you enjoy this mod, consider fueling the next update!
 
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Me-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/dasikigaijin/tip)
-[![SocioBuzz](https://img.shields.io/badge/SocioBuzz-Local_Support-7BB32E?style=for-the-badge)](https://sociabuzz.com/dasikigaijin/tribe)
-[![Saweria](https://img.shields.io/badge/Saweria-Local_Support-FFA500?style=for-the-badge)](https://saweria.co/DasikIgaijinn)
+<p align="center">
+<a href="https://ko-fi.com/dasikigaijin/tip"><img src="https://img.shields.io/badge/Ko--fi-Support%20Me-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi"></a>
+<a href="https://sociabuzz.com/dasikigaijin/tribe"><img src="https://img.shields.io/badge/SocioBuzz-Local_Support-7BB32E?style=for-the-badge" alt="SocioBuzz"></a>
+<a href="https://saweria.co/DasikIgaijinn"><img src="https://img.shields.io/badge/Saweria-Local_Support-FFA500?style=for-the-badge" alt="Saweria"></a>
+</p>
 
-> [!NOTE]
-> **Indonesian Users:** SocioBuzz and Saweria support local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
+<blockquote>
+<strong>Note for Indonesian Users:</strong> SocioBuzz and Saweria support local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
+</blockquote>
 
 ---
 
@@ -97,10 +100,9 @@ If you enjoy this mod, consider fueling the next update!
 
 ---
 
-> [!IMPORTANT]
-> **Modpack Permissions:** You are free to include this mod in modpacks, **provided the modpack is hosted on the same platform**.
->
-> **Cross-platform distribution is not permitted.** If you download this mod from CurseForge, your modpack must also be published on CurseForge.
+<blockquote>
+<strong>📦 Modpack Permissions:</strong> You are free to include this mod in any modpack on any platform. However, the mod itself must be downloaded from its official distribution pages on <strong>Modrinth</strong> or <strong>CurseForge</strong>. Re-uploading or redistributing the mod jar file to third-party sites is strictly prohibited unless explicitly permitted by the creator.
+</blockquote>
 
 ---
 

@@ -64,7 +64,7 @@ jar {
 publishMods {
     file = jar.archiveFile
     additionalFiles.from(sourcesJar.archiveFile)
-    changelog = "Build ${project.mod_version}: Zenith 2.1 Alignment & Hard Dependency Enforcement"
+    changelog = "Build ${project.mod_version}: Core Alignment & Hard Dependency Enforcement"
     type = STABLE
     modLoaders.add("fabric")
 

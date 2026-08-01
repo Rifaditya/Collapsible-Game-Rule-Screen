@@ -1,5 +1,5 @@
 /*
- * Zenith Sovereign Engineering
+ * Sovereign Engineering
  * Verified against: AbstractGameRulesScreen.java (26.*)
  */
 package net.instantgratification.collapsiblegamerules.mixin;
@@ -64,7 +64,13 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 () -> {
                     List<String> allKeys = this.collapsible_game_rules$allEntries.stream()
                         .filter(e -> e instanceof AbstractGameRulesScreen.CategoryRuleEntry)
-                        .map(e -> ((CategoryRuleEntryAccessor) e).collapsible_game_rules$getLabel().getString())
+                        .map(e -> {
+                            Component lbl = ((CategoryRuleEntryAccessor) e).collapsible_game_rules$getLabel();
+                            if (lbl.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents translatable) {
+                                return translatable.getKey();
+                            }
+                            return lbl.getString();
+                        })
                         .toList();
                     GameRuleStateConfig.expandAll(allKeys);
                     this.collapsible_game_rules$updateVisibleEntries();
@@ -81,25 +87,38 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         for (AbstractGameRulesScreen.RuleEntry entry : this.collapsible_game_rules$allEntries) {
             if (entry instanceof AbstractGameRulesScreen.CategoryRuleEntry) {
                 Component label = ((CategoryRuleEntryAccessor) entry).collapsible_game_rules$getLabel();
-                String categoryKey = label.getString();
                 
+                String categoryKey = label.getString();
+                String persistenceKey = categoryKey;
+                if (label.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents translatable) {
+                    persistenceKey = translatable.getKey();
+                }
+
                 // 3. DasikLibrary Metadata Integration Hook (lazy-loaded via helper)
                 if (net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("dasik-library")) {
                     categoryKey = DasikMetadataHelper.getCategoryTranslation(categoryKey);
                 }
-                
+
+                Component displayLabel = label;
+                if (label.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents translatable) {
+                    String key = translatable.getKey();
+                    if (!net.minecraft.locale.Language.getInstance().has(key)) {
+                        displayLabel = Component.literal(net.instantgratification.collapsiblegamerules.util.CategoryPrettifier.prettifyCategoryKey(key));
+                    }
+                }
+
                 // Smart Search: if there's an active filter and we are populating children,
                 // vanilla already filters the list. If this category header is here, it means
                 // a child match OR the category name matched. We should expand it to show results.
                 boolean isSearching = !this.collapsible_game_rules$currentFilter.isEmpty();
-                
-                final String finalCategoryKey = categoryKey;
-                boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(finalCategoryKey);
 
-                CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(label,
+                final String finalPersistenceKey = persistenceKey;
+                boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(finalPersistenceKey);
+
+                CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(displayLabel,
                         isExpanded, () -> {
-                            boolean newState = !GameRuleStateConfig.isExpanded(finalCategoryKey);
-                            GameRuleStateConfig.setExpanded(finalCategoryKey, newState);
+                            boolean newState = !GameRuleStateConfig.isExpanded(finalPersistenceKey);
+                            GameRuleStateConfig.setExpanded(finalPersistenceKey, newState);
                             GameRuleStateConfig.saveIfDirty();
                             this.collapsible_game_rules$updateVisibleEntries();
                         });
@@ -133,7 +152,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
         @Override
         public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-            // Zenith Premium Highlight on hover
+            // Premium Highlight on hover
             if (hovered) {
                 graphics.fill(this.getX() - 2, this.getY(), this.getX() + this.getWidth() + 2, this.getY() + 24, 0x22FFFFFF);
             }

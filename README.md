@@ -5,15 +5,14 @@
 <img src="https://raw.githubusercontent.com/Rifaditya/Collapsible-Game-Rule-Screen/refs/heads/main/Images/2026-02-21_12.57.59.png" alt="Collapsible Game Rules Banner" width="800">
 
 </div>
+<p align="center">
     <a href="https://modrinth.com/mod/fabric-api"><img src="https://img.shields.io/badge/Requires-Fabric_API-blue?style=for-the-badge&logo=fabric" alt="Requires Fabric API"></a>
     <img src="https://img.shields.io/badge/Language-Java-orange?style=for-the-badge&logo=java" alt="Java">
     <img src="https://img.shields.io/badge/License-GPLv3-green?style=for-the-badge" alt="License">
-    <img src="https://img.shields.io/badge/Minecraft-26.1.2+-brightgreen?style=for-the-badge" alt="Minecraft 26.1.2+">
+    <img src="https://img.shields.io/badge/Minecraft-26.2+-brightgreen?style=for-the-badge" alt="Minecraft 26.2+">
 </p>
 
 # ⚒️ Collapsible Game Rules
-
-**No Backports:** This mod strictly targets **Minecraft 26.1.2 ("Tiny Takeover" Release)**. Older versions are unsupported to ensure absolute stability with the modern UI engine.
 
 > **Respect the Player's Time, Not the Game's Rules.**
 
@@ -68,7 +67,7 @@ No config files or messy setup required. It seamlessly integrates into the Vanil
 
 1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
 2. Install **[DasikLibrary](https://modrinth.com/mod/dasik-library)** (Hard Requirement).
-3. Download `collapsible-game-rules-1.0.0+build.16.jar` and place it in your `mods` folder.
+3. Download `collapsible-game-rules-1.0.5+26.2.jar` and place it in your `mods` folder.
 4. Launch the game.
 
 ---
@@ -79,9 +78,10 @@ If you enjoy this mod, consider fueling the next update!
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Me-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/dasikigaijin/tip)
 [![SocioBuzz](https://img.shields.io/badge/SocioBuzz-Local_Support-7BB32E?style=for-the-badge)](https://sociabuzz.com/dasikigaijin/tribe)
+[![Saweria](https://img.shields.io/badge/Saweria-Local_Support-FFA500?style=for-the-badge)](https://saweria.co/DasikIgaijinn)
 
 > [!NOTE]
-> **Indonesian Users:** SocioBuzz supports local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
+> **Indonesian Users:** SocioBuzz and Saweria support local payment methods (Gopay, OVO, Dana, etc.) if you want to support me without using PayPal/Ko-fi!
 
 ---
 
@@ -95,9 +95,7 @@ If you enjoy this mod, consider fueling the next update!
 ---
 
 > [!IMPORTANT]
-> **Modpack Permissions:** You are free to include this mod in modpacks, **provided the modpack is hosted on the same platform** (e.g. Modrinth).
->
-> **Cross-platform distribution is not permitted.** If you download this mod from Modrinth, your modpack must also be published on Modrinth.
+> **📦 Modpack Permissions:** You are free to include this mod in any modpack on any platform. However, the mod itself must be downloaded from its official distribution pages on **Modrinth** or **CurseForge**. Re-uploading or redistributing the mod jar file to third-party sites is strictly prohibited unless explicitly permitted by the creator.
 
 ---
 

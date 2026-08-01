@@ -1,5 +1,5 @@
 /*
- * Zenith Sovereign Engineering
+ * Sovereign Engineering
  * Verified against: AbstractGameRulesScreen.java (26.*)
  */
 package net.instantgratification.collapsiblegamerules.mixin;

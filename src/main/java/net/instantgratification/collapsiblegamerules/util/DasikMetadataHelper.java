@@ -1,5 +1,5 @@
 /*
- * Zenith Sovereign Engineering
+ * Sovereign Engineering
  * Verified against: DynamicGameRuleManager.java (26.*)
  */
 package net.instantgratification.collapsiblegamerules.util;
