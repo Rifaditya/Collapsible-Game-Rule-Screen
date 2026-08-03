@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.12+26.2`** (2026-08-03) - Fixed missing font glyph (⌂) by using native chevrons (▼/▶) and thorough arrow stripping.
 - [ ] **`1.0.11+26.2`** (2026-08-03) - Q&A Polish: 2-Line Dynamic Header Cards (0 truncation), Folder Icons (📂/📁), Far-Right Cyan Pill Badges ([ X Rules ]).
 - [ ] **`1.0.10+26.2`** (2026-08-03) - Screen-Level 560px Widescreen Resizing, regex arrow stripper, title truncation, dark glass cards, and presets bar.
 - [ ] **`1.0.9+26.2`** (2026-08-03) - Widescreen Dashboard (520px), right-anchored count badges, duplicate arrow fix, Gold/Cyan category card accents.

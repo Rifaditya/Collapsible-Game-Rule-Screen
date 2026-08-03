@@ -117,9 +117,9 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                     }
                 }
 
-                // Strip any existing arrow symbols/prefixes from displayLabel using regex
+                // Strip any existing arrow symbols/prefixes/glyphs from displayLabel using regex
                 String rawText = displayLabel.getString();
-                rawText = rawText.replaceAll("^[\\s\\u25BA\\u25B6\\u25BC\\u25BD>►▼▶]+", "").trim();
+                rawText = rawText.replaceAll("^[\\s\\u25BA\\u25B6\\u25BC\\u25BD\\u2302>►▼▶⌂]+", "").trim();
                 Component cleanLabel = Component.literal(rawText);
 
                 // Smart Search: if there's an active filter and we are populating children,
@@ -170,7 +170,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         }
 
         private String getIconPrefix() {
-            return this.expanded ? "📂 " : "📁 ";
+            return this.expanded ? "▼ " : "▶ ";
         }
 
         @Override

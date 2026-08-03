@@ -1,3 +1,9 @@
+## [1.0.12+26.2] - 2026-08-03
+
+### Fixed
+- **Font Glyph & Arrow Cleanup**: Replaced unrenderable 4-byte emoji glyphs (`⌂`) with native Minecraft chevrons (`▼` when expanded, `▶` when collapsed).
+- **Thorough Arrow Stripping**: Updated regex stripper to remove all unicode arrow variations (`\u25BA`, `\u25B6`, `\u25BC`, `\u25BD`, `\u2302`, `►`, `▼`, `▶`, `⌂`) from translation keys, guaranteeing 0 duplicate arrows.
+
 ## [1.0.11+26.2] - 2026-08-03
 
 ### Added & Refined (Q&A Polish)
