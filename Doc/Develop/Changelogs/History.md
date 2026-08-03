@@ -1,5 +1,12 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.10+26.2] - 2026-08-03
+- **Screen-Level Widescreen Resizing (`AbstractGameRulesScreenMixin`)**: Mixed into `AbstractGameRulesScreen.init()` to resize `RuleList` to a spacious 560px widescreen layout centered on screen.
+- **Double Arrow Removal**: Added regex arrow stripper `^[\\s\\u25BA\\u25B6\\u25BC\\u25BD>►▼▶]+` to eliminate duplicate arrow symbols (`► ▼`).
+- **Smart Title Truncation**: Truncates long category titles with `...` if they approach the right-anchored count badge.
+- **Dark Glassmorphic Category Styling**: Premium dark glass pill cards (`0xDD12141C`) with Gold (`0xFFFFAA00`) and Electric Cyan (`0xFF00E5FF`) accent indicators.
+- **Enhanced Global Header Bar**: Upgraded `GlobalActionsRuleEntry` with Expand All, Collapse All, and Preset controls.
+
 ## [1.0.9+26.2] - 2026-08-03
 - **Widescreen Dashboard Layout (520px)**: Expanded the rule selection list container from ~300px to a spacious 520px widescreen layout.
 - **Right-Anchored Category Badges**: Anchored `[X rules]` badges to the far right margin of category cards, eliminating scrollbar overlaps.

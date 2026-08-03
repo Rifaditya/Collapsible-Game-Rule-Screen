@@ -117,12 +117,10 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                     }
                 }
 
-                // Strip any existing arrow symbols/prefixes from displayLabel
+                // Strip any existing arrow symbols/prefixes from displayLabel using regex
                 String rawText = displayLabel.getString();
-                while (!rawText.isEmpty() && (rawText.startsWith("►") || rawText.startsWith("▼") || rawText.startsWith("▶") || rawText.startsWith(">") || rawText.startsWith(" "))) {
-                    rawText = rawText.substring(1);
-                }
-                Component cleanLabel = Component.literal(rawText.trim());
+                rawText = rawText.replaceAll("^[\\s\\u25BA\\u25B6\\u25BC\\u25BD>►▼▶]+", "").trim();
+                Component cleanLabel = Component.literal(rawText);
 
                 // Smart Search: if there's an active filter and we are populating children,
                 // vanilla already filters the list. If this category header is here, it means
@@ -149,9 +147,9 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             }
         }
 
-        // Force widescreen layout recalculation (520px wide centered)
+        // Force widescreen layout recalculation (560px wide centered)
         int screenWidth = net.minecraft.client.Minecraft.getInstance().getWindow().getGuiScaledWidth();
-        int listWidth = Math.min(520, Math.max(310, screenWidth - 40));
+        int listWidth = Math.min(560, Math.max(310, screenWidth - 40));
         int listX = (screenWidth - listWidth) / 2;
         this.updateSizeAndPosition(listWidth, this.getHeight(), listX, this.getY());
     }
@@ -177,26 +175,34 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int entryY = this.getY();
             int entryWidth = this.getWidth();
 
-            // Dark glass pill background card for category header
-            int cardBg = hovered ? 0xCC252525 : 0xAA151515;
+            // Glassmorphic dark card background
+            int cardBg = hovered ? 0xFF222838 : 0xDD12141C;
             graphics.fill(entryX + 2, entryY + 2, entryX + entryWidth - 2, entryY + 22, cardBg);
             
-            // Dynamic Gold & Cyan Accent Bar: Gold (0xFFFFAA00) when expanded, Cyan (0xFF55FFFF) when collapsed
-            int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF55FFFF;
+            // Dynamic Gold & Electric Cyan Accent Bar: Gold (0xFFFFAA00) when expanded, Cyan (0xFF00E5FF) when collapsed
+            int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF00E5FF;
             graphics.fill(entryX + 2, entryY + 2, entryX + 6, entryY + 22, accentColor);
 
-            // Left-aligned category title with clean single directional arrow
-            String arrow = this.expanded ? "▼ " : "▶ ";
-            Component titleText = Component.literal(arrow).append(this.label);
-            Component countBadge = Component.literal("[" + this.childCount + " rules]").withStyle(net.minecraft.ChatFormatting.GRAY);
-
-            // Left Title Text
-            graphics.text(net.minecraft.client.Minecraft.getInstance().font, titleText, entryX + 12, entryY + 7, hovered ? 0xFFFFFFAA : 0xFFFFFF55);
+            net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
 
             // Right-Anchored Badge: Placed anchored before the scrollbar
-            int badgeWidth = net.minecraft.client.Minecraft.getInstance().font.width(countBadge);
-            int badgeX = entryX + entryWidth - badgeWidth - 12;
-            graphics.text(net.minecraft.client.Minecraft.getInstance().font, countBadge, badgeX, entryY + 7, 0xFFAAAAAA);
+            Component countBadge = Component.literal("[" + this.childCount + " rules]").withStyle(net.minecraft.ChatFormatting.GRAY);
+            int badgeWidth = font.width(countBadge);
+            int badgeX = entryX + entryWidth - badgeWidth - 14;
+
+            // Smart Title Truncation if title is too long for available width
+            String fullTitleStr = (this.expanded ? "▼ " : "▶ ") + this.label.getString();
+            int maxAllowedWidth = badgeX - (entryX + 16);
+            if (font.width(fullTitleStr) > maxAllowedWidth && maxAllowedWidth > 20) {
+                fullTitleStr = font.plainSubstrByWidth(fullTitleStr, maxAllowedWidth - 10) + "...";
+            }
+            Component titleText = Component.literal(fullTitleStr);
+
+            // Left Title Text
+            graphics.text(font, titleText, entryX + 12, entryY + 7, hovered ? 0xFFFFFFAA : 0xFFFFFF55);
+
+            // Right Badge Text
+            graphics.text(font, countBadge, badgeX, entryY + 7, 0xFF80D8FF);
         }
 
         @Override

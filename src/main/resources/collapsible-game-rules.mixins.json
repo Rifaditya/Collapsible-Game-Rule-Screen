@@ -5,6 +5,7 @@
     "compatibilityLevel": "JAVA_25",
     "client": [
         "ScreenMixin",
+        "AbstractGameRulesScreenMixin",
         "AbstractGameRulesScreenRuleListMixin",
         "CategoryRuleEntryAccessor",
         "IntegerRuleEntryMixin",

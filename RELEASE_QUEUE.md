@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.10+26.2`** (2026-08-03) - Screen-Level 560px Widescreen Resizing, regex arrow stripper, title truncation, dark glass cards, and presets bar.
 - [ ] **`1.0.9+26.2`** (2026-08-03) - Widescreen Dashboard (520px), right-anchored count badges, duplicate arrow fix, Gold/Cyan category card accents.
 - [ ] **`1.0.8+26.2`** (2026-08-03) - Visual Overhaul: BooleanToggleWidget green/red toggles, IntegerSliderWidget sliders, category header scroll clipping fix, and Reset-to-Default buttons.
 - [ ] **`1.0.7+26.2`** (2026-08-02) - Game Rules Control Center Overhaul (Interactive Sliders, Toggle Switches, Presets Engine, Reset-to-Default, Category Metrics).
