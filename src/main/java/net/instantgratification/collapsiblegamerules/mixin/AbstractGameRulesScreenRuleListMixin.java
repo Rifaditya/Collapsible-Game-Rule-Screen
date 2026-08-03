@@ -169,19 +169,15 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             this.toggleAction = toggleAction;
         }
 
+        private String getIconPrefix() {
+            return this.expanded ? "📂 " : "📁 ";
+        }
+
         @Override
         public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
             int entryX = this.getX();
             int entryY = this.getY();
             int entryWidth = this.getWidth();
-
-            // Glassmorphic dark card background
-            int cardBg = hovered ? 0xFF222838 : 0xDD12141C;
-            graphics.fill(entryX + 2, entryY + 2, entryX + entryWidth - 2, entryY + 22, cardBg);
-            
-            // Dynamic Gold & Electric Cyan Accent Bar: Gold (0xFFFFAA00) when expanded, Cyan (0xFF00E5FF) when collapsed
-            int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF00E5FF;
-            graphics.fill(entryX + 2, entryY + 2, entryX + 6, entryY + 22, accentColor);
 
             net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
 
@@ -190,19 +186,37 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int badgeWidth = font.width(countBadge);
             int badgeX = entryX + entryWidth - badgeWidth - 14;
 
-            // Smart Title Truncation if title is too long for available width
-            String fullTitleStr = (this.expanded ? "▼ " : "▶ ") + this.label.getString();
+            String iconPrefix = getIconPrefix();
+            Component fullTitle = Component.literal(iconPrefix).append(this.label);
             int maxAllowedWidth = badgeX - (entryX + 16);
-            if (font.width(fullTitleStr) > maxAllowedWidth && maxAllowedWidth > 20) {
-                fullTitleStr = font.plainSubstrByWidth(fullTitleStr, maxAllowedWidth - 10) + "...";
-            }
-            Component titleText = Component.literal(fullTitleStr);
 
-            // Left Title Text
-            graphics.text(font, titleText, entryX + 12, entryY + 7, hovered ? 0xFFFFFFAA : 0xFFFFFF55);
+            boolean isTwoLine = maxAllowedWidth > 20 && font.width(fullTitle) > maxAllowedWidth;
+            int cardHeight = isTwoLine ? 30 : 22;
+            int badgeY = entryY + (cardHeight - 8) / 2;
+
+            // Glassmorphic dark card background
+            int cardBg = hovered ? 0xFF222838 : 0xDD12141C;
+            graphics.fill(entryX + 2, entryY + 2, entryX + entryWidth - 2, entryY + cardHeight, cardBg);
+            
+            // Dynamic Gold & Electric Cyan Accent Bar: Gold (0xFFFFAA00) when expanded, Cyan (0xFF00E5FF) when collapsed
+            int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF00E5FF;
+            graphics.fill(entryX + 2, entryY + 2, entryX + 6, entryY + cardHeight, accentColor);
+
+            if (isTwoLine) {
+                // Split title across 2 lines so full text fits without '...' truncation
+                List<net.minecraft.util.FormattedCharSequence> lines = font.split(fullTitle, maxAllowedWidth);
+                int lineY = entryY + 4;
+                for (int i = 0; i < Math.min(2, lines.size()); i++) {
+                    graphics.text(font, lines.get(i), entryX + 12, lineY, hovered ? 0xFFFFFFAA : 0xFFFFFF55);
+                    lineY += 12;
+                }
+            } else {
+                // Single line title
+                graphics.text(font, fullTitle, entryX + 12, entryY + 7, hovered ? 0xFFFFFFAA : 0xFFFFFF55);
+            }
 
             // Right Badge Text
-            graphics.text(font, countBadge, badgeX, entryY + 7, 0xFF80D8FF);
+            graphics.text(font, countBadge, badgeX, badgeY, 0xFF80D8FF);
         }
 
         @Override

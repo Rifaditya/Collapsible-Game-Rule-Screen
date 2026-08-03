@@ -1,5 +1,10 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.11+26.2] - 2026-08-03
+- **2-Line Dynamic Header Cards**: Long category names (like `MCA Inclusive Expressions`) expand card height dynamically so the full title fits across 2 lines without any '...' truncation.
+- **Folder Icon Badges (`📂` / `📁`)**: Replaced text arrows with modern folder icons (`📂` when expanded, `📁` when collapsed) and stripped all legacy `►`/`▼` characters.
+- **Cyan Pill Badges (`[ X Rules ]`)**: Styled rule count badges as dark glass cyan pill tags anchored on the far right.
+
 ## [1.0.10+26.2] - 2026-08-03
 - **Screen-Level Widescreen Resizing (`AbstractGameRulesScreenMixin`)**: Mixed into `AbstractGameRulesScreen.init()` to resize `RuleList` to a spacious 560px widescreen layout centered on screen.
 - **Double Arrow Removal**: Added regex arrow stripper `^[\\s\\u25BA\\u25B6\\u25BC\\u25BD>►▼▶]+` to eliminate duplicate arrow symbols (`► ▼`).

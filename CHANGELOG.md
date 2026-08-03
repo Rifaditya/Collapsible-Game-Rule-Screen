@@ -1,3 +1,10 @@
+## [1.0.11+26.2] - 2026-08-03
+
+### Added & Refined (Q&A Polish)
+- **2-Line Dynamic Header Cards**: Long category names (like `MCA Inclusive Expressions`) expand card height dynamically so the full title fits across 2 lines without any '...' truncation.
+- **Folder Icon Badges (`📂` / `📁`)**: Replaced text arrows with modern folder icons (`📂` when expanded, `📁` when collapsed) and stripped all legacy `►`/`▼` characters.
+- **Cyan Pill Badges (`[ X Rules ]`)**: Styled rule count badges as dark glass cyan pill tags anchored on the far right.
+
 ## [1.0.10+26.2] - 2026-08-03
 
 ### Added & Fixed
