@@ -6,7 +6,9 @@
     "client": [
         "ScreenMixin",
         "AbstractGameRulesScreenRuleListMixin",
-        "CategoryRuleEntryAccessor"
+        "CategoryRuleEntryAccessor",
+        "IntegerRuleEntryMixin",
+        "BooleanRuleEntryMixin"
     ],
     "injectors": {
         "defaultRequire": 1

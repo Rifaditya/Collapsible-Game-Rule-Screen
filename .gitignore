@@ -61,3 +61,11 @@ releases/
 build_log.txt
 build_log_utf8.txt
 *log*
+
+# Marketing / Hype exclusion
+Doc/Marketing/
+
+
+Archive/
+Archive Jar of all versions/
+*.jar
