@@ -1,5 +1,8 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.9+26.2] - 2026-08-04
+- **Mixin Configuration Fix**: Removed obsolete `BooleanRuleEntryMixin` entry from `collapsible-game-rules.mixins.json` fixing `ClassNotFoundException` startup crash.
+
 ## [1.0.8+26.2] - 2026-08-04
 - **Screenshot & Documentation Asset Update**: Compressed and updated main mod screenshot asset (`Images/2026-08-04_11.06.33.png`).
 - **Canonical GitHub Raw URLs**: Updated all documentation pages (`README.md`, `CurseForge`, `Modrinth`) to reference canonical raw GitHub image URLs.

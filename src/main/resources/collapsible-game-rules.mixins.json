@@ -7,8 +7,7 @@
         "ScreenMixin",
         "AbstractGameRulesScreenRuleListMixin",
         "CategoryRuleEntryAccessor",
-        "IntegerRuleEntryMixin",
-        "BooleanRuleEntryMixin"
+        "IntegerRuleEntryMixin"
     ],
     "injectors": {
         "defaultRequire": 1

@@ -1,3 +1,8 @@
+## [1.0.9+26.2] - 2026-08-04
+
+### Fixed
+- **Mixin Configuration Fix**: Removed obsolete `BooleanRuleEntryMixin` entry from `collapsible-game-rules.mixins.json` fixing `ClassNotFoundException` startup crash.
+
 ## [1.0.8+26.2] - 2026-08-04
 
 ### Changed
