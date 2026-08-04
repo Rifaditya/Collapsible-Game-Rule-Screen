@@ -5,10 +5,10 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
-- [ ] **`1.0.9+26.2`** (2026-08-04) - Fixed startup crash by removing obsolete `BooleanRuleEntryMixin` from `mixins.json`.
-- [ ] **`1.0.8+26.2`** (2026-08-04) - Screenshot & Documentation Asset Update, canonical raw GitHub URL fixes, and repository synchronization.
-- [ ] **`1.0.7+26.2`** (2026-08-02) - Game Rules Control Center Overhaul (Interactive Sliders, Toggle Switches, Presets Engine, Reset-to-Default, Category Metrics).
-- [ ] **`1.0.6+26.2`** (2026-08-01) - Fixed syntax error in `ModVersionGuard.java` package declaration.
+- [x] **`1.0.9+26.2`** (2026-08-04) - Fixed startup crash by removing obsolete `BooleanRuleEntryMixin` from `mixins.json`.
+- [x] **`1.0.8+26.2`** (2026-08-04) - Screenshot & Documentation Asset Update, canonical raw GitHub URL fixes, and repository synchronization.
+- [x] **`1.0.7+26.2`** (2026-08-02) - Game Rules Control Center Overhaul (Interactive Sliders, Toggle Switches, Presets Engine, Reset-to-Default, Category Metrics).
+- [x] **`1.0.6+26.2`** (2026-08-01) - Fixed syntax error in `ModVersionGuard.java` package declaration.
 - [x] **`1.0.0+build.8`** (2026-03-02) - - Fixed Minecraft 26.1 `KeyEvent` signature changes in `AbstractGameRulesScreenRuleListMixin.java` fixing build failure.
 - [x] **`1.0.0+build.9`** (2026-04-13) - - Upgraded Minecraft dependency constraint to `26.1.2`. - - Migrated mixin rendering pipelines from `GuiGraphics` to `GuiGraphicsExtractor` to comply with the 26.1.2 UI rendering engine refactor.
 - [x] **`1.0.0+build.10`** (2026-04-15) - - **Added**: Global Actions UI entry providing "Expand All" and "Collapse All" buttons. - - **Added**: Enhanced Keyboard Navigation — Left Arrow collapses, Right Arrow expands categories.
