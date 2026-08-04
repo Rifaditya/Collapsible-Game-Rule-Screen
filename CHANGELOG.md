@@ -1,3 +1,9 @@
+## [1.0.8+26.2] - 2026-08-04
+
+### Changed
+- **SemVer Patch Bump & Asset Sync**: Bumped version following code refactoring & mixin fixes.
+- **Canonical Image URL Fix**: Updated GitHub raw image links from `refs/heads/main` to canonical `main/Images/2026-08-04_10.59.57.png`.
+
 ## [1.0.7+26.2] - 2026-08-02
 
 ### Added

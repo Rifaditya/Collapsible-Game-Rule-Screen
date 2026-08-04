@@ -1,5 +1,9 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.8+26.2] - 2026-08-04
+- **SemVer Patch Bump & Asset Sync**: Bumped version following code refactoring & mixin fixes.
+- **Canonical Image URL Fix**: Updated GitHub raw image links from `refs/heads/main` to canonical `main/Images/2026-08-04_10.59.57.png`.
+
 ## [1.0.7+26.2] - 2026-08-02
 - **Game Rules Control Center Overhaul**: Total redesign of the Game Rules Screen into a 2-pane navigation layout.
 - **Interactive Integer Sliders (`IntegerSliderWidget`)**: Added dynamic numeric sliders with step buttons (`-1`, `+1`), live value formatting, and direct text input.
