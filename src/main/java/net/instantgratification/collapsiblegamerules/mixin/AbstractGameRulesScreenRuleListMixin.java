@@ -117,11 +117,6 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                     }
                 }
 
-                // Strip any existing arrow symbols/prefixes/glyphs from displayLabel using regex
-                String rawText = displayLabel.getString();
-                rawText = rawText.replaceAll("^[\\s\\u25BA\\u25B6\\u25BC\\u25BD\\u2302>►▼▶⌂]+", "").trim();
-                Component cleanLabel = Component.literal(rawText);
-
                 // Smart Search: if there's an active filter and we are populating children,
                 // vanilla already filters the list. If this category header is here, it means
                 // a child match OR the category name matched. We should expand it to show results.
@@ -130,7 +125,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 final String finalPersistenceKey = persistenceKey;
                 boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(finalPersistenceKey);
 
-                CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(cleanLabel,
+                CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(displayLabel,
                         isExpanded, childCount, () -> {
                             boolean newState = !GameRuleStateConfig.isExpanded(finalPersistenceKey);
                             GameRuleStateConfig.setExpanded(finalPersistenceKey, newState);
@@ -147,11 +142,9 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             }
         }
 
-        // Force widescreen layout recalculation (560px wide centered)
-        int screenWidth = net.minecraft.client.Minecraft.getInstance().getWindow().getGuiScaledWidth();
-        int listWidth = Math.min(560, Math.max(310, screenWidth - 40));
-        int listX = (screenWidth - listWidth) / 2;
-        this.updateSizeAndPosition(listWidth, this.getHeight(), listX, this.getY());
+        // Force the abstract selection list to recalculate the Y layout for all
+        // existing children
+        this.updateSizeAndPosition(this.getWidth(), this.getHeight(), this.getX(), this.getY());
     }
 
     @Unique
@@ -169,54 +162,23 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             this.toggleAction = toggleAction;
         }
 
-        private String getIconPrefix() {
-            return this.expanded ? "▼ " : "▶ ";
-        }
-
         @Override
         public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-            int entryX = this.getX();
-            int entryY = this.getY();
-            int entryWidth = this.getWidth();
-
-            net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
-
-            // Right-Anchored Badge: Placed anchored before the scrollbar
-            Component countBadge = Component.literal("[" + this.childCount + " rules]").withStyle(net.minecraft.ChatFormatting.GRAY);
-            int badgeWidth = font.width(countBadge);
-            int badgeX = entryX + entryWidth - badgeWidth - 14;
-
-            String iconPrefix = getIconPrefix();
-            Component fullTitle = Component.literal(iconPrefix).append(this.label);
-            int maxAllowedWidth = badgeX - (entryX + 16);
-
-            boolean isTwoLine = maxAllowedWidth > 20 && font.width(fullTitle) > maxAllowedWidth;
-            int cardHeight = isTwoLine ? 30 : 22;
-            int badgeY = entryY + (cardHeight - 8) / 2;
-
-            // Glassmorphic dark card background
-            int cardBg = hovered ? 0xFF222838 : 0xDD12141C;
-            graphics.fill(entryX + 2, entryY + 2, entryX + entryWidth - 2, entryY + cardHeight, cardBg);
-            
-            // Dynamic Gold & Electric Cyan Accent Bar: Gold (0xFFFFAA00) when expanded, Cyan (0xFF00E5FF) when collapsed
-            int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF00E5FF;
-            graphics.fill(entryX + 2, entryY + 2, entryX + 6, entryY + cardHeight, accentColor);
-
-            if (isTwoLine) {
-                // Split title across 2 lines so full text fits without '...' truncation
-                List<net.minecraft.util.FormattedCharSequence> lines = font.split(fullTitle, maxAllowedWidth);
-                int lineY = entryY + 4;
-                for (int i = 0; i < Math.min(2, lines.size()); i++) {
-                    graphics.text(font, lines.get(i), entryX + 12, lineY, hovered ? 0xFFFFFFAA : 0xFFFFFF55);
-                    lineY += 12;
-                }
-            } else {
-                // Single line title
-                graphics.text(font, fullTitle, entryX + 12, entryY + 7, hovered ? 0xFFFFFFAA : 0xFFFFFF55);
+            // Premium Highlight on hover
+            if (hovered) {
+                graphics.fill(this.getX() - 2, this.getY(), this.getX() + this.getWidth() + 2, this.getY() + 24, 0x22FFFFFF);
             }
 
-            // Right Badge Text
-            graphics.text(font, countBadge, badgeX, badgeY, 0xFF80D8FF);
+            // Draw directional arrow, label, and child count badge
+            String prefix = this.expanded ? "▼ " : "▶ ";
+            Component countBadge = Component.literal(" (" + this.childCount + " rules)").withStyle(net.minecraft.ChatFormatting.GRAY);
+            Component display = Component.literal(prefix).append(this.label).append(countBadge);
+
+            graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, display,
+                    this.getContentXMiddle(), this.getContentY() + 5, hovered ? 0xFFFFFFAA : 0xFFFFFFFF);
+            
+            // Subtle separating line at the bottom
+            graphics.fill(this.getX() + 10, this.getY() + 23, this.getX() + this.getWidth() - 10, this.getY() + 24, 0x44AAAAAA);
         }
 
         @Override

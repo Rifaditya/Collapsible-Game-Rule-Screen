@@ -5,11 +5,6 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
-- [ ] **`1.0.12+26.2`** (2026-08-03) - Fixed missing font glyph (⌂) by using native chevrons (▼/▶) and thorough arrow stripping.
-- [ ] **`1.0.11+26.2`** (2026-08-03) - Q&A Polish: 2-Line Dynamic Header Cards (0 truncation), Folder Icons (📂/📁), Far-Right Cyan Pill Badges ([ X Rules ]).
-- [ ] **`1.0.10+26.2`** (2026-08-03) - Screen-Level 560px Widescreen Resizing, regex arrow stripper, title truncation, dark glass cards, and presets bar.
-- [ ] **`1.0.9+26.2`** (2026-08-03) - Widescreen Dashboard (520px), right-anchored count badges, duplicate arrow fix, Gold/Cyan category card accents.
-- [ ] **`1.0.8+26.2`** (2026-08-03) - Visual Overhaul: BooleanToggleWidget green/red toggles, IntegerSliderWidget sliders, category header scroll clipping fix, and Reset-to-Default buttons.
 - [ ] **`1.0.7+26.2`** (2026-08-02) - Game Rules Control Center Overhaul (Interactive Sliders, Toggle Switches, Presets Engine, Reset-to-Default, Category Metrics).
 - [ ] **`1.0.6+26.2`** (2026-08-01) - Fixed syntax error in `ModVersionGuard.java` package declaration.
 - [x] **`1.0.0+build.8`** (2026-03-02) - - Fixed Minecraft 26.1 `KeyEvent` signature changes in `AbstractGameRulesScreenRuleListMixin.java` fixing build failure.
