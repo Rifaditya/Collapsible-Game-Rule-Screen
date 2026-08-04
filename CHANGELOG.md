@@ -1,8 +1,9 @@
 ## [1.0.8+26.2] - 2026-08-04
 
 ### Changed
-- **SemVer Patch Bump & Asset Sync**: Bumped version following code refactoring & mixin fixes.
-- **Canonical Image URL Fix**: Updated GitHub raw image links from `refs/heads/main` to canonical `main/Images/2026-08-04_10.59.57.png`.
+- **Screenshot & Documentation Asset Update**: Compressed and updated main mod screenshot asset (`Images/2026-08-04_11.06.33.png`).
+- **Canonical GitHub Raw URLs**: Updated all documentation pages (`README.md`, `CurseForge`, `Modrinth`) to reference canonical raw GitHub image URLs.
+- **Repository Synchronization**: Synchronized workspace code and release archives with GitHub repository.
 
 ## [1.0.7+26.2] - 2026-08-02
 

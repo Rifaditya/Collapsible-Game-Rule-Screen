@@ -5,7 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
-- [ ] **`1.0.8+26.2`** (2026-08-04) - SemVer Patch Bump following code refactorings and canonical image URL fixes.
+- [ ] **`1.0.8+26.2`** (2026-08-04) - Screenshot & Documentation Asset Update, canonical raw GitHub URL fixes, and repository synchronization.
 - [ ] **`1.0.7+26.2`** (2026-08-02) - Game Rules Control Center Overhaul (Interactive Sliders, Toggle Switches, Presets Engine, Reset-to-Default, Category Metrics).
 - [ ] **`1.0.6+26.2`** (2026-08-01) - Fixed syntax error in `ModVersionGuard.java` package declaration.
 - [x] **`1.0.0+build.8`** (2026-03-02) - - Fixed Minecraft 26.1 `KeyEvent` signature changes in `AbstractGameRulesScreenRuleListMixin.java` fixing build failure.
