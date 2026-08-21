@@ -1,0 +1,120 @@
+# ✨ Category Prettification & Naming
+
+| Parameter | Specification |
+| :--- | :--- |
+| **Helper Class** | `net.instantgratification.collapsiblegamerules.util.CategoryPrettifier` |
+| **Metadata Facade** | `net.instantgratification.collapsiblegamerules.util.DasikMetadataHelper` |
+| **Translation Fallback** | `!Language.getInstance().has(key)` |
+| **Prefix Stripping** | Removes `"gamerule.category."` |
+| **Delimiter Handling** | Splits by `.` (namespace) and regex `[_-]` (words) |
+| **Dynamic Metadata Provider**| `DynamicGameRuleManager.getGeneratedTranslations()` |
+
+---
+
+## 📖 Overview
+
+Third-party mods frequently register custom game rule categories using raw translation keys (such as `gamerule.category.better-bats.better_bats` or `gamerule.category.item_clumps`) without including localized strings in `lang/en_us.json`. In vanilla Minecraft, this causes raw, unreadable translation keys to appear on screen.
+
+**Category Prettification** dynamically cleans, formats, and transforms unlocalized category keys into polished, human-readable Title Case strings.
+
+---
+
+## ⚙️ Prettification Algorithm Pipeline
+
+The formatting logic in `CategoryPrettifier.prettifyCategoryKey(String key)` executes the following transformation steps:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       CATEGORY PRETTIFICATION PIPELINE                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   Input Key: "gamerule.category.better-bats.better_bats"                    │
+│        │                                                                    │
+│        ▼ [Step 1: Prefix Stripping]                                         │
+│   Strip "gamerule.category." ──> "better-bats.better_bats"                  │
+│        │                                                                    │
+│        ▼ [Step 2: Namespace & Path Separation]                              │
+│   Separate namespace "better-bats" and path "better_bats"                   │
+│        │                                                                    │
+│        ▼ [Step 3: Redundancy Normalization]                                 │
+│   Compare normalized strings: "betterbats" == "betterbats"                  │
+│   Deduplicate to single segment: "better_bats"                              │
+│        │                                                                    │
+│        ▼ [Step 4: Delimiter Splitting & Capitalization]                     │
+│   Split by "[_-]" ──> ["better", "bats"]                                    │
+│   Capitalize words ──> ["Better", "Bats"]                                   │
+│        │                                                                    │
+│        ▼ [Step 5: String Join]                                              │
+│   Output Display Title: "Better Bats"                                       │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 Transformation Examples Table
+
+| Raw GameRule Category Key | Transformed Display Label | Transformation Notes |
+| :--- | :--- | :--- |
+| `gamerule.category.better-bats.better_bats` | **Better Bats** | Deduplicates redundant namespace and path. |
+| `gamerule.category.minecraft.spawning` | **Spawning** | Drops the default `minecraft` namespace. |
+| `gamerule.category.social_mobs.wolf_pack` | **Social Mobs Wolf Pack** | Combines distinct namespace and path segments. |
+| `gamerule.category.custom_rules` | **Custom Rules** | Replaces underscores with spaces and capitalizes. |
+| `gamerule.category.instant-gratification.ore-multiplier` | **Instant Gratification Ore Multiplier** | Splits hyphens and capitalizes all words. |
+
+---
+
+## 💻 Source Implementation
+
+```java
+public static String prettifyCategoryKey(String key) {
+    if (key == null) {
+        return "";
+    }
+    String name = key;
+    if (name.startsWith("gamerule.category.")) {
+        name = name.substring("gamerule.category.".length());
+    }
+
+    // Split namespace and path if dot is present
+    int dotIndex = name.indexOf('.');
+    if (dotIndex != -1) {
+        String ns = name.substring(0, dotIndex);
+        String path = name.substring(dotIndex + 1);
+        
+        // If the namespace is "minecraft", just drop it
+        if (ns.equals("minecraft")) {
+            name = path;
+        } else {
+            // Normalize for comparison
+            String normNs = ns.replace("-", "").replace("_", "").toLowerCase(Locale.ROOT);
+            String normPath = path.replace("-", "").replace("_", "").toLowerCase(Locale.ROOT);
+            if (normPath.contains(normNs) || normNs.contains(normPath)) {
+                name = path; // Use the path part since it's more specific or includes namespace
+            } else {
+                name = ns + " " + path;
+            }
+        }
+    }
+
+    // Split by underscore or dash
+    String[] parts = name.split("[_-]");
+    List<String> words = new ArrayList<>();
+    for (String part : parts) {
+        if (part.isEmpty()) {
+            continue;
+        }
+        String capitalized = part.substring(0, 1).toUpperCase(Locale.ROOT) + part.substring(1);
+        words.add(capitalized);
+    }
+    return String.join(" ", words);
+}
+```
+
+---
+
+## 🔗 Related Documentation
+
+* [[Overview & Home|Home]]
+* [[Collapsible Categories|Collapsible-Categories]]
+* [[DasikLibrary API Integration|API-and-Library-Integration]]

@@ -1,0 +1,80 @@
+# 🎛️ Game Rule Presets & Controls
+
+| Parameter | Specification |
+| :--- | :--- |
+| **Preset Engine Class** | `net.instantgratification.collapsiblegamerules.preset.GameRulePresetEngine` |
+| **Preset Data Structure** | `record Preset(String id, Component displayName, Map<String, Object> ruleValues)` |
+| **Interactive Widgets** | `IntegerSliderWidget`, `BooleanToggleWidget` |
+| **Slider Helper** | `net.instantgratification.collapsiblegamerules.util.GameRuleSliderHelper` |
+| **Toggle On Color** | `0x4400FF00` (Emerald Green Background) |
+| **Toggle Off Color** | `0x44FF0000` (Ruby Red Background) |
+| **Built-in Presets** | `builder` ("🏰 Builder Mode"), `fast_play` ("⚡ Fast Play"), `hardcore` ("💀 Hardcore Realism") |
+
+---
+
+## 📖 Overview
+
+Collapsible Game Rules includes interactive UI controls and built-in Game Rule presets, allowing players to configure complex world settings with single-click profiles or intuitive sliders instead of typing raw integer values into text boxes.
+
+---
+
+## 🏰 Built-in Presets Matrix
+
+The `GameRulePresetEngine` provides three pre-configured gameplay presets:
+
+| Preset ID | Display Title | Game Rule | Configured Value | Gameplay Impact |
+| :--- | :--- | :--- | :--- | :--- |
+| `builder` | **🏰 Builder Mode** | `doDaylightCycle`<br>`doWeatherCycle`<br>`doMobSpawning`<br>`keepInventory`<br>`mobGriefing`<br>`doFireTick` | `false`<br>`false`<br>`false`<br>`true`<br>`false`<br>`false` | Ideal for creative building: freezes sun/weather, stops mob spawns, disables creepers/fire spread. |
+| `fast_play` | **⚡ Fast Play** | `randomTickSpeed`<br>`playersSleepingPercentage`<br>`keepInventory` | `10`<br>`0`<br>`true` | Fast-paced survival: accelerates crop growth ($3\times$), allows single-player sleep skipping, keeps inventory. |
+| `hardcore` | **💀 Hardcore Realism** | `naturalRegeneration`<br>`doInsomnia`<br>`playersSleepingPercentage` | `false`<br>`true`<br>`100` | Extreme survival: disables passive health regen (golden apples/potions required), enforces phantom spawns. |
+
+---
+
+## 🎚️ Interactive Slider Widget (`IntegerSliderWidget`)
+
+The `IntegerSliderWidget` replaces raw numeric text fields with draggable sliders for smooth integer adjustments.
+
+### Mathematical Normalization Formulas
+
+When setting a slider position from an integer value $v$:
+$$\text{normalized} = \frac{\text{clamp}(v, \text{min}, \text{max}) - \text{min}}{\text{max} - \text{min}}$$
+
+When computing the resulting integer value from the slider position $p \in [0.0, 1.0]$:
+$$\text{calculatedInt} = \text{min} + \text{round}\left(p \times (\text{max} - \text{min})\right)$$
+
+### Vanilla Game Rule Bounds (`GameRuleSliderHelper`)
+
+| GameRule Key | Minimum ($\text{min}$) | Maximum ($\text{max}$) | Vanilla Default |
+| :--- | :--- | :--- | :--- |
+| `randomTickSpeed` | `0` | `100` | `3` |
+| `spawnRadius` | `0` | `32` | `10` |
+| `playersSleepingPercentage` | `0` | `100` | `100` |
+| `maxEntityCramming` | `0` | `100` | `24` |
+| `maxCommandChainLength` | `0` | `65536` | `65536` |
+| `commandModificationBlockLimit` | `0` | `65536` | `32768` |
+
+---
+
+## 🔘 Boolean Toggle Widget (`BooleanToggleWidget`)
+
+The `BooleanToggleWidget` provides instant visual feedback for binary rules:
+
+* **State: TRUE (`ON`)**: Renders `✔ ON` in `ChatFormatting.GREEN` over a green background fill (`0x4400FF00`).
+* **State: FALSE (`OFF`)**: Renders `✖ OFF` in `ChatFormatting.RED` over a red background fill (`0x44FF0000`).
+* **Mouse Press**: Single click toggles state and executes the consumer callback `onToggle.accept(newState)`.
+
+```
+┌─────────────────────────┐     ┌─────────────────────────┐
+│         ✔ ON            │     │         ✖ OFF           │
+│   (Green Tint 0x4400FF00)│     │   (Red Tint 0x44FF0000) │
+└─────────────────────────┘     └─────────────────────────┘
+```
+
+---
+
+## 🔗 Related Documentation
+
+* [[Overview & Home|Home]]
+* [[Collapsible Categories|Collapsible-Categories]]
+* [[GameRules Reference Table|GameRules-Reference]]
+* [[Architecture & Mixin Subsystem|Architecture-and-Mixins]]
