@@ -1,4 +1,4 @@
-# ⚒️ Collapsible Game Rules Wiki
+﻿# ⚒️ Collapsible Game Rules Wiki
 
 <div align="center">
 
@@ -28,7 +28,7 @@ Select your target Minecraft version below to enter the dedicated encyclopedic d
 
 | Minecraft Version Anchor | Release Era | Supported Range | Build Target | Direct Portal Entry |
 | :--- | :--- | :--- | :--- | :--- |
-| **Minecraft 26.2** | **Modern Sovereign Era** | `minecraft: >=26.2-` | `1.0.9+26.2` | [[👉 Enter MC 26.2 Wiki|26.2-Home]] |
+| **Minecraft 26.2** | **Modern Sovereign Era** | `minecraft: >=26.2-` | `1.0.9+26.2` | [[👉 Enter MC 26.2 Wiki\|26.2-Home]] |
 
 ---
 
@@ -36,14 +36,14 @@ Select your target Minecraft version below to enter the dedicated encyclopedic d
 
 | Feature | Description | Reference Page |
 | :--- | :--- | :--- |
-| **🗂️ Collapsible Categories** | Intercepts the rule list to group entries under collapsible headers with directional indicators (`▼`/`▶`), hover highlights, and child count badges. | [[Collapsible Categories|26.2-Collapsible-Categories]] |
-| **🌎 Global Actions Header** | Pinned index 0 control offering instant one-click `[ Expand All ]` and `[ Collapse All ]` operations. | [[Global Actions & Bulk Toggles|26.2-Global-Actions-and-Bulk-Toggles]] |
-| **🔍 Smart Search Expansion** | Integrates with the vanilla search bar to automatically expand categories containing matching game rules in real-time. | [[Smart Search Integration|26.2-Smart-Search-Integration]] |
-| **⌨️ Keyboard Navigation** | Full keyboard support via Space, Enter, Left Arrow (collapse), and Right Arrow (expand) with sound effects and screen narration. | [[Keyboard Navigation & Accessibility|26.2-Keyboard-Navigation]] |
-| **🧠 State Persistence** | Preserves category expansion states locally in `config/collapsible-game-rules-state.json` across game launches without frame lag. | [[State Persistence & JSON Config|26.2-State-Persistence-and-Config]] |
-| **✨ Intelligent Prettification** | Formats raw unlocalized modded category keys (e.g. `gamerule.category.modid.name` $\to$ `Modid Name`) dynamically. | [[Category Prettification & Naming|26.2-Category-Prettification-and-Naming]] |
-| **🎛️ Game Rule Presets & Sliders** | Built-in presets (Builder Mode, Fast Play, Hardcore Realism), interactive numeric sliders, and visual boolean toggle switches. | [[Game Rule Presets & Widgets|26.2-Game-Rule-Presets-and-Controls]] |
-| **🧩 DasikLibrary Integration** | Queries `DynamicGameRuleManager` generated translations for first-class category localization and metadata grouping. | [[DasikLibrary API Integration|26.2-API-and-Library-Integration]] |
+| **🗂️ Collapsible Categories** | Intercepts the rule list to group entries under collapsible headers with directional indicators (`▼`/`▶`), hover highlights, and child count badges. | [[Collapsible Categories\|26.2-Collapsible-Categories]] |
+| **🌎 Global Actions Header** | Pinned index 0 control offering instant one-click `[ Expand All ]` and `[ Collapse All ]` operations. | [[Global Actions & Bulk Toggles\|26.2-Global-Actions-and-Bulk-Toggles]] |
+| **🔍 Smart Search Expansion** | Integrates with the vanilla search bar to automatically expand categories containing matching game rules in real-time. | [[Smart Search Integration\|26.2-Smart-Search-Integration]] |
+| **⌨️ Keyboard Navigation** | Full keyboard support via Space, Enter, Left Arrow (collapse), and Right Arrow (expand) with sound effects and screen narration. | [[Keyboard Navigation & Accessibility\|26.2-Keyboard-Navigation]] |
+| **🧠 State Persistence** | Preserves category expansion states locally in `config/collapsible-game-rules-state.json` across game launches without frame lag. | [[State Persistence & JSON Config\|26.2-State-Persistence-and-Config]] |
+| **✨ Intelligent Prettification** | Formats raw unlocalized modded category keys (e.g. `gamerule.category.modid.name` $\to$ `Modid Name`) dynamically. | [[Category Prettification & Naming\|26.2-Category-Prettification-and-Naming]] |
+| **🎛️ Game Rule Presets & Sliders** | Built-in presets (Builder Mode, Fast Play, Hardcore Realism), interactive numeric sliders, and visual boolean toggle switches. | [[Game Rule Presets & Widgets\|26.2-Game-Rule-Presets-and-Controls]] |
+| **🧩 DasikLibrary Integration** | Queries `DynamicGameRuleManager` generated translations for first-class category localization and metadata grouping. | [[DasikLibrary API Integration\|26.2-API-and-Library-Integration]] |
 
 ---
 

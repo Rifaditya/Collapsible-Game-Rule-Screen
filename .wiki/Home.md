@@ -1,4 +1,4 @@
-# ⚒️ Collapsible Game Rules Wiki
+﻿# ⚒️ Collapsible Game Rules Wiki
 
 <div align="center">
 
@@ -30,14 +30,14 @@
 
 | Feature | Description | Reference Guide |
 | :--- | :--- | :--- |
-| **🗂️ Collapsible Categories** | Replaces static category headers with interactive toggle widgets (`▼`/`▶`) displaying child rule count badges. | [[Collapsible Categories|Collapsible-Categories]] |
-| **🌎 Global Actions Header** | Top-pinned `[ Expand All ]` and `[ Collapse All ]` bulk controls. | [[Global Actions & Bulk Toggles|Global-Actions-and-Bulk-Toggles]] |
-| **🔍 Smart Search Expansion** | Automatically expands matching categories as you type in the search bar. | [[Smart Search Integration|Smart-Search-Integration]] |
-| **⌨️ Keyboard Navigation** | Full keyboard support (Space, Enter, Left/Right arrows) and accessibility screen narration. | [[Keyboard Navigation & Accessibility|Keyboard-Navigation]] |
-| **🧠 State Persistence** | Preserves category expansion states locally in `config/collapsible-game-rules-state.json`. | [[State Persistence & JSON Config|State-Persistence-and-Config]] |
-| **✨ Intelligent Prettification** | Formats raw modded category keys dynamically into clean Title Case strings. | [[Category Prettification & Naming|Category-Prettification-and-Naming]] |
-| **🎛️ Game Rule Presets & Sliders** | Built-in presets (Builder, Fast Play, Hardcore), interactive numeric sliders, and toggle switches. | [[Game Rule Presets & Widgets|Game-Rule-Presets-and-Controls]] |
-| **🧩 DasikLibrary Integration** | Queries `DynamicGameRuleManager` generated translations for first-class category localization. | [[DasikLibrary API Integration|API-and-Library-Integration]] |
+| **🗂️ Collapsible Categories** | Replaces static category headers with interactive toggle widgets (`▼`/`▶`) displaying child rule count badges. | [[Collapsible Categories\|Collapsible-Categories]] |
+| **🌎 Global Actions Header** | Top-pinned `[ Expand All ]` and `[ Collapse All ]` bulk controls. | [[Global Actions & Bulk Toggles\|Global-Actions-and-Bulk-Toggles]] |
+| **🔍 Smart Search Expansion** | Automatically expands matching categories as you type in the search bar. | [[Smart Search Integration\|Smart-Search-Integration]] |
+| **⌨️ Keyboard Navigation** | Full keyboard support (Space, Enter, Left/Right arrows) and accessibility screen narration. | [[Keyboard Navigation & Accessibility\|Keyboard-Navigation]] |
+| **🧠 State Persistence** | Preserves category expansion states locally in `config/collapsible-game-rules-state.json`. | [[State Persistence & JSON Config\|State-Persistence-and-Config]] |
+| **✨ Intelligent Prettification** | Formats raw modded category keys dynamically into clean Title Case strings. | [[Category Prettification & Naming\|Category-Prettification-and-Naming]] |
+| **🎛️ Game Rule Presets & Sliders** | Built-in presets (Builder, Fast Play, Hardcore), interactive numeric sliders, and toggle switches. | [[Game Rule Presets & Widgets\|Game-Rule-Presets-and-Controls]] |
+| **🧩 DasikLibrary Integration** | Queries `DynamicGameRuleManager` generated translations for first-class category localization. | [[DasikLibrary API Integration\|API-and-Library-Integration]] |
 
 ---
 
