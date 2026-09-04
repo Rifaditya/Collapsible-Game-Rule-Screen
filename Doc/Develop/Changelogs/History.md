@@ -1,5 +1,10 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.28+26.2]
+- **Rule Tooltip & Description Search Highlighting**: Extended search highlighting to rule tooltips and description text via `RuleEntryAccessor`, allowing players to instantly see why a rule matched even when the matched query resides in its description.
+- **Visual Sequence Highlighting (`highlightSequence`)**: Added character stream reconstruction and span partitioning to `SearchHighlightHelper` for `FormattedCharSequence` instances with zero-allocation fast-pathing on non-matches.
+- **RuleEntry Mutator Accessor**: Implemented `RuleEntryAccessor` exposing safe getters and `@Mutable` setters for `AbstractGameRulesScreen$RuleEntry.tooltip`.
+
 ## [1.0.27+26.2]
 - **Rule Label Search Highlighting**: Integrated `SearchHighlightHelper` into `GameRuleEntryMixin` to visually highlight matching substrings of game rule titles with high-contrast yellow styling (`ChatFormatting.YELLOW`) during active search queries.
 - **Search Query Accessor**: Created `AbstractGameRulesScreenAccessor` to seamlessly access active search box text across game rule entries.

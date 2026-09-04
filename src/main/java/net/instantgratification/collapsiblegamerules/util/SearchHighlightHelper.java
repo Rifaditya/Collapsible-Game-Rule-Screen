@@ -4,6 +4,7 @@ package net.instantgratification.collapsiblegamerules.util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.util.FormattedCharSequence;
 
 import java.util.Locale;
 
@@ -113,5 +114,31 @@ public final class SearchHighlightHelper {
         }
 
         return highlight(rawText, query, highlightFormat);
+    }
+
+    /**
+     * Highlights occurrences of {@code query} within a {@link FormattedCharSequence}.
+     * Reconstructs character string from sink, performs highlight partitioning, and returns
+     * visual ordered FormattedCharSequence.
+     *
+     * @param sequence the source sequence
+     * @param query    the search query
+     * @return highlighted sequence or original if no match
+     */
+    public static FormattedCharSequence highlightSequence(FormattedCharSequence sequence, String query) {
+        if (sequence == null || query == null || query.isBlank()) {
+            return sequence;
+        }
+        StringBuilder sb = new StringBuilder();
+        sequence.accept((index, style, codePoint) -> {
+            sb.appendCodePoint(codePoint);
+            return true;
+        });
+        String text = sb.toString();
+        String lowerQuery = query.toLowerCase(Locale.ROOT).trim();
+        if (lowerQuery.isEmpty() || !text.toLowerCase(Locale.ROOT).contains(lowerQuery)) {
+            return sequence; // 0B allocation on fast path
+        }
+        return highlight(text, query).getVisualOrderText();
     }
 }

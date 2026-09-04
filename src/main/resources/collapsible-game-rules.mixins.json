@@ -8,6 +8,7 @@
         "AbstractGameRulesScreenRuleListMixin",
         "AbstractGameRulesScreenAccessor",
         "GameRuleEntryMixin",
+        "RuleEntryAccessor",
         "CategoryRuleEntryAccessor",
         "IntegerRuleEntryMixin",
         "BooleanRuleEntryMixin"

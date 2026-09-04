@@ -43,6 +43,15 @@ public abstract class GameRuleEntryMixin extends AbstractGameRulesScreen.RuleEnt
                 if (query != null && !query.trim().isEmpty()) {
                     Component highlighted = SearchHighlightHelper.highlight(label, query);
                     this.label = Minecraft.getInstance().font.split(highlighted, 170);
+
+                    List<FormattedCharSequence> currentTooltip = ((RuleEntryAccessor) this).collapsible_game_rules$getTooltip();
+                    if (currentTooltip != null && !currentTooltip.isEmpty()) {
+                        List<FormattedCharSequence> highlightedTooltip = new java.util.ArrayList<>(currentTooltip.size());
+                        for (FormattedCharSequence line : currentTooltip) {
+                            highlightedTooltip.add(SearchHighlightHelper.highlightSequence(line, query));
+                        }
+                        ((RuleEntryAccessor) this).collapsible_game_rules$setTooltip(highlightedTooltip);
+                    }
                 }
             }
         }

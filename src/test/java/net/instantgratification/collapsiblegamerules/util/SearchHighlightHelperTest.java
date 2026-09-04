@@ -109,4 +109,27 @@ class SearchHighlightHelperTest {
                 .anyMatch(c -> "inventory".equals(c.getString()) && c.getStyle().getColor() != null);
         assertTrue(foundGold);
     }
+
+    @Test
+    @DisplayName("highlightSequence highlights matching FormattedCharSequence and fast-paths non-matches")
+    void testHighlightSequence() {
+        net.minecraft.util.FormattedCharSequence seq = Component.literal("Enables or disables mob griefing").getVisualOrderText();
+
+        // Non-match returns same sequence instance (0B allocation)
+        assertSame(seq, SearchHighlightHelper.highlightSequence(seq, "creeper"));
+        assertSame(seq, SearchHighlightHelper.highlightSequence(seq, ""));
+        assertSame(seq, SearchHighlightHelper.highlightSequence(seq, null));
+
+        // Matching query returns highlighted FormattedCharSequence
+        net.minecraft.util.FormattedCharSequence highlighted = SearchHighlightHelper.highlightSequence(seq, "griefing");
+        assertNotSame(seq, highlighted);
+        assertNotNull(highlighted);
+
+        StringBuilder sb = new StringBuilder();
+        highlighted.accept((index, style, codePoint) -> {
+            sb.appendCodePoint(codePoint);
+            return true;
+        });
+        assertEquals("Enables or disables mob griefing", sb.toString());
+    }
 }
