@@ -1,3 +1,9 @@
+## [1.0.32+26.2]
+- **Compact Category Reset Icon (`CollapsibleCategoryRuleEntry`)**: Refactored the text-padded `↺ Reset` button into a sleek, minimalist 14x14 icon-only plate (`↺`), reclaiming **~34px of horizontal clearance** to eliminate aggressive category title truncation.
+- **Interactive Hover Tooltip**: Added an interactive tooltip (`Reset category to defaults`) appearing dynamically when hovering over the `↺` button box.
+- **Precise Hitbox Input & Centering**: Centered the icon inside the 14x14 geometry and aligned mouse click hitboxes strictly within the compact square plate.
+- **Full Verbal A11y Narration**: Retained comprehensive verbal screen reader narration (`NarratedElementType.HINT`) so accessibility tools announce the full action context.
+
 ## [1.0.31+26.2]
 - **Category Reset Input Dispatch (`CollapsibleCategoryRuleEntry`)**: Wired mouse click hitbox detection on the `↺ Reset` button plate, reverting all modified rules within the category back to their default values in-place without screen stutter.
 - **Dynamic Live Modification Tracking**: Integrated `ResettableRuleEntry` interface across `BooleanRuleEntryMixin` and `IntegerRuleEntryMixin`, enabling real-time detection of modified rules as players toggle switches or drag sliders.

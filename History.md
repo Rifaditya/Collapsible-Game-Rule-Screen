@@ -1,3 +1,9 @@
+## [1.0.32+26.2]
+### Core Changes
+- Refactored category reset button from text-padded `↺ Reset` into a compact 14x14 icon-only plate (`↺`) with hover tooltip (`Reset category to defaults`), reclaiming ~34px of horizontal space to eliminate category title truncation.
+- Centered icon inside 14x14 geometry and aligned mouse click hitboxes.
+- Retained full verbal screen reader narration (`NarratedElementType.HINT`).
+
 ## [1.0.15+26.2]
 ### Core Changes
 - Added visual modified-from-default rule counter badges (`[● X mod / Y rules]` in warm gold when modified, `[Y rules]` in gray when default).

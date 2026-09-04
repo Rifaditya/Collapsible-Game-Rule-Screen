@@ -128,9 +128,9 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         this.updateSizeAndPosition(this.getWidth(), this.getHeight(), this.getX(), this.getY());
     }
 
-    @Unique
     private class CollapsibleCategoryRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
-        private static final Component RESET_LABEL = Component.literal("↺ Reset").withStyle(net.minecraft.ChatFormatting.GOLD);
+        private static final Component RESET_ICON = Component.literal("↺").withStyle(net.minecraft.ChatFormatting.GOLD);
+        private static final Component RESET_TOOLTIP = Component.literal("Reset category to defaults");
 
         private final CategoryGroup group;
         private boolean expanded;
@@ -218,7 +218,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int badgeWidth = font.width(badge);
             int badgeX = rightX - badgeWidth;
 
-            int resetWidth = resetVisible ? font.width(RESET_LABEL) + 8 : 0;
+            int resetWidth = resetVisible ? 14 : 0;
             int resetX = badgeX - resetWidth - 4;
             int resetY = this.getY() + 4;
             int resetHeight = 14;
@@ -282,7 +282,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 graphics.text(font, titleSeq, titleLeft, this.getY() + 7, titleColor);
             }
 
-            // Optional Category Reset button plate (visual plate with hover illumination)
+            // Optional Category Reset button plate (compact 14x14 icon plate with hover tooltip)
             if (resetVisible) {
                 boolean resetHovered = mouseX >= resetX && mouseX <= resetX + resetWidth && mouseY >= resetY && mouseY <= resetY + resetHeight;
                 int resetBg = resetHovered ? 0x44FFAA00 : 0x22FFAA00;
@@ -294,7 +294,11 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 graphics.fill(resetX, resetY, resetX + 1, resetY + resetHeight, resetBorder); // Left
                 graphics.fill(resetX + resetWidth - 1, resetY, resetX + resetWidth, resetY + resetHeight, resetBorder); // Right
 
-                graphics.centeredText(font, RESET_LABEL, resetX + resetWidth / 2, resetY + 3, resetHovered ? 0xFFFFFFFF : 0xFFFFAA00);
+                graphics.centeredText(font, RESET_ICON, resetX + resetWidth / 2, resetY + 3, resetHovered ? 0xFFFFFFFF : 0xFFFFAA00);
+
+                if (resetHovered) {
+                    graphics.setTooltipForNextFrame(RESET_TOOLTIP, mouseX, mouseY);
+                }
             }
 
             // Right-anchored rule count badge directly before scrollbar
@@ -322,7 +326,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                     Component badge = this.cachedBadge != null ? this.cachedBadge : this.group.countBadge();
                     int badgeWidth = font.width(badge);
                     int badgeX = rightX - badgeWidth;
-                    int resetWidth = font.width(RESET_LABEL) + 8;
+                    int resetWidth = 14;
                     int resetX = badgeX - resetWidth - 4;
                     int resetY = this.getY() + 4;
                     int resetHeight = 14;
@@ -385,7 +389,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             output.add(NarratedElementType.TITLE, this.group.displayLabel());
             output.add(NarratedElementType.USAGE, this.cachedBadge != null ? this.cachedBadge : this.group.countBadge());
             if (net.instantgratification.collapsiblegamerules.util.CategoryResetHelper.canReset(this.countModified())) {
-                output.add(NarratedElementType.HINT, RESET_LABEL);
+                output.add(NarratedElementType.HINT, RESET_TOOLTIP);
             }
         }
     }
