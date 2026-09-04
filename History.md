@@ -1,3 +1,9 @@
+## [1.0.10+26.2]
+### Core Changes
+- Introduced immutable `CategoryGroup` record caching display titles and child rule lists, unlocking O(1) rule count metrics and eliminating repeated nested list scans.
+- Added single-pass `CategoryTreeBuilder` grouping parser to ingest raw game rule entries linearly.
+- Configured JUnit 5 Jupiter engine in `build.gradle` and added `CategoryTreeBuilderTest`.
+
 ## [1.0.6+26.2] - 2026-08-01
 ### Fixed
 - Fixed syntax error in `ModVersionGuard.java` package declaration (`package net.instantgratification.collapsiblegamerules.util;`).

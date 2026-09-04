@@ -25,6 +25,9 @@ dependencies {
     
     // Standalone Library (No JiJ)
     implementation "net.dasik.social:dasik-library:${project.dasik_library_version}"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 processResources {
@@ -53,6 +56,10 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 25
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jar {
