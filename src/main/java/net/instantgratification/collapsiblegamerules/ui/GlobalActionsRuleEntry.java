@@ -63,20 +63,37 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
         graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, COLLAPSE_LABEL, card2CenterX, textY, collapseColor);
 
         // Subtle separating line at the bottom
-        graphics.fill(this.getX() + 10, this.getY() + 23, this.getX() + this.getWidth() - 10, this.getY() + 24, 0x44AAAAAA);
+        graphics.fill(leftX - 4, bottomY + 2, rightX + 4, bottomY + 3, 0x22AAAAAA);
     }
 
     @Override
     public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean doubleClick) {
-        if (event.button() == 0 || event.button() == 1) {
+        if (event.button() == 0 || event.button() == 1) { // Left or right click
             double mouseX = event.x();
-            if (mouseX < this.getX() + this.getWidth() / 2.0) {
-                this.expandAll.run();
-            } else {
-                this.collapseAll.run();
+            double mouseY = event.y();
+
+            int leftX = this.getX() + 8;
+            int rightX = this.getX() + this.getWidth() - 8;
+            int topY = this.getY() + 3;
+            int bottomY = this.getY() + 21;
+
+            if (mouseY < topY || mouseY > bottomY) {
+                return false;
             }
-            net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
-            return true;
+
+            int midX = leftX + (rightX - leftX) / 2;
+            int card1Right = midX - 3;
+            int card2Left = midX + 3;
+
+            if (mouseX >= leftX && mouseX <= card1Right) {
+                this.expandAll.run();
+                net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                return true;
+            } else if (mouseX >= card2Left && mouseX <= rightX) {
+                this.collapseAll.run();
+                net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                return true;
+            }
         }
         return false;
     }

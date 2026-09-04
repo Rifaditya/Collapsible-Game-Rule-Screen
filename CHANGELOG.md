@@ -1,3 +1,8 @@
+## [1.0.19+26.2]
+- **Global Action Bounded Hitbox Input Validation**: Confined mouse click hitboxes in `GlobalActionsRuleEntry` strictly within card coordinate bounds, completely ignoring accidental clicks in the 6px center gap, padding, or outer margins.
+- **UI Button Audio Feedback**: Valid card clicks trigger standard UI button click audio (`UI_BUTTON_CLICK`), eliminating silent clicks or false audio triggers on empty margins.
+- **Footer Separator Alignment**: Aligned the subtle separating hairline directly under the toolbar cards (`leftX - 4` to `rightX + 4`) with soft opacity (`0x22AAAAAA`) matching category card separators.
+
 ## [1.0.18+26.2]
 - **Global Action Toolbar Symmetrical Card Geometry & Accents**: Refactored the top global actions toolbar from a raw split text row into two balanced, symmetrical glassmorphic action cards separated by a 6px central gap.
 - **Directional Icons & Category-Matching Accent Bars**: Features centered directional icons (`▼ Expand All` and `▶ Collapse All`) with a warm gold 2px accent strip for the Expand card and a crisp lime 2px accent strip for the Collapse card, matching category card aesthetics.
