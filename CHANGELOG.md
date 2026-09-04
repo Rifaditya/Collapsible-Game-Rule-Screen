@@ -1,3 +1,8 @@
+## [1.0.26+26.2]
+- **Search Highlight Engine**: Implemented `SearchHighlightHelper` to partition search text into high-contrast highlighted spans (`ChatFormatting.YELLOW`), laying the architectural foundation for in-screen query highlighting.
+- **Zero-Allocation Fast Paths**: Added instant fast-fail rejection for null, empty, or non-matching queries returning the original component directly with 0B heap allocation.
+- **Automated Test Coverage**: Added comprehensive JUnit 5 test suite in `SearchHighlightHelperTest` verifying case-insensitive matching, prefix/suffix spans, multiple occurrences, and component identity preservation.
+
 ## [1.0.25+26.2]
 - **Live Search Category Match Badges**: Dynamically switches category header badges to display live query match counts (`[● 1 match]` or `[● X matches]`) in vibrant aqua (`ChatFormatting.AQUA`) during active search queries, providing instant category-level result feedback.
 - **Dynamic Accessibility Narration**: Synchronized category screen reader narration (`NarratedElementType.USAGE`) to announce live match counts when navigating filtered results with keyboard navigation.
