@@ -1,5 +1,29 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.22+26.2]
+- **Hook Modern Boolean Toggle Switch into Game Rules List**: Wired `BooleanToggleWidget` into `AbstractGameRulesScreen$BooleanRuleEntry` via `BooleanRuleEntryMixin`, replacing the plain vanilla checkbox with the modern emerald/ruby toggle switch across all boolean game rules.
+- **Two-Way Value Synchronization**: Seamlessly synchronized toggle state with vanilla `checkbox.setValue(newState)` mutation contract to ensure instant rule updates and world config saving without altering underlying vanilla logic.
+- **Precision Right-Aligned Layout**: Centered and anchored the toggle switch at `getContentRight() - 45` with clean 20px entry height alignment and full focus/tab interaction support.
+
+## [1.0.21+26.2]
+- **Modernize Boolean Toggle Switch Widget**: Overhauled `BooleanToggleWidget` with emerald green `[● ON]` and ruby red `[OFF ●]` high-contrast pill aesthetics, translucent ambient background glow, and subtle outer pill borders (`0x22FFFFFF`).
+- **Accent Indicator Thumbs & Audio**: Added vivid left/right accent indicators (`0xFF00FF66` on ON, `0xFFFF3333` on OFF) and native UI button click audio cues (`UI_BUTTON_CLICK`).
+- **Zero-Allocation Rendering**: Pre-cached static state component labels (`ON_LABEL` and `OFF_LABEL`) ensuring 0B heap allocation per render frame.
+
+## [1.0.20+26.2]
+- **Immediate Global Action Config Persistence**: Global `Expand All` and `Collapse All` actions now invoke `GameRuleStateConfig.saveIfDirty()` immediately upon activation, guaranteeing world rule view preferences persist directly to disk without relying solely on screen close events.
+- **Enhanced Screen Reader Narration (A11y)**: Added `NarratedElementType.USAGE` instructions in `GlobalActionsRuleEntry` informing accessibility tools and screen readers of card positions (`Expand All: Left card. Collapse All: Right card.`) with zero frame-level allocations.
+
+## [1.0.19+26.2]
+- **Global Action Bounded Hitbox Input Validation**: Confined mouse click hitboxes in `GlobalActionsRuleEntry` strictly within card coordinate bounds, completely ignoring accidental clicks in the 6px center gap, padding, or outer margins.
+- **UI Button Audio Feedback**: Valid card clicks trigger standard UI button click audio (`UI_BUTTON_CLICK`), eliminating silent clicks or false audio triggers on empty margins.
+- **Footer Separator Alignment**: Aligned the subtle separating hairline directly under the toolbar cards (`leftX - 4` to `rightX + 4`) with soft opacity (`0x22AAAAAA`) matching category card separators.
+
+## [1.0.18+26.2]
+- **Global Action Toolbar Symmetrical Card Geometry & Accents**: Refactored the top global actions toolbar from a raw split text row into two balanced, symmetrical glassmorphic action cards separated by a 6px central gap.
+- **Directional Icons & Category-Matching Accent Bars**: Features centered directional icons (`▼ Expand All` and `▶ Collapse All`) with a warm gold 2px accent strip for the Expand card and a crisp lime 2px accent strip for the Collapse card, matching category card aesthetics.
+- **Dynamic Card Hover Elevation**: Card backgrounds illuminate cleanly on hover (`0x24FFFFFF`) with text highlights (`0xFFFFFFAA`) and 0B heap allocation per frame.
+
 ## [1.0.17+26.2]
 - **Horizontal Marquee Scrolling Text on Hover**: When hovering over a category header with a long title, the text smoothly scrolls sideways (ticker / marquee effect) within a hardware scissor box, allowing players to read the complete category title in-place directly on the card plate.
 - **Natural Timing & Ping-Pong Animation**: Features an initial 1000ms pause, smooth ~30px/sec scroll across the overflow distance, 1000ms end pause, and ping-pong return.

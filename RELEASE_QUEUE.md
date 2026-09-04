@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.22+26.2`** - Wired BooleanToggleWidget into BooleanRuleEntry replacing vanilla checkbox with modern emerald/ruby toggle switch.
 - [ ] **`1.0.21+26.2`** - Modernized BooleanToggleWidget with high-contrast emerald/ruby pill aesthetics, border lines, and sound feedback.
 - [ ] **`1.0.20+26.2`** - Global action immediate config persistence and enhanced screen reader usage narration.
 - [ ] **`1.0.19+26.2`** - Global action bounded hitbox input validation, UI button click audio, and aligned hairline footer.

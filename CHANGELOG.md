@@ -1,3 +1,8 @@
+## [1.0.22+26.2]
+- **Hook Modern Boolean Toggle Switch into Game Rules List**: Wired `BooleanToggleWidget` into `AbstractGameRulesScreen$BooleanRuleEntry` via `BooleanRuleEntryMixin`, replacing the plain vanilla checkbox with the modern emerald/ruby toggle switch across all boolean game rules.
+- **Two-Way Value Synchronization**: Seamlessly synchronized toggle state with vanilla `checkbox.setValue(newState)` mutation contract to ensure instant rule updates and world config saving without altering underlying vanilla logic.
+- **Precision Right-Aligned Layout**: Centered and anchored the toggle switch at `getContentRight() - 45` with clean 20px entry height alignment and full focus/tab interaction support.
+
 ## [1.0.21+26.2]
 - **Modernize Boolean Toggle Switch Widget**: Overhauled `BooleanToggleWidget` with emerald green `[● ON]` and ruby red `[OFF ●]` high-contrast pill aesthetics, translucent ambient background glow, and subtle outer pill borders (`0x22FFFFFF`).
 - **Accent Indicator Thumbs & Audio**: Added vivid left/right accent indicators (`0xFF00FF66` on ON, `0xFFFF3333` on OFF) and native UI button click audio cues (`UI_BUTTON_CLICK`).
