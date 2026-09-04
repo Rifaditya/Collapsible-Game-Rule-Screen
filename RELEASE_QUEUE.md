@@ -5,9 +5,9 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
-- [ ] **`1.0.24+26.2`** - Wired IntegerSliderWidget into IntegerRuleEntry for bounded rules with graceful unbounded fallback.
-- [ ] **`1.0.23+26.2`** - Bounded integer slider metadata & helper registry (GameRuleSliderHelper + unit tests).
-- [ ] **`1.0.22+26.2`** - Wired BooleanToggleWidget into BooleanRuleEntry replacing vanilla checkbox with modern emerald/ruby toggle switch.
+- [ ] **`1.0.24+26.2`** - Wired IntegerSliderWidget into IntegerRuleEntry for bounded rules with graceful unbounded fallback (includes critical Mixin superclass shadow fix).
+- [ ] **`1.0.23+26.2`** (SKIP - BUGGED) - Bounded integer slider metadata & helper registry (superseded by 1.0.24+26.2).
+- [ ] **`1.0.22+26.2`** (SKIP - BUGGED) - Wired BooleanToggleWidget into BooleanRuleEntry (superseded by 1.0.24+26.2).
 - [ ] **`1.0.21+26.2`** - Modernized BooleanToggleWidget with high-contrast emerald/ruby pill aesthetics, border lines, and sound feedback.
 - [ ] **`1.0.20+26.2`** - Global action immediate config persistence and enhanced screen reader usage narration.
 - [ ] **`1.0.19+26.2`** - Global action bounded hitbox input validation, UI button click audio, and aligned hairline footer.
