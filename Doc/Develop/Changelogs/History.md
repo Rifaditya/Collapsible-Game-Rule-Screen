@@ -1,5 +1,8 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.13+26.2]
+- **Toggle-Path Entry Reuse & View Splice**: Pre-cached and reused persistent `CollapsibleCategoryRuleEntry` and `GlobalActionsRuleEntry` instances across category toggle clicks, eliminating widget and lambda re-allocations during list rebuilds.
+
 ## [1.0.12+26.2]
 - **Render-Path Zero-Allocation Caching**: Pre-cached directional display components (`▼`/`▶` labels with rule count badges) in `CategoryGroup`, eliminating per-frame string concatenation and component allocations in `extractContent()`.
 - **Global Actions Static Label Caching**: Pre-cached static action labels and narration components in `GlobalActionsRuleEntry` dropping frame-level allocations to zero.

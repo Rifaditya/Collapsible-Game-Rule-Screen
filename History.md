@@ -1,3 +1,7 @@
+## [1.0.13+26.2]
+### Core Changes
+- Pre-cached and reused persistent `CollapsibleCategoryRuleEntry` and `GlobalActionsRuleEntry` instances across category toggle clicks, eliminating widget and lambda re-allocations during list rebuilds.
+
 ## [1.0.12+26.2]
 ### Core Changes
 - Pre-cached directional display components (`▼`/`▶` labels with rule count badges) in `CategoryGroup`, eliminating per-frame string concatenation and component allocations in `extractContent()`.

@@ -42,11 +42,51 @@ public abstract class AbstractGameRulesScreenRuleListMixin
     @Unique
     private String collapsible_game_rules$currentFilter = "";
 
+    @Unique
+    private GlobalActionsRuleEntry collapsible_game_rules$cachedGlobalActions;
+
+    @Unique
+    private final java.util.Map<String, CollapsibleCategoryRuleEntry> collapsible_game_rules$cachedCategoryEntries = new java.util.HashMap<>();
+
     @Inject(method = "populateChildren(Ljava/lang/String;)V", at = @At("TAIL"))
     private void collapsible_game_rules$onPopulateChildren(String filter, CallbackInfo ci) {
         this.collapsible_game_rules$currentFilter = (filter != null) ? filter.toLowerCase(java.util.Locale.ROOT) : "";
         // Ingest entries linearly in a single O(N) pass, pre-caching metadata and rule counts
         this.collapsible_game_rules$groups = CategoryTreeBuilder.buildGroups(new ArrayList<>(this.children()));
+
+        // Pre-build persistent entries to eliminate allocation churn on click/toggle
+        this.collapsible_game_rules$cachedGlobalActions = new GlobalActionsRuleEntry(
+            () -> {
+                List<String> allKeys = this.collapsible_game_rules$groups.stream()
+                    .map(CategoryGroup::persistenceKey)
+                    .toList();
+                GameRuleStateConfig.expandAll(allKeys);
+                this.collapsible_game_rules$updateVisibleEntries();
+            },
+            () -> {
+                GameRuleStateConfig.collapseAll();
+                this.collapsible_game_rules$updateVisibleEntries();
+            }
+        );
+
+        this.collapsible_game_rules$cachedCategoryEntries.clear();
+        for (CategoryGroup group : this.collapsible_game_rules$groups) {
+            String persistenceKey = group.persistenceKey();
+            this.collapsible_game_rules$cachedCategoryEntries.put(
+                persistenceKey,
+                new CollapsibleCategoryRuleEntry(
+                    group,
+                    GameRuleStateConfig.isExpanded(persistenceKey),
+                    () -> {
+                        boolean newState = !GameRuleStateConfig.isExpanded(persistenceKey);
+                        GameRuleStateConfig.setExpanded(persistenceKey, newState);
+                        GameRuleStateConfig.saveIfDirty();
+                        this.collapsible_game_rules$updateVisibleEntries();
+                    }
+                )
+            );
+        }
+
         this.collapsible_game_rules$updateVisibleEntries();
     }
 
@@ -55,20 +95,8 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         this.clearEntries();
 
         // 1. Hook GlobalActions UI at index 0 (if there are any rules)
-        if (!this.collapsible_game_rules$groups.isEmpty()) {
-            this.addEntry(new GlobalActionsRuleEntry(
-                () -> {
-                    List<String> allKeys = this.collapsible_game_rules$groups.stream()
-                        .map(CategoryGroup::persistenceKey)
-                        .toList();
-                    GameRuleStateConfig.expandAll(allKeys);
-                    this.collapsible_game_rules$updateVisibleEntries();
-                },
-                () -> {
-                    GameRuleStateConfig.collapseAll();
-                    this.collapsible_game_rules$updateVisibleEntries();
-                }
-            ));
+        if (!this.collapsible_game_rules$groups.isEmpty() && this.collapsible_game_rules$cachedGlobalActions != null) {
+            this.addEntry(this.collapsible_game_rules$cachedGlobalActions);
         }
 
         boolean isSearching = !this.collapsible_game_rules$currentFilter.isEmpty();
@@ -77,17 +105,11 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             String persistenceKey = group.persistenceKey();
             boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(persistenceKey);
 
-            CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(
-                    group,
-                    isExpanded,
-                    () -> {
-                        boolean newState = !GameRuleStateConfig.isExpanded(persistenceKey);
-                        GameRuleStateConfig.setExpanded(persistenceKey, newState);
-                        GameRuleStateConfig.saveIfDirty();
-                        this.collapsible_game_rules$updateVisibleEntries();
-                    }
-            );
-            this.addEntry(newEntry);
+            CollapsibleCategoryRuleEntry entry = this.collapsible_game_rules$cachedCategoryEntries.get(persistenceKey);
+            if (entry != null) {
+                entry.setExpanded(isExpanded);
+                this.addEntry(entry);
+            }
 
             if (isExpanded) {
                 for (AbstractGameRulesScreen.RuleEntry rule : group.rules()) {
@@ -103,7 +125,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
     @Unique
     private class CollapsibleCategoryRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
         private final CategoryGroup group;
-        private final boolean expanded;
+        private boolean expanded;
         private final Runnable toggleAction;
 
         public CollapsibleCategoryRuleEntry(CategoryGroup group, boolean expanded, Runnable toggleAction) {
@@ -111,6 +133,10 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             this.group = group;
             this.expanded = expanded;
             this.toggleAction = toggleAction;
+        }
+
+        public void setExpanded(boolean expanded) {
+            this.expanded = expanded;
         }
 
         @Override
