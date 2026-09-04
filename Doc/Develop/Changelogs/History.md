@@ -1,5 +1,10 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.27+26.2]
+- **Rule Label Search Highlighting**: Integrated `SearchHighlightHelper` into `GameRuleEntryMixin` to visually highlight matching substrings of game rule titles with high-contrast yellow styling (`ChatFormatting.YELLOW`) during active search queries.
+- **Search Query Accessor**: Created `AbstractGameRulesScreenAccessor` to seamlessly access active search box text across game rule entries.
+- **Dynamic Split Preservation**: Automatically recalculates and formats multi-line wrapped text labels while preserving original formatting and layout boundaries.
+
 ## [1.0.26+26.2]
 - **Search Highlight Engine**: Implemented `SearchHighlightHelper` to partition search text into high-contrast highlighted spans (`ChatFormatting.YELLOW`), laying the architectural foundation for in-screen query highlighting.
 - **Zero-Allocation Fast Paths**: Added instant fast-fail rejection for null, empty, or non-matching queries returning the original component directly with 0B heap allocation.

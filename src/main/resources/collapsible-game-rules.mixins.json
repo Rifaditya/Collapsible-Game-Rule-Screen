@@ -6,6 +6,8 @@
     "client": [
         "ScreenMixin",
         "AbstractGameRulesScreenRuleListMixin",
+        "AbstractGameRulesScreenAccessor",
+        "GameRuleEntryMixin",
         "CategoryRuleEntryAccessor",
         "IntegerRuleEntryMixin",
         "BooleanRuleEntryMixin"

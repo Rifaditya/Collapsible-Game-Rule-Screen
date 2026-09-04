@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.27+26.2`** - Rule label search query substring highlighting (`GameRuleEntryMixin` + `SearchHighlightHelper`).
 - [ ] **`1.0.26+26.2`** - Search highlight engine (`SearchHighlightHelper`) with styled yellow span partitioning and 100% test coverage.
 - [ ] **`1.0.25+26.2`** - Live search category match count badges (`[● X matches]`) and dynamic accessibility narration.
 - [ ] **`1.0.24+26.2`** - Wired IntegerSliderWidget into IntegerRuleEntry for bounded rules with graceful unbounded fallback (includes critical Mixin superclass shadow fix).
