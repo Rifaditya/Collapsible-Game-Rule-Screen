@@ -1,18 +1,10 @@
 ## [1.0.24+26.2]
 - **Interactive Integer Sliders (`IntegerRuleEntryMixin`)**: Replaced vanilla text edit boxes with interactive `IntegerSliderWidget` for bounded integer game rules (`random_tick_speed`, `respawn_radius`, `players_sleeping_percentage`, `max_entity_cramming`, etc.).
 - **Graceful Unbounded Fallback**: Automatically preserves vanilla `EditBox` for unbounded rules (`max_command_sequence_length`, `max_command_forks`, etc.), ensuring full player flexibility for arbitrary numeric entry.
-- **Two-Way Value Synchronization**: Seamlessly pipes slider drag and step adjustments through `input.setValue()`, triggering vanilla's deserialization, validation, dirty tracking, and server game rule mutations with zero logic divergence.
-- **Discrete Step Snapping**: Snaps slider position and handle cleanly to configured step intervals (e.g. 5% increments for `players_sleeping_percentage`).
-
-## [1.0.23+26.2]
-- **Bounded Integer Slider Metadata & Helper Registry**: Created `GameRuleSliderHelper` defining safe numerical bounds, step intervals, and unit formatters for standard vanilla integer rules (`randomTickSpeed`, `spawnRadius`, `playersSleepingPercentage`, `maxEntityCramming`, `playersNetherPortalCreativeDelay`, `playersNetherPortalDefaultDelay`, `snowAccumulationHeight`).
-- **Snapping & Clamping Math Engine**: Implemented `snapAndClamp()` ensuring slider values snap to nearest valid step intervals and remain strictly within defined min/max bounds.
-- **Automated Test Coverage**: Added comprehensive JUnit 5 test suite in `GameRuleSliderHelperTest` verifying invariant bounds, known/unknown rule lookups, step snapping, and unit-suffix formatting.
-
-## [1.0.22+26.2]
-- **Hook Modern Boolean Toggle Switch into Game Rules List**: Wired `BooleanToggleWidget` into `AbstractGameRulesScreen$BooleanRuleEntry` via `BooleanRuleEntryMixin`, replacing the plain vanilla checkbox with the modern emerald/ruby toggle switch across all boolean game rules.
-- **Two-Way Value Synchronization**: Seamlessly synchronized toggle state with vanilla `checkbox.setValue(newState)` mutation contract to ensure instant rule updates and world config saving without altering underlying vanilla logic.
-- **Precision Right-Aligned Layout**: Centered and anchored the toggle switch at `getContentRight() - 45` with clean 20px entry height alignment and full focus/tab interaction support.
+- **Discrete Step Snapping & Value Sync**: Snaps slider position and handle cleanly to configured step intervals (e.g. 5% increments for `players_sleeping_percentage`), seamlessly updating vanilla game rules via `input.setValue()`.
+- **Bounded Integer Slider Metadata & Helper Registry**: Created `GameRuleSliderHelper` defining safe numerical bounds, step intervals, and unit formatters for standard vanilla integer rules with comprehensive automated JUnit 5 test coverage.
+- **Modern Boolean Toggle Switch Hook (`BooleanRuleEntryMixin`)**: Wired `BooleanToggleWidget` into `BooleanRuleEntry`, replacing vanilla checkboxes with the modern emerald/ruby toggle switch across all boolean game rules with precision right-alignment (`getContentRight() - 45`).
+- **Superclass Shadow Mixin Fix**: Eliminated superclass `@Shadow` calls on `extractLabel` and `children`, permanently fixing the `InvalidMixinException` that caused the screen to freeze on `"Retrieving game rules... o O o"`.
 
 ## [1.0.21+26.2]
 - **Modernize Boolean Toggle Switch Widget**: Overhauled `BooleanToggleWidget` with emerald green `[● ON]` and ruby red `[OFF ●]` high-contrast pill aesthetics, translucent ambient background glow, and subtle outer pill borders (`0x22FFFFFF`).
