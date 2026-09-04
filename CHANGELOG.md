@@ -1,3 +1,7 @@
+## [1.0.33+26.2]
+- **Responsive Category Title Clearance Tuning (`CollapsibleCategoryRuleEntry`)**: Refined dynamic clearance bounds between the category title, the 14x14 reset button, and metric count badge (`titleRight = resetX - 4`), giving category titles additional pixel clearance while preserving crisp visual separation.
+- **Scissor Boundary Optimization**: Aligned hardware scissor clipping boundaries with updated clearance calculations to ensure seamless marquee scrolling text on hover without edge artifacting.
+
 ## [1.0.32+26.2]
 - **Compact Category Reset Icon (`CollapsibleCategoryRuleEntry`)**: Refactored the text-padded `↺ Reset` button into a sleek, minimalist 14x14 icon-only plate (`↺`), reclaiming **~34px of horizontal clearance** to eliminate aggressive category title truncation.
 - **Interactive Hover Tooltip**: Added an interactive tooltip (`Reset category to defaults`) appearing dynamically when hovering over the `↺` button box.

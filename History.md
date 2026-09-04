@@ -1,3 +1,8 @@
+## [1.0.33+26.2]
+### Core Changes
+- Refined category title dynamic clearance margins before the 14x14 reset icon plate (`titleRight = resetX - 4`).
+- Aligned hardware scissor clipping boundaries for smooth hover marquee scrolling text without edge distortion.
+
 ## [1.0.32+26.2]
 ### Core Changes
 - Refactored category reset button from text-padded `↺ Reset` into a compact 14x14 icon-only plate (`↺`) with hover tooltip (`Reset category to defaults`), reclaiming ~34px of horizontal space to eliminate category title truncation.

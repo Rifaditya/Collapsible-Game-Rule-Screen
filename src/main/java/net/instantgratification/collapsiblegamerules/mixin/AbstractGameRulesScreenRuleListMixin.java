@@ -223,9 +223,9 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int resetY = this.getY() + 4;
             int resetHeight = 14;
 
-            // Enforce clearance before right-anchored badge / reset button
+            // Enforce clearance before right-anchored badge / reset button (4px buffer before reset icon, 6px before badge)
             int titleLeft = leftX + 2;
-            int titleRight = (resetVisible ? resetX : badgeX) - 6;
+            int titleRight = resetVisible ? (resetX - 4) : (badgeX - 6);
             int maxTitleWidth = Math.max(10, titleRight - titleLeft);
 
             // Cache formatted visual text upon width or badge dimension shift (0B heap allocation during frame scrolling)
