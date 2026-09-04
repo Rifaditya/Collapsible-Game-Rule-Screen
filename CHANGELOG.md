@@ -1,3 +1,9 @@
+## [1.0.17+26.2]
+- **Horizontal Marquee Scrolling Text on Hover**: When hovering over a category header with a long title, the text smoothly scrolls sideways (ticker / marquee effect) within a hardware scissor box, allowing players to read the complete category title in-place directly on the card plate.
+- **Natural Timing & Ping-Pong Animation**: Features an initial 1000ms pause, smooth ~30px/sec scroll across the overflow distance, 1000ms end pause, and ping-pong return.
+- **Hardware Scissor Clipping**: Uses `graphics.enableScissor()` to ensure scrolling text never bleeds into the left status indicator or the right-anchored rule count badge.
+- **Dual Readability Support**: Preserves the hover tooltip alongside the marquee scroll, providing both rapid glanceability and seamless in-card animation with 0B heap allocation per frame.
+
 ## [1.0.16+26.2]
 - **Long Category Title Collision Fix**: Resolved a visual text collision bug where long category titles (e.g. `Natural Reproduction - Toggles`) extended across the header and drew directly over the right-anchored rule count badge.
 - **Responsive Ellipsis Truncation**: Category titles now calculate available width dynamically and truncate with `...` (`font.substrByWidth`), guaranteeing a clean clearance gap before the rule count badge.

@@ -170,7 +170,9 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int badgeX = rightX - badgeWidth;
 
             // Enforce clearance before right-anchored badge
-            int maxTitleWidth = Math.max(10, (badgeX - 6) - (leftX + 2));
+            int titleLeft = leftX + 2;
+            int titleRight = badgeX - 6;
+            int maxTitleWidth = Math.max(10, titleRight - titleLeft);
 
             // Cache formatted visual text upon width or badge dimension shift (0B heap allocation during frame scrolling)
             if (this.getWidth() != this.lastWidth || badgeWidth != this.lastBadgeWidth || this.cachedExpandedTitle == null) {
@@ -190,10 +192,40 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF55FF55; // Warm gold when expanded, crisp lime/green when collapsed
             graphics.fill(leftX - 4, topY, leftX - 2, bottomY, accentColor);
 
-            // Left-aligned directional arrow and category title (truncated safely if title is long)
-            net.minecraft.util.FormattedCharSequence titleSeq = this.expanded ? this.cachedExpandedTitle : this.cachedCollapsedTitle;
+            Component fullTitle = this.expanded ? this.group.expandedLeft() : this.group.collapsedLeft();
+            int fullTitleWidth = font.width(fullTitle);
+            int overflow = fullTitleWidth - maxTitleWidth;
             int titleColor = hovered ? 0xFFFFFFAA : 0xFFFFFFFF;
-            graphics.text(font, titleSeq, leftX + 2, this.getY() + 7, titleColor);
+
+            if (this.isTruncated && hovered && overflow > 0) {
+                // Marquee scrolling animation: 1000ms start pause, ~30px/s scroll, 1000ms end pause, ping-pong
+                long now = net.minecraft.util.Util.getMillis();
+                long scrollDurationMs = (long) (overflow * 35L); // ~28.5 px per second
+                long pauseMs = 1000L;
+                long totalCycle = 2 * (pauseMs + scrollDurationMs);
+                long cycleTime = now % totalCycle;
+
+                int scrollOffset;
+                if (cycleTime < pauseMs) {
+                    scrollOffset = 0;
+                } else if (cycleTime < pauseMs + scrollDurationMs) {
+                    float progress = (float) (cycleTime - pauseMs) / (float) scrollDurationMs;
+                    scrollOffset = Math.round(progress * overflow);
+                } else if (cycleTime < 2 * pauseMs + scrollDurationMs) {
+                    scrollOffset = overflow;
+                } else {
+                    float progress = (float) (cycleTime - (2 * pauseMs + scrollDurationMs)) / (float) scrollDurationMs;
+                    scrollOffset = Math.round((1.0F - progress) * overflow);
+                }
+
+                graphics.enableScissor(titleLeft, topY, titleRight, bottomY);
+                graphics.text(font, fullTitle.getVisualOrderText(), titleLeft - scrollOffset, this.getY() + 7, titleColor);
+                graphics.disableScissor();
+            } else {
+                // Static truncated title
+                net.minecraft.util.FormattedCharSequence titleSeq = this.expanded ? this.cachedExpandedTitle : this.cachedCollapsedTitle;
+                graphics.text(font, titleSeq, titleLeft, this.getY() + 7, titleColor);
+            }
 
             // Right-anchored rule count badge directly before scrollbar
             graphics.text(font, badge, badgeX, this.getY() + 7, 0xFFAAAAAA);
@@ -202,7 +234,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             graphics.fill(leftX - 4, bottomY + 2, rightX + 4, bottomY + 3, 0x22AAAAAA);
 
             // Tooltip showing full category title when truncated and hovered over the title area
-            if (this.isTruncated && hovered && mouseX >= leftX && mouseX <= badgeX - 6) {
+            if (this.isTruncated && hovered && mouseX >= leftX && mouseX <= titleRight) {
                 graphics.setTooltipForNextFrame(this.group.displayLabel(), mouseX, mouseY);
             }
         }
