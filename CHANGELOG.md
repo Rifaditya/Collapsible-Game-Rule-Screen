@@ -1,3 +1,9 @@
+## [1.0.24+26.2]
+- **Interactive Integer Sliders (`IntegerRuleEntryMixin`)**: Replaced vanilla text edit boxes with interactive `IntegerSliderWidget` for bounded integer game rules (`random_tick_speed`, `respawn_radius`, `players_sleeping_percentage`, `max_entity_cramming`, etc.).
+- **Graceful Unbounded Fallback**: Automatically preserves vanilla `EditBox` for unbounded rules (`max_command_sequence_length`, `max_command_forks`, etc.), ensuring full player flexibility for arbitrary numeric entry.
+- **Two-Way Value Synchronization**: Seamlessly pipes slider drag and step adjustments through `input.setValue()`, triggering vanilla's deserialization, validation, dirty tracking, and server game rule mutations with zero logic divergence.
+- **Discrete Step Snapping**: Snaps slider position and handle cleanly to configured step intervals (e.g. 5% increments for `players_sleeping_percentage`).
+
 ## [1.0.23+26.2]
 - **Bounded Integer Slider Metadata & Helper Registry**: Created `GameRuleSliderHelper` defining safe numerical bounds, step intervals, and unit formatters for standard vanilla integer rules (`randomTickSpeed`, `spawnRadius`, `playersSleepingPercentage`, `maxEntityCramming`, `playersNetherPortalCreativeDelay`, `playersNetherPortalDefaultDelay`, `snowAccumulationHeight`).
 - **Snapping & Clamping Math Engine**: Implemented `snapAndClamp()` ensuring slider values snap to nearest valid step intervals and remain strictly within defined min/max bounds.

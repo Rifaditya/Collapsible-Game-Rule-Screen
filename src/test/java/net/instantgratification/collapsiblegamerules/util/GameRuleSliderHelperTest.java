@@ -26,9 +26,12 @@ class GameRuleSliderHelperTest {
     }
 
     @Test
-    @DisplayName("Specific known rules return expected slider configurations")
+    @DisplayName("Specific known rules return expected slider configurations across naming conventions")
     void testKnownRules() {
         assertTrue(GameRuleSliderHelper.hasConfig("randomTickSpeed"));
+        assertTrue(GameRuleSliderHelper.hasConfig("random_tick_speed"));
+        assertTrue(GameRuleSliderHelper.hasConfig("minecraft:random_tick_speed"));
+
         GameRuleSliderHelper.SliderConfig tickConfig = GameRuleSliderHelper.getConfig("randomTickSpeed");
         assertNotNull(tickConfig);
         assertEquals(0, tickConfig.min());
@@ -36,12 +39,20 @@ class GameRuleSliderHelperTest {
         assertEquals(1, tickConfig.step());
 
         assertTrue(GameRuleSliderHelper.hasConfig("playersSleepingPercentage"));
+        assertTrue(GameRuleSliderHelper.hasConfig("players_sleeping_percentage"));
+        assertTrue(GameRuleSliderHelper.hasConfig("minecraft:players_sleeping_percentage"));
+
         GameRuleSliderHelper.SliderConfig sleepConfig = GameRuleSliderHelper.getConfig("playersSleepingPercentage");
         assertNotNull(sleepConfig);
         assertEquals(0, sleepConfig.min());
         assertEquals(100, sleepConfig.max());
         assertEquals(5, sleepConfig.step());
         assertEquals("%", sleepConfig.unitSuffix());
+
+        assertTrue(GameRuleSliderHelper.hasConfig("respawn_radius"));
+        assertTrue(GameRuleSliderHelper.hasConfig("spawnRadius"));
+        assertTrue(GameRuleSliderHelper.hasConfig("max_snow_accumulation_height"));
+        assertTrue(GameRuleSliderHelper.hasConfig("snowAccumulationHeight"));
     }
 
     @Test

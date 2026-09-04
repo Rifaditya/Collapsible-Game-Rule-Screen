@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.24+26.2`** - Wired IntegerSliderWidget into IntegerRuleEntry for bounded rules with graceful unbounded fallback.
 - [ ] **`1.0.23+26.2`** - Bounded integer slider metadata & helper registry (GameRuleSliderHelper + unit tests).
 - [ ] **`1.0.22+26.2`** - Wired BooleanToggleWidget into BooleanRuleEntry replacing vanilla checkbox with modern emerald/ruby toggle switch.
 - [ ] **`1.0.21+26.2`** - Modernized BooleanToggleWidget with high-contrast emerald/ruby pill aesthetics, border lines, and sound feedback.

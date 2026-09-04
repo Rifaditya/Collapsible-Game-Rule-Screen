@@ -22,23 +22,54 @@ public final class GameRuleSliderHelper {
     }
 
     private static final Map<String, SliderConfig> REGISTRY = new HashMap<>();
+    private static final Map<String, SliderConfig> NORMALIZED_REGISTRY = new HashMap<>();
 
     static {
+        // Vanilla integer rules across versions (supporting both snake_case and camelCase)
         register("randomTickSpeed", 0, 20, 1, "");
+        register("random_tick_speed", 0, 20, 1, "");
+
         register("spawnRadius", 0, 32, 1, " blocks");
+        register("respawn_radius", 0, 32, 1, " blocks");
+
         register("playersSleepingPercentage", 0, 100, 5, "%");
+        register("players_sleeping_percentage", 0, 100, 5, "%");
+
         register("maxEntityCramming", 0, 100, 1, "");
+        register("max_entity_cramming", 0, 100, 1, "");
+
         register("playersNetherPortalCreativeDelay", 0, 100, 1, " ticks");
+        register("players_nether_portal_creative_delay", 0, 100, 1, " ticks");
+
         register("playersNetherPortalDefaultDelay", 0, 100, 5, " ticks");
+        register("players_nether_portal_default_delay", 0, 100, 5, " ticks");
+
         register("snowAccumulationHeight", 0, 8, 1, " layers");
+        register("max_snow_accumulation_height", 0, 8, 1, " layers");
+
+        register("maxMinecartSpeed", 1, 1000, 1, " bps");
+        register("max_minecart_speed", 1, 1000, 1, " bps");
     }
 
     private GameRuleSliderHelper() {
     }
 
+    public static String normalizeKey(String key) {
+        if (key == null) {
+            return "";
+        }
+        int colon = key.indexOf(':');
+        if (colon >= 0) {
+            key = key.substring(colon + 1);
+        }
+        return key.toLowerCase().replace("_", "").replace("-", "").trim();
+    }
+
     public static void register(String ruleName, int min, int max, int step, String unitSuffix) {
         if (ruleName != null && !ruleName.isBlank()) {
-            REGISTRY.put(ruleName, new SliderConfig(min, max, step, unitSuffix));
+            SliderConfig config = new SliderConfig(min, max, step, unitSuffix);
+            REGISTRY.put(ruleName, config);
+            NORMALIZED_REGISTRY.put(normalizeKey(ruleName), config);
         }
     }
 
@@ -46,7 +77,11 @@ public final class GameRuleSliderHelper {
         if (ruleName == null) {
             return null;
         }
-        return REGISTRY.get(ruleName);
+        SliderConfig direct = REGISTRY.get(ruleName);
+        if (direct != null) {
+            return direct;
+        }
+        return NORMALIZED_REGISTRY.get(normalizeKey(ruleName));
     }
 
     public static boolean hasConfig(String ruleName) {
