@@ -1,3 +1,9 @@
+## [1.0.15+26.2]
+### Core Changes
+- Added visual modified-from-default rule counter badges (`[● X mod / Y rules]` in warm gold when modified, `[Y rules]` in gray when default).
+- Added updated screen reader narration support for category cards announcing category title alongside rule count and modification status.
+- Preserved zero-allocation render path via pre-cached badge components and `withModifiedCount()` group derivation.
+
 ## [1.0.14+26.2]
 ### Core Changes
 - Redesigned category headers from centered text into a clean modern card layout: directional arrows (`▶` / `▼`) and category names are pinned to the left edge, and rule count badges (`[X rules]`) are right-anchored before the scrollbar.

@@ -37,7 +37,7 @@ public record CategoryGroup(
                 createLegacyDisplay(displayLabel, "▶ ", rules != null ? rules.size() : 0),
                 Component.literal("▼ ").append(displayLabel),
                 Component.literal("▶ ").append(displayLabel),
-                createBadge(rules != null ? rules.size() : 0)
+                createBadge(rules != null ? rules.size() : 0, 0)
         );
     }
 
@@ -52,13 +52,32 @@ public record CategoryGroup(
         Objects.requireNonNull(countBadge, "countBadge cannot be null");
     }
 
+    /**
+     * Returns a new CategoryGroup with updated countBadge reflecting the number of modified rules.
+     */
+    public CategoryGroup withModifiedCount(int modifiedCount) {
+        return new CategoryGroup(
+                this.displayLabel,
+                this.persistenceKey,
+                this.rules,
+                this.expandedDisplay,
+                this.collapsedDisplay,
+                this.expandedLeft,
+                this.collapsedLeft,
+                createBadge(this.rules.size(), modifiedCount)
+        );
+    }
+
     private static Component createLegacyDisplay(Component label, String prefix, int count) {
         Component badge = Component.literal(" (" + count + " rules)").withStyle(ChatFormatting.GRAY);
         return Component.literal(prefix).append(label).append(badge);
     }
 
-    private static Component createBadge(int count) {
-        return Component.literal("[" + count + " rules]").withStyle(ChatFormatting.GRAY);
+    public static Component createBadge(int totalRules, int modifiedCount) {
+        if (modifiedCount > 0) {
+            return Component.literal("[● " + modifiedCount + " mod / " + totalRules + " rules]").withStyle(ChatFormatting.GOLD);
+        }
+        return Component.literal("[" + totalRules + " rules]").withStyle(ChatFormatting.GRAY);
     }
 
     /**

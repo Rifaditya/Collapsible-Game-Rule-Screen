@@ -222,6 +222,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         @Override
         public void updateNarration(NarrationElementOutput output) {
             output.add(NarratedElementType.TITLE, this.group.displayLabel());
+            output.add(NarratedElementType.USAGE, this.group.countBadge());
         }
     }
 }

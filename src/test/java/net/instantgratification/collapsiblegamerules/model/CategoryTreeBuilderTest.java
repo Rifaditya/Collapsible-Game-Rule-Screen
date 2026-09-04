@@ -72,6 +72,25 @@ class CategoryTreeBuilderTest {
         assertTrue(group.collapsedDisplay().getString().contains("3 rules"));
     }
 
+    @Test
+    @DisplayName("CategoryGroup createBadge and withModifiedCount accurately display modified indicator")
+    void testCategoryGroupModifiedBadge() {
+        Component zeroMod = CategoryGroup.createBadge(12, 0);
+        assertEquals("[12 rules]", zeroMod.getString());
+
+        Component withMod = CategoryGroup.createBadge(12, 2);
+        assertEquals("[● 2 mod / 12 rules]", withMod.getString());
+
+        Component label = Component.literal("Player");
+        CategoryGroup group = new CategoryGroup(label, "gamerule.category.player", List.of(new DummyRuleEntry(), new DummyRuleEntry()));
+        assertEquals("[2 rules]", group.countBadge().getString());
+
+        CategoryGroup updated = group.withModifiedCount(1);
+        assertEquals("[● 1 mod / 2 rules]", updated.countBadge().getString());
+        assertEquals(2, updated.ruleCount());
+        assertEquals("gamerule.category.player", updated.persistenceKey());
+    }
+
     /**
      * Minimal concrete stub of RuleEntry for testing list containment and counts.
      */
