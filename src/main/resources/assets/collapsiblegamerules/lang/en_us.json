@@ -1,4 +1,5 @@
 {
   "gui.collapsible-game-rules.expand_all": "Expand All",
-  "gui.collapsible-game-rules.collapse_all": "Collapse All"
+  "gui.collapsible-game-rules.collapse_all": "Collapse All",
+  "gui.collapsible-game-rules.reset_category": "Reset category to defaults"
 }

@@ -1,3 +1,7 @@
+## [1.0.41+26.2]
+- **Category Reset Tooltip Localization (`AbstractGameRulesScreenRuleListMixin`)**: Migrated hardcoded `Component.literal` tooltip on the `↺` reset button plate to `Component.translatable("gui.collapsible-game-rules.reset_category")`.
+- **Translation Suite Expansion (`en_us.json`)**: Added `"gui.collapsible-game-rules.reset_category": "Reset category to defaults"`, enabling complete localization across community resource packs and translation updates.
+
 ## [1.0.40+26.2]
 - **Platform Manifest & Git Remote Parity (`fabric.mod.json`)**: Configured the official Modrinth metadata block (`custom.modrinth.projectId = "lObgjyJl"`, `custom.modrinth.slug = "collapsible-gamerules"`).
 - **Synchronized Contact URLs**: Aligned `contact.sources` and `contact.issues` directly with the active repository remote (`https://github.com/Rifaditya/Collapsible-Game-Rule-Screen`), resolving stale repository references.

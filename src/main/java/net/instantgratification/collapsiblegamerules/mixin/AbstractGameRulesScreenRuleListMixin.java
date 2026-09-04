@@ -139,7 +139,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
     private class CollapsibleCategoryRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
         private static final Component RESET_ICON = Component.literal("↺").withStyle(net.minecraft.ChatFormatting.GOLD);
-        private static final Component RESET_TOOLTIP = Component.literal("Reset category to defaults");
+        private static final Component RESET_TOOLTIP = Component.translatable("gui.collapsible-game-rules.reset_category");
 
         private final CategoryGroup group;
         private boolean expanded;

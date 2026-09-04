@@ -1,5 +1,9 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.41+26.2]
+- **Category Reset Tooltip Localization (`AbstractGameRulesScreenRuleListMixin`)**: Replaced hardcoded `Component.literal("Reset category to defaults")` with `Component.translatable("gui.collapsible-game-rules.reset_category")` on the `↺` reset icon plate.
+- **Language Key Parity (`en_us.json`)**: Registered translation mapping `"gui.collapsible-game-rules.reset_category": "Reset category to defaults"`.
+
 ## [1.0.40+26.2]
 - **Platform Manifest & Git Remote Parity (`fabric.mod.json`)**: Configured `"custom": { "modrinth": { "projectId": "lObgjyJl", "slug": "collapsible-gamerules" } }`. Synchronized `"contact.sources"` and `"contact.issues"` directly with `https://github.com/Rifaditya/Collapsible-Game-Rule-Screen`, and added `"contact.homepage": "https://modrinth.com/mod/collapsible-gamerules"`.
 - **Platform Project Registry**: Registered Collapsible Game Rules in `.agents/config/platform_projects.json` with canonical Modrinth and CurseForge identifiers.
