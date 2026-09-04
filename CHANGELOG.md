@@ -1,3 +1,8 @@
+## [1.0.29+26.2]
+- **Category Reset Engine (`CategoryResetHelper`)**: Implemented headless logic for comparing current game rule values (boolean, integer, and serialized string) against vanilla defaults to accurately detect category modification state.
+- **Zero-Allocation State Evaluation**: Designed pure functional comparison checks and count boundary clamping (`clampModifiedCount`) to maintain 0B heap allocation on UI tick paths.
+- **Comprehensive Automated Tests**: Added complete JUnit 5 test suite in `CategoryResetHelperTest` covering boolean/integer deviations, trimmed strings, null-safe equality, and boundary clamping.
+
 ## [1.0.28+26.2]
 - **Rule Tooltip & Description Search Highlighting**: Extended search highlighting to rule tooltips and description text via `RuleEntryAccessor`, allowing players to instantly see why a rule matched even when the matched query resides in its description.
 - **Visual Sequence Highlighting (`highlightSequence`)**: Added character stream reconstruction and span partitioning to `SearchHighlightHelper` for `FormattedCharSequence` instances with zero-allocation fast-pathing on non-matches.

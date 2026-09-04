@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.29+26.2`** - Category reset engine and value reversion checks (`CategoryResetHelper` + 100% unit tests).
 - [ ] **`1.0.28+26.2`** - Rule tooltip & description search query substring highlighting (`RuleEntryAccessor` + `highlightSequence`).
 - [ ] **`1.0.27+26.2`** - Rule label search query substring highlighting (`GameRuleEntryMixin` + `SearchHighlightHelper`).
 - [ ] **`1.0.26+26.2`** - Search highlight engine (`SearchHighlightHelper`) with styled yellow span partitioning and 100% test coverage.
