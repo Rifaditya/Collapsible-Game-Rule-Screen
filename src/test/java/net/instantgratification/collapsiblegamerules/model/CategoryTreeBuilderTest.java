@@ -54,6 +54,16 @@ class CategoryTreeBuilderTest {
         assertEquals(3, group.rules().size());
         assertNotNull(group.expandedDisplay());
         assertNotNull(group.collapsedDisplay());
+        assertNotNull(group.expandedLeft());
+        assertNotNull(group.collapsedLeft());
+        assertNotNull(group.countBadge());
+
+        assertTrue(group.expandedLeft().getString().startsWith("▼ "));
+        assertTrue(group.expandedLeft().getString().contains("Spawning"));
+        assertTrue(group.collapsedLeft().getString().startsWith("▶ "));
+        assertTrue(group.collapsedLeft().getString().contains("Spawning"));
+        assertEquals("[3 rules]", group.countBadge().getString());
+
         assertTrue(group.expandedDisplay().getString().contains("▼ "));
         assertTrue(group.expandedDisplay().getString().contains("Spawning"));
         assertTrue(group.expandedDisplay().getString().contains("3 rules"));

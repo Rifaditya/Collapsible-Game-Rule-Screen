@@ -1,3 +1,8 @@
+## [1.0.14+26.2]
+- **Left-Aligned Titles & Right-Anchored Metrics**: Redesigned category headers from centered text into a clean modern card layout: directional arrows (`▶` / `▼`) and category names are pinned to the left edge, and rule count badges (`[X rules]`) are right-anchored before the scrollbar.
+- **Card-Style Plate & Visual Indicator**: Added a subtle elevated glassmorphic card plate on hover and an accent status bar (warm gold when expanded, crisp lime when collapsed).
+- **Render-Path Zero-Allocation Kept**: Pre-cached `expandedLeft`, `collapsedLeft`, and `countBadge` components directly on `CategoryGroup` preserving 0B/frame heap allocation.
+
 ## [1.0.13+26.2]
 - **Toggle-Path Entry Reuse & View Splice**: Pre-cached and reused persistent `CollapsibleCategoryRuleEntry` and `GlobalActionsRuleEntry` instances across category toggle clicks, eliminating widget and lambda re-allocations during list rebuilds.
 

@@ -141,19 +141,34 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
         @Override
         public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-            // Premium Highlight on hover
-            if (hovered) {
-                graphics.fill(this.getX() - 2, this.getY(), this.getX() + this.getWidth() + 2, this.getY() + 24, 0x22FFFFFF);
-            }
+            net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
 
-            // Draw pre-cached directional arrow, label, and child count badge (Zero allocations per frame)
-            Component display = this.expanded ? this.group.expandedDisplay() : this.group.collapsedDisplay();
+            int leftX = this.getX() + 8;
+            int topY = this.getY() + 3;
+            int rightX = this.getX() + this.getWidth() - 8;
+            int bottomY = this.getY() + 21;
 
-            graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, display,
-                    this.getContentXMiddle(), this.getContentY() + 5, hovered ? 0xFFFFFFAA : 0xFFFFFFFF);
-            
-            // Subtle separating line at the bottom
-            graphics.fill(this.getX() + 10, this.getY() + 23, this.getX() + this.getWidth() - 10, this.getY() + 24, 0x44AAAAAA);
+            // Subtle card background plate (elevated on hover)
+            int bgColor = hovered ? 0x24FFFFFF : 0x10FFFFFF;
+            graphics.fill(leftX - 4, topY, rightX + 4, bottomY, bgColor);
+
+            // Left accent vertical bar indicating category presence
+            int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF55FF55; // Warm gold when expanded, crisp lime/green when collapsed
+            graphics.fill(leftX - 4, topY, leftX - 2, bottomY, accentColor);
+
+            // Left-aligned directional arrow and category title
+            Component leftTitle = this.expanded ? this.group.expandedLeft() : this.group.collapsedLeft();
+            int titleColor = hovered ? 0xFFFFFFAA : 0xFFFFFFFF;
+            graphics.text(font, leftTitle, leftX + 2, this.getY() + 7, titleColor);
+
+            // Right-anchored rule count badge directly before scrollbar
+            Component badge = this.group.countBadge();
+            int badgeWidth = font.width(badge);
+            int badgeX = rightX - badgeWidth;
+            graphics.text(font, badge, badgeX, this.getY() + 7, 0xFFAAAAAA);
+
+            // Subtle separating hairline at card footer
+            graphics.fill(leftX - 4, bottomY + 2, rightX + 4, bottomY + 3, 0x22AAAAAA);
         }
 
         @Override

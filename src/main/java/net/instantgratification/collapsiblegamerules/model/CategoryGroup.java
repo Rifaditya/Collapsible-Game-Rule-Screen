@@ -19,7 +19,10 @@ public record CategoryGroup(
         String persistenceKey,
         List<AbstractGameRulesScreen.RuleEntry> rules,
         Component expandedDisplay,
-        Component collapsedDisplay
+        Component collapsedDisplay,
+        Component expandedLeft,
+        Component collapsedLeft,
+        Component countBadge
 ) {
     public CategoryGroup(
             Component displayLabel,
@@ -30,8 +33,11 @@ public record CategoryGroup(
                 displayLabel,
                 persistenceKey,
                 rules,
-                createDisplay(displayLabel, "▼ ", rules != null ? rules.size() : 0),
-                createDisplay(displayLabel, "▶ ", rules != null ? rules.size() : 0)
+                createLegacyDisplay(displayLabel, "▼ ", rules != null ? rules.size() : 0),
+                createLegacyDisplay(displayLabel, "▶ ", rules != null ? rules.size() : 0),
+                Component.literal("▼ ").append(displayLabel),
+                Component.literal("▶ ").append(displayLabel),
+                createBadge(rules != null ? rules.size() : 0)
         );
     }
 
@@ -41,11 +47,18 @@ public record CategoryGroup(
         rules = rules != null ? Collections.unmodifiableList(rules) : Collections.emptyList();
         Objects.requireNonNull(expandedDisplay, "expandedDisplay cannot be null");
         Objects.requireNonNull(collapsedDisplay, "collapsedDisplay cannot be null");
+        Objects.requireNonNull(expandedLeft, "expandedLeft cannot be null");
+        Objects.requireNonNull(collapsedLeft, "collapsedLeft cannot be null");
+        Objects.requireNonNull(countBadge, "countBadge cannot be null");
     }
 
-    private static Component createDisplay(Component label, String prefix, int count) {
-        Component countBadge = Component.literal(" (" + count + " rules)").withStyle(ChatFormatting.GRAY);
-        return Component.literal(prefix).append(label).append(countBadge);
+    private static Component createLegacyDisplay(Component label, String prefix, int count) {
+        Component badge = Component.literal(" (" + count + " rules)").withStyle(ChatFormatting.GRAY);
+        return Component.literal(prefix).append(label).append(badge);
+    }
+
+    private static Component createBadge(int count) {
+        return Component.literal("[" + count + " rules]").withStyle(ChatFormatting.GRAY);
     }
 
     /**

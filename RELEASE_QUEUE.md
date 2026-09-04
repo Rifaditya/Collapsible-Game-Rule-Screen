@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.14+26.2`** - Left-aligned category titles and right-anchored count badges with card hover highlight.
 - [ ] **`1.0.13+26.2`** - Toggle-path entry reuse and view splice eliminating GC churn on list rebuilds.
 - [ ] **`1.0.12+26.2`** - Render-path zero-allocation caching (`expandedDisplay`/`collapsedDisplay` and `GlobalActionsRuleEntry` static labels).
 - [ ] **`1.0.11+26.2`** - Single-pass Mixin ingestion eliminating O(N²) nested scans and zero-allocation category toggling.
