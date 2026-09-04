@@ -1,3 +1,8 @@
+## [1.0.21+26.2]
+- **Modernize Boolean Toggle Switch Widget**: Overhauled `BooleanToggleWidget` with emerald green `[● ON]` and ruby red `[OFF ●]` high-contrast pill aesthetics, translucent ambient background glow, and subtle outer pill borders (`0x22FFFFFF`).
+- **Accent Indicator Thumbs & Audio**: Added vivid left/right accent indicators (`0xFF00FF66` on ON, `0xFFFF3333` on OFF) and native UI button click audio cues (`UI_BUTTON_CLICK`).
+- **Zero-Allocation Rendering**: Pre-cached static state component labels (`ON_LABEL` and `OFF_LABEL`) ensuring 0B heap allocation per render frame.
+
 ## [1.0.20+26.2]
 - **Immediate Global Action Config Persistence**: Global `Expand All` and `Collapse All` actions now invoke `GameRuleStateConfig.saveIfDirty()` immediately upon activation, guaranteeing world rule view preferences persist directly to disk without relying solely on screen close events.
 - **Enhanced Screen Reader Narration (A11y)**: Added `NarratedElementType.USAGE` instructions in `GlobalActionsRuleEntry` informing accessibility tools and screen readers of card positions (`Expand All: Left card. Collapse All: Right card.`) with zero frame-level allocations.
