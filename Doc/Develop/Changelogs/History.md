@@ -1,5 +1,9 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.40+26.2]
+- **Platform Manifest & Git Remote Parity (`fabric.mod.json`)**: Configured `"custom": { "modrinth": { "projectId": "lObgjyJl", "slug": "collapsible-gamerules" } }`. Synchronized `"contact.sources"` and `"contact.issues"` directly with `https://github.com/Rifaditya/Collapsible-Game-Rule-Screen`, and added `"contact.homepage": "https://modrinth.com/mod/collapsible-gamerules"`.
+- **Platform Project Registry**: Registered Collapsible Game Rules in `.agents/config/platform_projects.json` with canonical Modrinth and CurseForge identifiers.
+
 ## [1.0.39+26.2]
 - **License Header Standardization**: Standardized Line 1 across 100% of `.java` source files in `src/main/java/` to `// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3`. Stripped legacy `/* Sovereign Engineering ... */` comment blocks from 7 classes: `CollapsibleGameRulesFabric`, `CollapsibleGameRulesFabricClient`, `GameRuleStateConfig`, `AbstractGameRulesScreenRuleListMixin`, `ScreenMixin`, `CategoryPrettifier`, and `DasikMetadataHelper`.
 

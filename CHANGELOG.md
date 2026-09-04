@@ -1,3 +1,8 @@
+## [1.0.40+26.2]
+- **Platform Manifest & Git Remote Parity (`fabric.mod.json`)**: Configured the official Modrinth metadata block (`custom.modrinth.projectId = "lObgjyJl"`, `custom.modrinth.slug = "collapsible-gamerules"`).
+- **Synchronized Contact URLs**: Aligned `contact.sources` and `contact.issues` directly with the active repository remote (`https://github.com/Rifaditya/Collapsible-Game-Rule-Screen`), resolving stale repository references.
+- **Dedicated Homepage Link**: Populated `contact.homepage` with the canonical Modrinth project page (`https://modrinth.com/mod/collapsible-gamerules`).
+
 ## [1.0.39+26.2]
 - **License Header Standardization**: Standardized all Java source files in `src/main/java/` to the uniform Core Constitution single-line license header (`// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3`), eliminating legacy multi-line comments.
 - **Codebase Cleanliness & Compliance**: Verified 100% compliance across all 30 source and test classes with zero runtime impact.

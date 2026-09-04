@@ -8,8 +8,15 @@
         "Dasik (Rifaditya)"
     ],
     "contact": {
-        "homepage": "https://github.com/Rifaditya/Instant-Gratification-collapsible-game-rules",
-        "sources": "https://github.com/Rifaditya/Instant-Gratification-collapsible-game-rules"
+        "homepage": "https://modrinth.com/mod/collapsible-gamerules",
+        "sources": "https://github.com/Rifaditya/Collapsible-Game-Rule-Screen",
+        "issues": "https://github.com/Rifaditya/Collapsible-Game-Rule-Screen/issues"
+    },
+    "custom": {
+        "modrinth": {
+            "projectId": "lObgjyJl",
+            "slug": "collapsible-gamerules"
+        }
     },
     "license": "GPL-3.0-or-later",
     "icon": "assets/collapsiblegamerules/icon.png",
