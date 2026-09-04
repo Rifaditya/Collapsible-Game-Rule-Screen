@@ -46,8 +46,8 @@ public final class CategoryPrettifier {
             }
         }
 
-        // Split by underscore or dash
-        String[] parts = name.split("[_-]");
+        // Split by whitespace, underscore or dash
+        String[] parts = name.split("[\\s_-]+");
         List<String> words = new ArrayList<>();
         for (String part : parts) {
             if (part.isEmpty()) {

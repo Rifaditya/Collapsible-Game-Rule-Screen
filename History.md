@@ -1,3 +1,8 @@
+## [1.0.34+26.2]
+### Core Changes
+- Added automated JUnit 5 test suite in `CategoryPrettifierTest` asserting translation key parsing, namespace stripping, redundant path deduplication, and delimiters.
+- Enhanced `CategoryPrettifier` delimiter parsing to include whitespace when capitalizing compound multi-token category words.
+
 ## [1.0.33+26.2]
 ### Core Changes
 - Refined category title dynamic clearance margins before the 14x14 reset icon plate (`titleRight = resetX - 4`).

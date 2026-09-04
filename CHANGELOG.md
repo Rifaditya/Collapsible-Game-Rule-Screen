@@ -1,3 +1,7 @@
+## [1.0.34+26.2]
+- **Category Prettifier Automated Test Suite (`CategoryPrettifierTest`)**: Added complete automated JUnit 5 test coverage asserting translation key parsing, namespace stripping, redundant path deduplication, and mixed casing/delimiters.
+- **Enhanced Delimiter Parsing (`CategoryPrettifier`)**: Treated whitespace alongside hyphens and underscores during word splitting, ensuring multi-token compound categories are capitalized consistently across every word.
+
 ## [1.0.33+26.2]
 - **Responsive Category Title Clearance Tuning (`CollapsibleCategoryRuleEntry`)**: Refined dynamic clearance bounds between the category title, the 14x14 reset button, and metric count badge (`titleRight = resetX - 4`), giving category titles additional pixel clearance while preserving crisp visual separation.
 - **Scissor Boundary Optimization**: Aligned hardware scissor clipping boundaries with updated clearance calculations to ensure seamless marquee scrolling text on hover without edge artifacting.

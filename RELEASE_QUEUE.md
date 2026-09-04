@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.34+26.2`** - Category Prettifier unit test suite and enhanced multi-word delimiter capitalization (`CategoryPrettifierTest`).
 - [ ] **`1.0.33+26.2`** - Responsive category title clearance tuning and scissor boundary optimization (`CollapsibleCategoryRuleEntry`).
 - [ ] **`1.0.32+26.2`** - Compact 14x14 category reset icon button (`↺`) with hover tooltip, reclaiming ~34px horizontal clearance to eliminate title truncation.
 - [ ] **`1.0.31+26.2`** - Category reset input dispatch, dynamic live modification tracking, sound, and persistence (`CollapsibleCategoryRuleEntry`).
