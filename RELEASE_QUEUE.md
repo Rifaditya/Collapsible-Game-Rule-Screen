@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.25+26.2`** - Live search category match count badges (`[● X matches]`) and dynamic accessibility narration.
 - [ ] **`1.0.24+26.2`** - Wired IntegerSliderWidget into IntegerRuleEntry for bounded rules with graceful unbounded fallback (includes critical Mixin superclass shadow fix).
 - [ ] **`1.0.23+26.2`** (SKIP - BUGGED) - Bounded integer slider metadata & helper registry (superseded by 1.0.24+26.2).
 - [ ] **`1.0.22+26.2`** (SKIP - BUGGED) - Wired BooleanToggleWidget into BooleanRuleEntry (superseded by 1.0.24+26.2).

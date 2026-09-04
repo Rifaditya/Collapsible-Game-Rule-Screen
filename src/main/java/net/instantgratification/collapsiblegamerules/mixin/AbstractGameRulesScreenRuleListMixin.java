@@ -71,13 +71,16 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             }
         );
 
+        boolean isSearching = !this.collapsible_game_rules$currentFilter.isEmpty();
+
         this.collapsible_game_rules$cachedCategoryEntries.clear();
         for (CategoryGroup group : this.collapsible_game_rules$groups) {
             String persistenceKey = group.persistenceKey();
+            CategoryGroup activeGroup = isSearching ? group.withMatchCount(group.ruleCount()) : group;
             this.collapsible_game_rules$cachedCategoryEntries.put(
                 persistenceKey,
                 new CollapsibleCategoryRuleEntry(
-                    group,
+                    activeGroup,
                     GameRuleStateConfig.isExpanded(persistenceKey),
                     () -> {
                         boolean newState = !GameRuleStateConfig.isExpanded(persistenceKey);

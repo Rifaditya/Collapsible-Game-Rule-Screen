@@ -68,6 +68,29 @@ public record CategoryGroup(
         );
     }
 
+    /**
+     * Returns a new CategoryGroup with updated countBadge reflecting the number of matching rules during active search queries.
+     */
+    public CategoryGroup withMatchCount(int matchCount) {
+        return new CategoryGroup(
+                this.displayLabel,
+                this.persistenceKey,
+                this.rules,
+                this.expandedDisplay,
+                this.collapsedDisplay,
+                this.expandedLeft,
+                this.collapsedLeft,
+                createMatchBadge(matchCount)
+        );
+    }
+
+    public static Component createMatchBadge(int matchCount) {
+        if (matchCount == 1) {
+            return Component.literal("[● 1 match]").withStyle(ChatFormatting.AQUA);
+        }
+        return Component.literal("[● " + matchCount + " matches]").withStyle(ChatFormatting.AQUA);
+    }
+
     private static Component createLegacyDisplay(Component label, String prefix, int count) {
         Component badge = Component.literal(" (" + count + " rules)").withStyle(ChatFormatting.GRAY);
         return Component.literal(prefix).append(label).append(badge);

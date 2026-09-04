@@ -91,6 +91,32 @@ class CategoryTreeBuilderTest {
         assertEquals("gamerule.category.player", updated.persistenceKey());
     }
 
+    @Test
+    @DisplayName("CategoryGroup createMatchBadge and withMatchCount accurately display search match indicators")
+    void testCategoryGroupMatchBadge() {
+        Component singular = CategoryGroup.createMatchBadge(1);
+        assertEquals("[● 1 match]", singular.getString());
+
+        Component plural = CategoryGroup.createMatchBadge(4);
+        assertEquals("[● 4 matches]", plural.getString());
+
+        Component zeroMatches = CategoryGroup.createMatchBadge(0);
+        assertEquals("[● 0 matches]", zeroMatches.getString());
+
+        Component label = Component.literal("World");
+        CategoryGroup group = new CategoryGroup(label, "gamerule.category.world", List.of(new DummyRuleEntry(), new DummyRuleEntry(), new DummyRuleEntry()));
+        assertEquals("[3 rules]", group.countBadge().getString());
+
+        CategoryGroup matchedSingular = group.withMatchCount(1);
+        assertEquals("[● 1 match]", matchedSingular.countBadge().getString());
+        assertEquals(3, matchedSingular.ruleCount());
+        assertEquals("gamerule.category.world", matchedSingular.persistenceKey());
+
+        CategoryGroup matchedPlural = group.withMatchCount(3);
+        assertEquals("[● 3 matches]", matchedPlural.countBadge().getString());
+        assertEquals(3, matchedPlural.ruleCount());
+    }
+
     /**
      * Minimal concrete stub of RuleEntry for testing list containment and counts.
      */

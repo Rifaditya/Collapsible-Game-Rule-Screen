@@ -1,3 +1,8 @@
+## [1.0.25+26.2]
+- **Live Search Category Match Badges**: Dynamically switches category header badges to display live query match counts (`[● 1 match]` or `[● X matches]`) in vibrant aqua (`ChatFormatting.AQUA`) during active search queries, providing instant category-level result feedback.
+- **Dynamic Accessibility Narration**: Synchronized category screen reader narration (`NarratedElementType.USAGE`) to announce live match counts when navigating filtered results with keyboard navigation.
+- **Zero-Allocation Data Model Caching**: Integrated `withMatchCount(int)` and `createMatchBadge(int)` within immutable `CategoryGroup` records, pre-caching visual components during list population to maintain 0B/frame heap allocation during active search scrolling.
+
 ## [1.0.24+26.2]
 - **Interactive Integer Sliders (`IntegerRuleEntryMixin`)**: Replaced vanilla text edit boxes with interactive `IntegerSliderWidget` for bounded integer game rules (`random_tick_speed`, `respawn_radius`, `players_sleeping_percentage`, `max_entity_cramming`, etc.).
 - **Graceful Unbounded Fallback**: Automatically preserves vanilla `EditBox` for unbounded rules (`max_command_sequence_length`, `max_command_forks`, etc.), ensuring full player flexibility for arbitrary numeric entry.
