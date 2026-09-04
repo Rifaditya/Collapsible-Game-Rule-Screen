@@ -1,5 +1,10 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.23+26.2]
+- **Bounded Integer Slider Metadata & Helper Registry**: Created `GameRuleSliderHelper` defining safe numerical bounds, step intervals, and unit formatters for standard vanilla integer rules (`randomTickSpeed`, `spawnRadius`, `playersSleepingPercentage`, `maxEntityCramming`, `playersNetherPortalCreativeDelay`, `playersNetherPortalDefaultDelay`, `snowAccumulationHeight`).
+- **Snapping & Clamping Math Engine**: Implemented `snapAndClamp()` ensuring slider values snap to nearest valid step intervals and remain strictly within defined min/max bounds.
+- **Automated Test Coverage**: Added comprehensive JUnit 5 test suite in `GameRuleSliderHelperTest` verifying invariant bounds, known/unknown rule lookups, step snapping, and unit-suffix formatting.
+
 ## [1.0.22+26.2]
 - **Hook Modern Boolean Toggle Switch into Game Rules List**: Wired `BooleanToggleWidget` into `AbstractGameRulesScreen$BooleanRuleEntry` via `BooleanRuleEntryMixin`, replacing the plain vanilla checkbox with the modern emerald/ruby toggle switch across all boolean game rules.
 - **Two-Way Value Synchronization**: Seamlessly synchronized toggle state with vanilla `checkbox.setValue(newState)` mutation contract to ensure instant rule updates and world config saving without altering underlying vanilla logic.
