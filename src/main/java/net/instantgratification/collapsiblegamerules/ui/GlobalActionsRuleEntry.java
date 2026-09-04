@@ -14,6 +14,10 @@ import java.util.List;
 
 public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
 
+    private static final Component EXPAND_LABEL = Component.literal("[ ").append(Component.translatable("gui.collapsible-game-rules.expand_all")).append(" ]");
+    private static final Component COLLAPSE_LABEL = Component.literal("[ ").append(Component.translatable("gui.collapsible-game-rules.collapse_all")).append(" ]");
+    private static final Component NARRATION_TITLE = Component.translatable("gui.collapsible-game-rules.expand_all").append(" / ").append(Component.translatable("gui.collapsible-game-rules.collapse_all"));
+
     private final Runnable expandAll;
     private final Runnable collapseAll;
 
@@ -25,9 +29,6 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
 
     @Override
     public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-        Component expandText = Component.translatable("gui.collapsible-game-rules.expand_all");
-        Component collapseText = Component.translatable("gui.collapsible-game-rules.collapse_all");
-
         boolean hoverExpand = hovered && mouseX < this.getX() + this.getWidth() / 2;
         boolean hoverCollapse = hovered && mouseX >= this.getX() + this.getWidth() / 2;
 
@@ -41,8 +42,8 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
             graphics.fill(this.getX() + this.getWidth() / 2, this.getY(), this.getX() + this.getWidth(), this.getY() + 24, 0x22FFFFFF);
         }
 
-        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, Component.literal("[ ").append(expandText).append(" ]"), this.getX() + this.getWidth() / 4, this.getContentY() + 5, expandColor);
-        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, Component.literal("[ ").append(collapseText).append(" ]"), this.getX() + 3 * this.getWidth() / 4, this.getContentY() + 5, collapseColor);
+        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, EXPAND_LABEL, this.getX() + this.getWidth() / 4, this.getContentY() + 5, expandColor);
+        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, COLLAPSE_LABEL, this.getX() + 3 * this.getWidth() / 4, this.getContentY() + 5, collapseColor);
 
         // Subtle separating line at the bottom
         graphics.fill(this.getX() + 10, this.getY() + 23, this.getX() + this.getWidth() - 10, this.getY() + 24, 0x44AAAAAA);
@@ -80,6 +81,6 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
 
     @Override
     public void updateNarration(NarrationElementOutput output) {
-        output.add(NarratedElementType.TITLE, Component.translatable("gui.collapsible-game-rules.expand_all").append(" / ").append(Component.translatable("gui.collapsible-game-rules.collapse_all")));
+        output.add(NarratedElementType.TITLE, NARRATION_TITLE);
     }
 }

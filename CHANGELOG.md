@@ -1,3 +1,7 @@
+## [1.0.12+26.2]
+- **Render-Path Zero-Allocation Caching**: Pre-cached directional display components (`▼`/`▶` labels with rule count badges) in `CategoryGroup`, eliminating per-frame string concatenation and component allocations in `extractContent()`.
+- **Global Actions Static Label Caching**: Pre-cached static action labels and narration components in `GlobalActionsRuleEntry` dropping frame-level allocations to zero.
+
 ## [1.0.11+26.2]
 - **Eliminated O(N²) Nested List Scans**: Wired `CategoryTreeBuilder` into `AbstractGameRulesScreenRuleListMixin`, ingesting rule entries in a single O(N) linear pass.
 - **Zero-Allocation Category Toggling**: Category toggling now operates at O(C + M) via pre-grouped `CategoryGroup` structures, eliminating repeated translation parsing and string prettification allocations on every click.

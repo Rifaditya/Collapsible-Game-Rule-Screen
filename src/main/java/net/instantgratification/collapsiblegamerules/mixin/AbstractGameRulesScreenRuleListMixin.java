@@ -78,9 +78,8 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(persistenceKey);
 
             CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(
-                    group.displayLabel(),
+                    group,
                     isExpanded,
-                    group.ruleCount(),
                     () -> {
                         boolean newState = !GameRuleStateConfig.isExpanded(persistenceKey);
                         GameRuleStateConfig.setExpanded(persistenceKey, newState);
@@ -103,16 +102,14 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
     @Unique
     private class CollapsibleCategoryRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
-        private final Component label;
+        private final CategoryGroup group;
         private final boolean expanded;
-        private final int childCount;
         private final Runnable toggleAction;
 
-        public CollapsibleCategoryRuleEntry(Component label, boolean expanded, int childCount, Runnable toggleAction) {
+        public CollapsibleCategoryRuleEntry(CategoryGroup group, boolean expanded, Runnable toggleAction) {
             super(null);
-            this.label = label;
+            this.group = group;
             this.expanded = expanded;
-            this.childCount = childCount;
             this.toggleAction = toggleAction;
         }
 
@@ -123,10 +120,8 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 graphics.fill(this.getX() - 2, this.getY(), this.getX() + this.getWidth() + 2, this.getY() + 24, 0x22FFFFFF);
             }
 
-            // Draw directional arrow, label, and child count badge
-            String prefix = this.expanded ? "▼ " : "▶ ";
-            Component countBadge = Component.literal(" (" + this.childCount + " rules)").withStyle(net.minecraft.ChatFormatting.GRAY);
-            Component display = Component.literal(prefix).append(this.label).append(countBadge);
+            // Draw pre-cached directional arrow, label, and child count badge (Zero allocations per frame)
+            Component display = this.expanded ? this.group.expandedDisplay() : this.group.collapsedDisplay();
 
             graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, display,
                     this.getContentXMiddle(), this.getContentY() + 5, hovered ? 0xFFFFFFAA : 0xFFFFFFFF);
@@ -185,7 +180,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
         @Override
         public void updateNarration(NarrationElementOutput output) {
-            output.add(NarratedElementType.TITLE, this.label);
+            output.add(NarratedElementType.TITLE, this.group.displayLabel());
         }
     }
 }

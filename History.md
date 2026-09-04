@@ -1,3 +1,8 @@
+## [1.0.12+26.2]
+### Core Changes
+- Pre-cached directional display components (`▼`/`▶` labels with rule count badges) in `CategoryGroup`, eliminating per-frame string concatenation and component allocations in `extractContent()`.
+- Pre-cached static action labels and narration components in `GlobalActionsRuleEntry` dropping frame-level allocations to zero.
+
 ## [1.0.11+26.2]
 ### Core Changes
 - Wired `CategoryTreeBuilder` into `AbstractGameRulesScreenRuleListMixin`, ingesting rule entries in a single O(N) linear pass.
