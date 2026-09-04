@@ -17,6 +17,7 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
     private static final Component EXPAND_LABEL = Component.literal("▼ ").append(Component.translatable("gui.collapsible-game-rules.expand_all"));
     private static final Component COLLAPSE_LABEL = Component.literal("▶ ").append(Component.translatable("gui.collapsible-game-rules.collapse_all"));
     private static final Component NARRATION_TITLE = Component.translatable("gui.collapsible-game-rules.expand_all").append(" / ").append(Component.translatable("gui.collapsible-game-rules.collapse_all"));
+    private static final Component NARRATION_USAGE = Component.translatable("gui.collapsible-game-rules.expand_all").append(": Left card. ").append(Component.translatable("gui.collapsible-game-rules.collapse_all")).append(": Right card.");
 
     private final Runnable expandAll;
     private final Runnable collapseAll;
@@ -116,5 +117,6 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
     @Override
     public void updateNarration(NarrationElementOutput output) {
         output.add(NarratedElementType.TITLE, NARRATION_TITLE);
+        output.add(NarratedElementType.USAGE, NARRATION_USAGE);
     }
 }

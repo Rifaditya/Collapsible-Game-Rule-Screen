@@ -61,10 +61,12 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                     .map(CategoryGroup::persistenceKey)
                     .toList();
                 GameRuleStateConfig.expandAll(allKeys);
+                GameRuleStateConfig.saveIfDirty();
                 this.collapsible_game_rules$updateVisibleEntries();
             },
             () -> {
                 GameRuleStateConfig.collapseAll();
+                GameRuleStateConfig.saveIfDirty();
                 this.collapsible_game_rules$updateVisibleEntries();
             }
         );

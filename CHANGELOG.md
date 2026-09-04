@@ -1,3 +1,7 @@
+## [1.0.20+26.2]
+- **Immediate Global Action Config Persistence**: Global `Expand All` and `Collapse All` actions now invoke `GameRuleStateConfig.saveIfDirty()` immediately upon activation, guaranteeing world rule view preferences persist directly to disk without relying solely on screen close events.
+- **Enhanced Screen Reader Narration (A11y)**: Added `NarratedElementType.USAGE` instructions in `GlobalActionsRuleEntry` informing accessibility tools and screen readers of card positions (`Expand All: Left card. Collapse All: Right card.`) with zero frame-level allocations.
+
 ## [1.0.19+26.2]
 - **Global Action Bounded Hitbox Input Validation**: Confined mouse click hitboxes in `GlobalActionsRuleEntry` strictly within card coordinate bounds, completely ignoring accidental clicks in the 6px center gap, padding, or outer margins.
 - **UI Button Audio Feedback**: Valid card clicks trigger standard UI button click audio (`UI_BUTTON_CLICK`), eliminating silent clicks or false audio triggers on empty margins.
