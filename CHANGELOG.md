@@ -1,3 +1,8 @@
+## [1.0.35+26.2]
+- **Corrupted Config Recovery (`GameRuleStateConfig`)**: Added comprehensive error recovery catching `JsonSyntaxException` alongside `IOException`. If a user manually edits and corrupts the configuration JSON file, the mod logs a clean warning and cleanly restores safe default state without failing or crashing.
+- **Config I/O Path Abstraction**: Introduced path-parameterized `loadFromPath()` and `saveToPath()` alongside lazy `getDefaultConfigFile()` fallback for safe headless testing environments.
+- **Config Unit Test Suite (`GameRuleStateConfigTest`)**: Created automated test suite asserting save/load cycles, missing file tolerance, corrupted JSON syntax recovery, and dirty tracking.
+
 ## [1.0.34+26.2]
 - **Category Prettifier Automated Test Suite (`CategoryPrettifierTest`)**: Added complete automated JUnit 5 test coverage asserting translation key parsing, namespace stripping, redundant path deduplication, and mixed casing/delimiters.
 - **Enhanced Delimiter Parsing (`CategoryPrettifier`)**: Treated whitespace alongside hyphens and underscores during word splitting, ensuring multi-token compound categories are capitalized consistently across every word.

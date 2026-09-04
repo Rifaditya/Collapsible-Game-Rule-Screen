@@ -1,3 +1,9 @@
+## [1.0.35+26.2]
+### Core Changes
+- Caught `JsonSyntaxException` during config parsing, recovering safely to clean default settings upon encountering corrupted JSON syntax.
+- Parameterized config I/O with `loadFromPath()` and `saveToPath()`, decoupling persistence paths for unit testing.
+- Created `GameRuleStateConfigTest` JUnit 5 test suite verifying persistence cycles, missing file tolerance, corrupted JSON recovery, and dirty state tracking.
+
 ## [1.0.34+26.2]
 ### Core Changes
 - Added automated JUnit 5 test suite in `CategoryPrettifierTest` asserting translation key parsing, namespace stripping, redundant path deduplication, and delimiters.

@@ -20,8 +20,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GameRuleStateConfig {
+    private static Path getDefaultConfigFile() {
+        try {
+            if (FabricLoader.getInstance() != null && FabricLoader.getInstance().getConfigDir() != null) {
+                return FabricLoader.getInstance().getConfigDir().resolve("collapsible-game-rules-state.json");
+            }
+        } catch (Throwable ignored) {
+            // Headless unit test environment where FabricLoader is uninitialized
+        }
+        return Path.of("config", "collapsible-game-rules-state.json");
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger("collapsible-game-rules");
-    private static final Path CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve("collapsible-game-rules-state.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     
     // Set of category translation keys that are currently EXPANDED
@@ -29,27 +39,43 @@ public class GameRuleStateConfig {
     private static boolean isDirty = false;
 
     public static void load() {
-        if (!Files.exists(CONFIG_FILE)) {
+        loadFromPath(getDefaultConfigFile());
+    }
+
+    public static void loadFromPath(Path path) {
+        if (path == null || !Files.exists(path)) {
             return;
         }
-        try (Reader reader = Files.newBufferedReader(CONFIG_FILE)) {
-            expandedCategories = GSON.fromJson(reader, new TypeToken<Set<String>>(){}.getType());
-            if (expandedCategories == null) {
-                expandedCategories = new HashSet<>();
-            }
+        try (Reader reader = Files.newBufferedReader(path)) {
+            Set<String> loaded = GSON.fromJson(reader, new TypeToken<Set<String>>(){}.getType());
+            expandedCategories = (loaded != null) ? loaded : new HashSet<>();
+            isDirty = false;
+        } catch (com.google.gson.JsonSyntaxException e) {
+            LOGGER.warn("Corrupted JSON syntax detected in config file '{}', resetting to default state: {}", path, e.getMessage());
+            expandedCategories = new HashSet<>();
+            isDirty = false;
         } catch (IOException e) {
-            LOGGER.error("Failed to load Collapsible GameRules state", e);
+            LOGGER.error("Failed to load Collapsible GameRules state from '{}'", path, e);
         }
     }
 
     public static void save() {
+        saveToPath(getDefaultConfigFile());
+    }
+
+    public static void saveToPath(Path path) {
+        if (path == null) {
+            return;
+        }
         try {
-            Files.createDirectories(CONFIG_FILE.getParent());
-            try (Writer writer = Files.newBufferedWriter(CONFIG_FILE)) {
+            if (path.getParent() != null) {
+                Files.createDirectories(path.getParent());
+            }
+            try (Writer writer = Files.newBufferedWriter(path)) {
                 GSON.toJson(expandedCategories, writer);
             }
         } catch (IOException e) {
-            LOGGER.error("Failed to save Collapsible GameRules state", e);
+            LOGGER.error("Failed to save Collapsible GameRules state to '{}'", path, e);
         }
     }
 
@@ -83,5 +109,18 @@ public class GameRuleStateConfig {
             expandedCategories.clear();
             isDirty = true;
         }
+    }
+
+    public static int getExpandedCategoriesCount() {
+        return expandedCategories.size();
+    }
+
+    public static boolean isDirty() {
+        return isDirty;
+    }
+
+    public static void resetState() {
+        expandedCategories.clear();
+        isDirty = false;
     }
 }
