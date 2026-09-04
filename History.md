@@ -1,3 +1,9 @@
+## [1.0.38+26.2]
+### Core Changes
+- Expanded selection list row width to 308px via `RuleList.getRowWidth()`, aligning card edges perfectly with the bottom "Done" and "Cancel" buttons.
+- Harmonized card margins across `GlobalActionsRuleEntry` and `CollapsibleCategoryRuleEntry` to span cleanly from `this.getX()` to `this.getX() + this.getWidth()`.
+- Widened rule label text splitting from 170px to 250px in `GameRuleEntryMixin`, maximizing rule title readability.
+
 ## [1.0.37+26.2]
 ### Core Changes
 - Added dynamic scroll boundary recalculation via `refreshScrollAmount()`, eliminating abrupt viewport jumps when collapsing large rule categories.

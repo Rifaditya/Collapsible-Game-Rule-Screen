@@ -42,7 +42,7 @@ public abstract class GameRuleEntryMixin extends AbstractGameRulesScreen.RuleEnt
                 String query = searchBox.getValue();
                 if (query != null && !query.trim().isEmpty()) {
                     Component highlighted = SearchHighlightHelper.highlight(label, query);
-                    this.label = Minecraft.getInstance().font.split(highlighted, 170);
+                    this.label = Minecraft.getInstance().font.split(highlighted, 250);
 
                     List<FormattedCharSequence> currentTooltip = ((RuleEntryAccessor) this).collapsible_game_rules$getTooltip();
                     if (currentTooltip != null && !currentTooltip.isEmpty()) {
@@ -52,7 +52,11 @@ public abstract class GameRuleEntryMixin extends AbstractGameRulesScreen.RuleEnt
                         }
                         ((RuleEntryAccessor) this).collapsible_game_rules$setTooltip(highlightedTooltip);
                     }
+                } else {
+                    this.label = Minecraft.getInstance().font.split(label, 250);
                 }
+            } else {
+                this.label = Minecraft.getInstance().font.split(label, 250);
             }
         }
     }

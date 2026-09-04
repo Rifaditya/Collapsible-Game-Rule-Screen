@@ -1,3 +1,8 @@
+## [1.0.38+26.2]
+- **Widen List to Match Footer Buttons (`AbstractGameRulesScreenRuleListMixin`)**: Overrode `RuleList.getRowWidth()` from 220px to 308px (+88px width), perfectly aligning the left edge of category cards with the "Done" button and the right edge with the "Cancel" button.
+- **Harmonized Card Margins & Alignment**: Aligned "Expand All" / "Collapse All" global toolbar cards and category header plates flush with entry bounds (`this.getX()` to `this.getX() + this.getWidth()`), creating a unified, symmetrical vertical column.
+- **Expanded Rule Label Splitting Width (`GameRuleEntryMixin`)**: Widened rule title text splitting from 170px to 250px in both search-highlighted and default states, maximizing title visibility and minimizing multi-line wrapping.
+
 ## [1.0.37+26.2]
 - **Scroll Jump Prevention on Collapse (`AbstractGameRulesScreenRuleListMixin`)**: Added dynamic scroll boundary recalculation with `refreshScrollAmount()`, eliminating abrupt viewport jerks when collapsing categories with large rule lists (e.g. Vanilla with 104 rules).
 - **Targeted Category Header Anchoring**: Upon toggling a category closed or open, anchored the player's viewport to the clicked category card (`scrollToEntry(clickedEntry)`), ensuring it remains visible and focused.

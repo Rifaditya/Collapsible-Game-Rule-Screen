@@ -134,6 +134,12 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         this.refreshScrollAmount();
     }
 
+    @Override
+    public int getRowWidth() {
+        // Matches the combined width of bottom footer buttons: Done (150) + gap (8) + Cancel (150) = 308
+        return 308;
+    }
+
     private class CollapsibleCategoryRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
         private static final Component RESET_ICON = Component.literal("↺").withStyle(net.minecraft.ChatFormatting.GOLD);
         private static final Component RESET_TOOLTIP = Component.literal("Reset category to defaults");
@@ -247,11 +253,11 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
             // Subtle card background plate (elevated on hover)
             int bgColor = hovered ? 0x24FFFFFF : 0x10FFFFFF;
-            graphics.fill(leftX - 4, topY, rightX + 4, bottomY, bgColor);
+            graphics.fill(this.getX(), topY, this.getX() + this.getWidth(), bottomY, bgColor);
 
             // Left accent vertical bar indicating category presence
             int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF55FF55; // Warm gold when expanded, crisp lime/green when collapsed
-            graphics.fill(leftX - 4, topY, leftX - 2, bottomY, accentColor);
+            graphics.fill(this.getX(), topY, this.getX() + 2, bottomY, accentColor);
 
             Component fullTitle = this.expanded ? this.group.expandedLeft() : this.group.collapsedLeft();
             int fullTitleWidth = font.width(fullTitle);
@@ -311,10 +317,10 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             graphics.text(font, badge, badgeX, this.getY() + 7, 0xFFAAAAAA);
 
             // Subtle separating hairline at card footer
-            graphics.fill(leftX - 4, bottomY + 2, rightX + 4, bottomY + 3, 0x22AAAAAA);
+            graphics.fill(this.getX(), bottomY + 2, this.getX() + this.getWidth(), bottomY + 3, 0x22AAAAAA);
 
             // Tooltip showing full category title when truncated and hovered over the title area
-            if (this.isTruncated && hovered && mouseX >= leftX && mouseX <= titleRight) {
+            if (this.isTruncated && hovered && mouseX >= this.getX() && mouseX <= titleRight) {
                 graphics.setTooltipForNextFrame(this.group.displayLabel(), mouseX, mouseY);
             }
         }

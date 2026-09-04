@@ -30,41 +30,41 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
 
     @Override
     public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-        int leftX = this.getX() + 8;
-        int rightX = this.getX() + this.getWidth() - 8;
+        int card1Left = this.getX();
+        int card2Right = this.getX() + this.getWidth();
         int topY = this.getY() + 3;
         int bottomY = this.getY() + 21;
 
-        int midX = leftX + (rightX - leftX) / 2;
+        int midX = card1Left + (card2Right - card1Left) / 2;
         int card1Right = midX - 3;
         int card2Left = midX + 3;
 
-        boolean hoverExpand = hovered && mouseX >= leftX && mouseX <= card1Right && mouseY >= topY && mouseY <= bottomY;
-        boolean hoverCollapse = hovered && mouseX >= card2Left && mouseX <= rightX && mouseY >= topY && mouseY <= bottomY;
+        boolean hoverExpand = hovered && mouseX >= card1Left && mouseX <= card1Right && mouseY >= topY && mouseY <= bottomY;
+        boolean hoverCollapse = hovered && mouseX >= card2Left && mouseX <= card2Right && mouseY >= topY && mouseY <= bottomY;
 
         int expandColor = hoverExpand ? 0xFFFFFFAA : 0xFFFFFFFF;
         int collapseColor = hoverCollapse ? 0xFFFFFFAA : 0xFFFFFFFF;
 
         // Card 1: Expand All plate and warm gold accent bar
         int bgExpand = hoverExpand ? 0x24FFFFFF : 0x10FFFFFF;
-        graphics.fill(leftX, topY, card1Right, bottomY, bgExpand);
-        graphics.fill(leftX, topY, leftX + 2, bottomY, 0xFFFFAA00); // Warm gold accent
+        graphics.fill(card1Left, topY, card1Right, bottomY, bgExpand);
+        graphics.fill(card1Left, topY, card1Left + 2, bottomY, 0xFFFFAA00); // Warm gold accent
 
         // Card 2: Collapse All plate and crisp lime accent bar
         int bgCollapse = hoverCollapse ? 0x24FFFFFF : 0x10FFFFFF;
-        graphics.fill(card2Left, topY, rightX, bottomY, bgCollapse);
+        graphics.fill(card2Left, topY, card2Right, bottomY, bgCollapse);
         graphics.fill(card2Left, topY, card2Left + 2, bottomY, 0xFF55FF55); // Crisp lime accent
 
         // Centered labels inside each card
-        int card1CenterX = leftX + (card1Right - leftX) / 2;
-        int card2CenterX = card2Left + (rightX - card2Left) / 2;
+        int card1CenterX = card1Left + (card1Right - card1Left) / 2;
+        int card2CenterX = card2Left + (card2Right - card2Left) / 2;
         int textY = this.getY() + 7;
 
         graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, EXPAND_LABEL, card1CenterX, textY, expandColor);
         graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, COLLAPSE_LABEL, card2CenterX, textY, collapseColor);
 
         // Subtle separating line at the bottom
-        graphics.fill(leftX - 4, bottomY + 2, rightX + 4, bottomY + 3, 0x22AAAAAA);
+        graphics.fill(card1Left, bottomY + 2, card2Right, bottomY + 3, 0x22AAAAAA);
     }
 
     @Override
@@ -73,8 +73,8 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
             double mouseX = event.x();
             double mouseY = event.y();
 
-            int leftX = this.getX() + 8;
-            int rightX = this.getX() + this.getWidth() - 8;
+            int card1Left = this.getX();
+            int card2Right = this.getX() + this.getWidth();
             int topY = this.getY() + 3;
             int bottomY = this.getY() + 21;
 
@@ -82,15 +82,15 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
                 return false;
             }
 
-            int midX = leftX + (rightX - leftX) / 2;
+            int midX = card1Left + (card2Right - card1Left) / 2;
             int card1Right = midX - 3;
             int card2Left = midX + 3;
 
-            if (mouseX >= leftX && mouseX <= card1Right) {
+            if (mouseX >= card1Left && mouseX <= card1Right) {
                 this.expandAll.run();
                 net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
-            } else if (mouseX >= card2Left && mouseX <= rightX) {
+            } else if (mouseX >= card2Left && mouseX <= card2Right) {
                 this.collapseAll.run();
                 net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
