@@ -1,5 +1,10 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.30+26.2]
+- **Category Reset Button UI (`CollapsibleCategoryRuleEntry`)**: Rendered a subtle, elegant `↺ Reset` button plate in warm gold left of the rule count badge when a category contains modified rules (`modifiedCount > 0`).
+- **Dynamic Title Clearance & Layout**: Automatically offsets category title clearance to guarantee zero visual collisions between expanding titles, marquee scrolling text, and the reset button.
+- **Visual Hover Illumination & Inert Fallthrough**: Added smooth glassmorphic plate hover highlights with border framing (`0x44FFAA00`), keeping clicks visually inert in preparation for action wiring in Step 18.
+
 ## [1.0.29+26.2]
 - **Category Reset Engine (`CategoryResetHelper`)**: Implemented headless logic for comparing current game rule values (boolean, integer, and serialized string) against vanilla defaults to accurately detect category modification state.
 - **Zero-Allocation State Evaluation**: Designed pure functional comparison checks and count boundary clamping (`clampModifiedCount`) to maintain 0B heap allocation on UI tick paths.

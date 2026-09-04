@@ -22,7 +22,8 @@ public record CategoryGroup(
         Component collapsedDisplay,
         Component expandedLeft,
         Component collapsedLeft,
-        Component countBadge
+        Component countBadge,
+        int modifiedCount
 ) {
     public CategoryGroup(
             Component displayLabel,
@@ -37,7 +38,8 @@ public record CategoryGroup(
                 createLegacyDisplay(displayLabel, "▶ ", rules != null ? rules.size() : 0),
                 Component.literal("▼ ").append(displayLabel),
                 Component.literal("▶ ").append(displayLabel),
-                createBadge(rules != null ? rules.size() : 0, 0)
+                createBadge(rules != null ? rules.size() : 0, 0),
+                0
         );
     }
 
@@ -64,7 +66,8 @@ public record CategoryGroup(
                 this.collapsedDisplay,
                 this.expandedLeft,
                 this.collapsedLeft,
-                createBadge(this.rules.size(), modifiedCount)
+                createBadge(this.rules.size(), modifiedCount),
+                modifiedCount
         );
     }
 
@@ -80,7 +83,8 @@ public record CategoryGroup(
                 this.collapsedDisplay,
                 this.expandedLeft,
                 this.collapsedLeft,
-                createMatchBadge(matchCount)
+                createMatchBadge(matchCount),
+                this.modifiedCount
         );
     }
 

@@ -129,6 +129,8 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
     @Unique
     private class CollapsibleCategoryRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
+        private static final Component RESET_LABEL = Component.literal("↺ Reset").withStyle(net.minecraft.ChatFormatting.GOLD);
+
         private final CategoryGroup group;
         private boolean expanded;
         private final Runnable toggleAction;
@@ -137,6 +139,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         private net.minecraft.util.FormattedCharSequence cachedCollapsedTitle;
         private int lastWidth = -1;
         private int lastBadgeWidth = -1;
+        private boolean lastResetVisible = false;
         private boolean isTruncated = false;
 
         public CollapsibleCategoryRuleEntry(CategoryGroup group, boolean expanded, Runnable toggleAction) {
@@ -174,15 +177,22 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int badgeWidth = font.width(badge);
             int badgeX = rightX - badgeWidth;
 
-            // Enforce clearance before right-anchored badge
+            boolean resetVisible = net.instantgratification.collapsiblegamerules.util.CategoryResetHelper.canReset(this.group.modifiedCount());
+            int resetWidth = resetVisible ? font.width(RESET_LABEL) + 8 : 0;
+            int resetX = badgeX - resetWidth - 4;
+            int resetY = this.getY() + 4;
+            int resetHeight = 14;
+
+            // Enforce clearance before right-anchored badge / reset button
             int titleLeft = leftX + 2;
-            int titleRight = badgeX - 6;
+            int titleRight = (resetVisible ? resetX : badgeX) - 6;
             int maxTitleWidth = Math.max(10, titleRight - titleLeft);
 
             // Cache formatted visual text upon width or badge dimension shift (0B heap allocation during frame scrolling)
-            if (this.getWidth() != this.lastWidth || badgeWidth != this.lastBadgeWidth || this.cachedExpandedTitle == null) {
+            if (this.getWidth() != this.lastWidth || badgeWidth != this.lastBadgeWidth || resetVisible != this.lastResetVisible || this.cachedExpandedTitle == null) {
                 this.lastWidth = this.getWidth();
                 this.lastBadgeWidth = badgeWidth;
+                this.lastResetVisible = resetVisible;
                 this.cachedExpandedTitle = truncateIfNeeded(font, this.group.expandedLeft(), maxTitleWidth);
                 this.cachedCollapsedTitle = truncateIfNeeded(font, this.group.collapsedLeft(), maxTitleWidth);
                 this.isTruncated = font.width(this.group.expandedLeft()) > maxTitleWidth
@@ -230,6 +240,21 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 // Static truncated title
                 net.minecraft.util.FormattedCharSequence titleSeq = this.expanded ? this.cachedExpandedTitle : this.cachedCollapsedTitle;
                 graphics.text(font, titleSeq, titleLeft, this.getY() + 7, titleColor);
+            }
+
+            // Optional Category Reset button plate (visual plate with hover illumination)
+            if (resetVisible) {
+                boolean resetHovered = mouseX >= resetX && mouseX <= resetX + resetWidth && mouseY >= resetY && mouseY <= resetY + resetHeight;
+                int resetBg = resetHovered ? 0x44FFAA00 : 0x22FFAA00;
+                int resetBorder = resetHovered ? 0x88FFAA00 : 0x44FFAA00;
+
+                graphics.fill(resetX, resetY, resetX + resetWidth, resetY + resetHeight, resetBg);
+                graphics.fill(resetX, resetY, resetX + resetWidth, resetY + 1, resetBorder); // Top
+                graphics.fill(resetX, resetY + resetHeight - 1, resetX + resetWidth, resetY + resetHeight, resetBorder); // Bottom
+                graphics.fill(resetX, resetY, resetX + 1, resetY + resetHeight, resetBorder); // Left
+                graphics.fill(resetX + resetWidth - 1, resetY, resetX + resetWidth, resetY + resetHeight, resetBorder); // Right
+
+                graphics.centeredText(font, RESET_LABEL, resetX + resetWidth / 2, resetY + 3, resetHovered ? 0xFFFFFFFF : 0xFFFFAA00);
             }
 
             // Right-anchored rule count badge directly before scrollbar
