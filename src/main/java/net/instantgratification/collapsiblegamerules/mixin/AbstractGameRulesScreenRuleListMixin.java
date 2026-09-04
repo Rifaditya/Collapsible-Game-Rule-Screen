@@ -24,9 +24,9 @@ import net.minecraft.client.input.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import net.instantgratification.collapsiblegamerules.GameRuleStateConfig;
+import net.instantgratification.collapsiblegamerules.model.CategoryGroup;
+import net.instantgratification.collapsiblegamerules.model.CategoryTreeBuilder;
 import net.instantgratification.collapsiblegamerules.ui.GlobalActionsRuleEntry;
-import net.instantgratification.collapsiblegamerules.util.DasikMetadataHelper;
-import net.instantgratification.collapsiblegamerules.CollapsibleGameRulesFabric;
 
 @Mixin(AbstractGameRulesScreen.RuleList.class)
 public abstract class AbstractGameRulesScreenRuleListMixin
@@ -36,11 +36,8 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         super(null, 0, 0, 0, 0);
     }
 
-    // Removed internal map, using GameRuleStateConfig instead
-
-
     @Unique
-    private List<AbstractGameRulesScreen.RuleEntry> collapsible_game_rules$allEntries = new ArrayList<>();
+    private List<CategoryGroup> collapsible_game_rules$groups = new ArrayList<>();
 
     @Unique
     private String collapsible_game_rules$currentFilter = "";
@@ -48,29 +45,21 @@ public abstract class AbstractGameRulesScreenRuleListMixin
     @Inject(method = "populateChildren(Ljava/lang/String;)V", at = @At("TAIL"))
     private void collapsible_game_rules$onPopulateChildren(String filter, CallbackInfo ci) {
         this.collapsible_game_rules$currentFilter = (filter != null) ? filter.toLowerCase(java.util.Locale.ROOT) : "";
-        // Save the currently generated list of all entries
-        this.collapsible_game_rules$allEntries = new ArrayList<>(this.children());
+        // Ingest entries linearly in a single O(N) pass, pre-caching metadata and rule counts
+        this.collapsible_game_rules$groups = CategoryTreeBuilder.buildGroups(new ArrayList<>(this.children()));
         this.collapsible_game_rules$updateVisibleEntries();
     }
-
 
     @Unique
     private void collapsible_game_rules$updateVisibleEntries() {
         this.clearEntries();
 
         // 1. Hook GlobalActions UI at index 0 (if there are any rules)
-        if (!this.collapsible_game_rules$allEntries.isEmpty()) {
+        if (!this.collapsible_game_rules$groups.isEmpty()) {
             this.addEntry(new GlobalActionsRuleEntry(
                 () -> {
-                    List<String> allKeys = this.collapsible_game_rules$allEntries.stream()
-                        .filter(e -> e instanceof AbstractGameRulesScreen.CategoryRuleEntry)
-                        .map(e -> {
-                            Component lbl = ((CategoryRuleEntryAccessor) e).collapsible_game_rules$getLabel();
-                            if (lbl.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents translatable) {
-                                return translatable.getKey();
-                            }
-                            return lbl.getString();
-                        })
+                    List<String> allKeys = this.collapsible_game_rules$groups.stream()
+                        .map(CategoryGroup::persistenceKey)
                         .toList();
                     GameRuleStateConfig.expandAll(allKeys);
                     this.collapsible_game_rules$updateVisibleEntries();
@@ -82,68 +71,33 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             ));
         }
 
-        boolean currentCategoryExpanded = true; // Assume true if no category found initially
+        boolean isSearching = !this.collapsible_game_rules$currentFilter.isEmpty();
 
-        for (int i = 0; i < this.collapsible_game_rules$allEntries.size(); i++) {
-            AbstractGameRulesScreen.RuleEntry entry = this.collapsible_game_rules$allEntries.get(i);
-            if (entry instanceof AbstractGameRulesScreen.CategoryRuleEntry) {
-                // Calculate how many rule entries belong to this category
-                int childCount = 0;
-                for (int j = i + 1; j < this.collapsible_game_rules$allEntries.size(); j++) {
-                    if (this.collapsible_game_rules$allEntries.get(j) instanceof AbstractGameRulesScreen.CategoryRuleEntry) {
-                        break;
+        for (CategoryGroup group : this.collapsible_game_rules$groups) {
+            String persistenceKey = group.persistenceKey();
+            boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(persistenceKey);
+
+            CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(
+                    group.displayLabel(),
+                    isExpanded,
+                    group.ruleCount(),
+                    () -> {
+                        boolean newState = !GameRuleStateConfig.isExpanded(persistenceKey);
+                        GameRuleStateConfig.setExpanded(persistenceKey, newState);
+                        GameRuleStateConfig.saveIfDirty();
+                        this.collapsible_game_rules$updateVisibleEntries();
                     }
-                    childCount++;
-                }
+            );
+            this.addEntry(newEntry);
 
-                Component label = ((CategoryRuleEntryAccessor) entry).collapsible_game_rules$getLabel();
-                
-                String categoryKey = label.getString();
-                String persistenceKey = categoryKey;
-                if (label.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents translatable) {
-                    persistenceKey = translatable.getKey();
-                }
-
-                // 3. DasikLibrary Metadata Integration Hook (lazy-loaded via helper)
-                if (net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("dasik-library")) {
-                    categoryKey = DasikMetadataHelper.getCategoryTranslation(categoryKey);
-                }
-
-                Component displayLabel = label;
-                if (label.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents translatable) {
-                    String key = translatable.getKey();
-                    if (!net.minecraft.locale.Language.getInstance().has(key)) {
-                        displayLabel = Component.literal(net.instantgratification.collapsiblegamerules.util.CategoryPrettifier.prettifyCategoryKey(key));
-                    }
-                }
-
-                // Smart Search: if there's an active filter and we are populating children,
-                // vanilla already filters the list. If this category header is here, it means
-                // a child match OR the category name matched. We should expand it to show results.
-                boolean isSearching = !this.collapsible_game_rules$currentFilter.isEmpty();
-
-                final String finalPersistenceKey = persistenceKey;
-                boolean isExpanded = isSearching || GameRuleStateConfig.isExpanded(finalPersistenceKey);
-
-                CollapsibleCategoryRuleEntry newEntry = new CollapsibleCategoryRuleEntry(displayLabel,
-                        isExpanded, childCount, () -> {
-                            boolean newState = !GameRuleStateConfig.isExpanded(finalPersistenceKey);
-                            GameRuleStateConfig.setExpanded(finalPersistenceKey, newState);
-                            GameRuleStateConfig.saveIfDirty();
-                            this.collapsible_game_rules$updateVisibleEntries();
-                        });
-                this.addEntry(newEntry);
-                currentCategoryExpanded = isExpanded;
-            } else {
-                // Normal game rule entry
-                if (currentCategoryExpanded) {
-                    this.addEntry(entry);
+            if (isExpanded) {
+                for (AbstractGameRulesScreen.RuleEntry rule : group.rules()) {
+                    this.addEntry(rule);
                 }
             }
         }
 
-        // Force the abstract selection list to recalculate the Y layout for all
-        // existing children
+        // Force the abstract selection list to recalculate the Y layout for all existing children
         this.updateSizeAndPosition(this.getWidth(), this.getHeight(), this.getX(), this.getY());
     }
 

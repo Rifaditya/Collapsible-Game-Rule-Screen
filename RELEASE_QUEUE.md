@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.11+26.2`** - Single-pass Mixin ingestion eliminating O(N²) nested scans and zero-allocation category toggling.
 - [ ] **`1.0.10+26.2`** - Category Data Model (`CategoryGroup`), linear `CategoryTreeBuilder`, and JUnit 5 test harness.
 - [x] **`1.0.9+26.2`** (2026-08-04) - Fixed startup crash by removing obsolete `BooleanRuleEntryMixin` from `mixins.json`.
 - [x] **`1.0.8+26.2`** (SUPERSEDED) (2026-08-04) - Screenshot & Documentation Asset Update, canonical raw GitHub URL fixes, and repository synchronization.
