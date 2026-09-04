@@ -128,6 +128,12 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         private boolean expanded;
         private final Runnable toggleAction;
 
+        private net.minecraft.util.FormattedCharSequence cachedExpandedTitle;
+        private net.minecraft.util.FormattedCharSequence cachedCollapsedTitle;
+        private int lastWidth = -1;
+        private int lastBadgeWidth = -1;
+        private boolean isTruncated = false;
+
         public CollapsibleCategoryRuleEntry(CategoryGroup group, boolean expanded, Runnable toggleAction) {
             super(null);
             this.group = group;
@@ -139,6 +145,17 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             this.expanded = expanded;
         }
 
+        private net.minecraft.util.FormattedCharSequence truncateIfNeeded(net.minecraft.client.gui.Font font, Component component, int maxWidth) {
+            if (font.width(component) <= maxWidth) {
+                return component.getVisualOrderText();
+            }
+            int ellipsisWidth = font.width("...");
+            int availableWidth = Math.max(0, maxWidth - ellipsisWidth);
+            net.minecraft.network.chat.FormattedText truncated = font.substrByWidth(component, availableWidth);
+            net.minecraft.network.chat.FormattedText withEllipsis = net.minecraft.network.chat.FormattedText.composite(truncated, net.minecraft.network.chat.FormattedText.of("..."));
+            return net.minecraft.locale.Language.getInstance().getVisualOrder(withEllipsis);
+        }
+
         @Override
         public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
             net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
@@ -148,6 +165,23 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int rightX = this.getX() + this.getWidth() - 8;
             int bottomY = this.getY() + 21;
 
+            Component badge = this.group.countBadge();
+            int badgeWidth = font.width(badge);
+            int badgeX = rightX - badgeWidth;
+
+            // Enforce clearance before right-anchored badge
+            int maxTitleWidth = Math.max(10, (badgeX - 6) - (leftX + 2));
+
+            // Cache formatted visual text upon width or badge dimension shift (0B heap allocation during frame scrolling)
+            if (this.getWidth() != this.lastWidth || badgeWidth != this.lastBadgeWidth || this.cachedExpandedTitle == null) {
+                this.lastWidth = this.getWidth();
+                this.lastBadgeWidth = badgeWidth;
+                this.cachedExpandedTitle = truncateIfNeeded(font, this.group.expandedLeft(), maxTitleWidth);
+                this.cachedCollapsedTitle = truncateIfNeeded(font, this.group.collapsedLeft(), maxTitleWidth);
+                this.isTruncated = font.width(this.group.expandedLeft()) > maxTitleWidth
+                                || font.width(this.group.collapsedLeft()) > maxTitleWidth;
+            }
+
             // Subtle card background plate (elevated on hover)
             int bgColor = hovered ? 0x24FFFFFF : 0x10FFFFFF;
             graphics.fill(leftX - 4, topY, rightX + 4, bottomY, bgColor);
@@ -156,19 +190,21 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int accentColor = this.expanded ? 0xFFFFAA00 : 0xFF55FF55; // Warm gold when expanded, crisp lime/green when collapsed
             graphics.fill(leftX - 4, topY, leftX - 2, bottomY, accentColor);
 
-            // Left-aligned directional arrow and category title
-            Component leftTitle = this.expanded ? this.group.expandedLeft() : this.group.collapsedLeft();
+            // Left-aligned directional arrow and category title (truncated safely if title is long)
+            net.minecraft.util.FormattedCharSequence titleSeq = this.expanded ? this.cachedExpandedTitle : this.cachedCollapsedTitle;
             int titleColor = hovered ? 0xFFFFFFAA : 0xFFFFFFFF;
-            graphics.text(font, leftTitle, leftX + 2, this.getY() + 7, titleColor);
+            graphics.text(font, titleSeq, leftX + 2, this.getY() + 7, titleColor);
 
             // Right-anchored rule count badge directly before scrollbar
-            Component badge = this.group.countBadge();
-            int badgeWidth = font.width(badge);
-            int badgeX = rightX - badgeWidth;
             graphics.text(font, badge, badgeX, this.getY() + 7, 0xFFAAAAAA);
 
             // Subtle separating hairline at card footer
             graphics.fill(leftX - 4, bottomY + 2, rightX + 4, bottomY + 3, 0x22AAAAAA);
+
+            // Tooltip showing full category title when truncated and hovered over the title area
+            if (this.isTruncated && hovered && mouseX >= leftX && mouseX <= badgeX - 6) {
+                graphics.setTooltipForNextFrame(this.group.displayLabel(), mouseX, mouseY);
+            }
         }
 
         @Override

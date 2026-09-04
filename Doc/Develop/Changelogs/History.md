@@ -1,5 +1,16 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.16+26.2]
+- **Long Category Title Collision Fix**: Resolved a visual text collision bug where long category titles (e.g. `Natural Reproduction - Toggles`) extended across the header and drew directly over the right-anchored rule count badge.
+- **Responsive Ellipsis Truncation**: Category titles now calculate available width dynamically and truncate with `...` (`font.substrByWidth`), guaranteeing a clean clearance gap before the rule count badge.
+- **Full Title Hover Tooltip**: When a category title is truncated due to width constraints, hovering over the title area displays the complete untruncated category name in a standard Minecraft tooltip.
+- **Zero-Allocation Layout Caching**: Pre-calculated `FormattedCharSequence` references are cached on width/badge changes, preserving 0B/frame heap allocation during active list scrolling.
+
+## [1.0.15+26.2]
+- **Visual Modified-From-Default Rule Counters**: Added dynamic golden metric badges (`[● X mod / Y rules]`) and default gray badges (`[Y rules]`) on category headers, providing instant category-level visibility into customized world rules.
+- **Enhanced Screen Reader Narration**: Updated narration output on category cards to report both category title and rule counts/modified metrics for full accessibility compliance.
+- **Zero-Allocation Architecture Preserved**: Added `withModifiedCount()` factory and decoupled static badge generation to maintain 0B heap allocations per render frame.
+
 ## [1.0.14+26.2]
 - **Left-Aligned Titles & Right-Anchored Metrics**: Redesigned category headers from centered text into a clean modern card layout: directional arrows (`▶` / `▼`) and category names are pinned to the left edge, and rule count badges (`[X rules]`) are right-anchored before the scrollbar.
 - **Card-Style Plate & Visual Indicator**: Added a subtle elevated glassmorphic card plate on hover and an accent status bar (warm gold when expanded, crisp lime when collapsed).
