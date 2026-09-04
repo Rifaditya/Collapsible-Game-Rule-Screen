@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.36+26.2`** - Extensible versioned config schema (v1), legacy array migration, and automated tests (`GameRuleStateConfig`).
 - [ ] **`1.0.35+26.2`** - Corrupted config JSON recovery, path abstraction, and test suite (`GameRuleStateConfig` + `GameRuleStateConfigTest`).
 - [ ] **`1.0.34+26.2`** - Category Prettifier unit test suite and enhanced multi-word delimiter capitalization (`CategoryPrettifierTest`).
 - [ ] **`1.0.33+26.2`** - Responsive category title clearance tuning and scissor boundary optimization (`CollapsibleCategoryRuleEntry`).

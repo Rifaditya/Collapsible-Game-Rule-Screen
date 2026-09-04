@@ -1,3 +1,8 @@
+## [1.0.36+26.2]
+- **Extensible Versioned Config Schema (`GameRuleStateConfig`)**: Upgraded persistence format from raw JSON array to an extensible versioned JSON schema (`{"schemaVersion": 1, "expandedCategories": [...]}`).
+- **Seamless Legacy Config Migration**: Implemented dual-mode parser detecting legacy raw string arrays on load, automatically migrating them to the versioned schema format without data loss.
+- **Automated Schema Test Coverage (`GameRuleStateConfigTest`)**: Added automated JUnit 5 tests asserting schema version 1 persistence output, legacy array migration, and modern schema loading.
+
 ## [1.0.35+26.2]
 - **Corrupted Config Recovery (`GameRuleStateConfig`)**: Added comprehensive error recovery catching `JsonSyntaxException` alongside `IOException`. If a user manually edits and corrupts the configuration JSON file, the mod logs a clean warning and cleanly restores safe default state without failing or crashing.
 - **Config I/O Path Abstraction**: Introduced path-parameterized `loadFromPath()` and `saveToPath()` alongside lazy `getDefaultConfigFile()` fallback for safe headless testing environments.

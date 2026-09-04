@@ -38,6 +38,20 @@ public class GameRuleStateConfig {
     private static Set<String> expandedCategories = new HashSet<>();
     private static boolean isDirty = false;
 
+    public static final int CURRENT_SCHEMA_VERSION = 1;
+
+    public static class ConfigData {
+        public int schemaVersion = CURRENT_SCHEMA_VERSION;
+        public Set<String> expandedCategories = new HashSet<>();
+
+        public ConfigData() {}
+
+        public ConfigData(int schemaVersion, Set<String> expandedCategories) {
+            this.schemaVersion = schemaVersion;
+            this.expandedCategories = expandedCategories != null ? expandedCategories : new HashSet<>();
+        }
+    }
+
     public static void load() {
         loadFromPath(getDefaultConfigFile());
     }
@@ -47,9 +61,27 @@ public class GameRuleStateConfig {
             return;
         }
         try (Reader reader = Files.newBufferedReader(path)) {
-            Set<String> loaded = GSON.fromJson(reader, new TypeToken<Set<String>>(){}.getType());
-            expandedCategories = (loaded != null) ? loaded : new HashSet<>();
-            isDirty = false;
+            com.google.gson.JsonElement root = com.google.gson.JsonParser.parseReader(reader);
+            if (root == null || root.isJsonNull()) {
+                expandedCategories = new HashSet<>();
+                isDirty = false;
+            } else if (root.isJsonArray()) {
+                // Legacy raw set format e.g. ["spawning", "player"]
+                Set<String> legacy = GSON.fromJson(root, new TypeToken<Set<String>>(){}.getType());
+                expandedCategories = (legacy != null) ? legacy : new HashSet<>();
+                isDirty = true; // Flag for automatic migration to versioned schema
+            } else if (root.isJsonObject()) {
+                ConfigData data = GSON.fromJson(root, ConfigData.class);
+                if (data != null && data.expandedCategories != null) {
+                    expandedCategories = new HashSet<>(data.expandedCategories);
+                } else {
+                    expandedCategories = new HashSet<>();
+                }
+                isDirty = false;
+            } else {
+                expandedCategories = new HashSet<>();
+                isDirty = false;
+            }
         } catch (com.google.gson.JsonSyntaxException e) {
             LOGGER.warn("Corrupted JSON syntax detected in config file '{}', resetting to default state: {}", path, e.getMessage());
             expandedCategories = new HashSet<>();
@@ -72,7 +104,8 @@ public class GameRuleStateConfig {
                 Files.createDirectories(path.getParent());
             }
             try (Writer writer = Files.newBufferedWriter(path)) {
-                GSON.toJson(expandedCategories, writer);
+                ConfigData data = new ConfigData(CURRENT_SCHEMA_VERSION, expandedCategories);
+                GSON.toJson(data, writer);
             }
         } catch (IOException e) {
             LOGGER.error("Failed to save Collapsible GameRules state to '{}'", path, e);

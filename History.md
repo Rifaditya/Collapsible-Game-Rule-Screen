@@ -1,3 +1,9 @@
+## [1.0.36+26.2]
+### Core Changes
+- Upgraded configuration file structure to versioned JSON schema (`schemaVersion: 1`).
+- Implemented automatic legacy config migration parsing raw string arrays and converting them safely to the versioned schema format on load.
+- Expanded `GameRuleStateConfigTest` to verify versioned schema formatting, legacy array migration, and modern schema loading.
+
 ## [1.0.35+26.2]
 ### Core Changes
 - Caught `JsonSyntaxException` during config parsing, recovering safely to clean default settings upon encountering corrupted JSON syntax.

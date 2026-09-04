@@ -99,4 +99,50 @@ class GameRuleStateConfigTest {
         // State remains as it was
         assertTrue(GameRuleStateConfig.isExpanded("existing.key"));
     }
+
+    @Test
+    @DisplayName("Saved JSON contains schemaVersion 1 and expandedCategories array")
+    void testVersionedSchemaOutput(@TempDir Path tempDir) throws IOException {
+        Path configFile = tempDir.resolve("versioned-config.json");
+
+        GameRuleStateConfig.setExpanded("spawning", true);
+        GameRuleStateConfig.saveToPath(configFile);
+
+        String rawJson = Files.readString(configFile);
+        assertTrue(rawJson.contains("\"schemaVersion\": 1") || rawJson.contains("\"schemaVersion\":1"));
+        assertTrue(rawJson.contains("expandedCategories"));
+        assertTrue(rawJson.contains("spawning"));
+    }
+
+    @Test
+    @DisplayName("Legacy raw JSON array is migrated cleanly and flagged as dirty")
+    void testLegacyArrayMigration(@TempDir Path tempDir) throws IOException {
+        Path legacyFile = tempDir.resolve("legacy-config.json");
+        Files.writeString(legacyFile, "[\"gamerule.category.spawning\", \"gamerule.category.player\"]");
+
+        GameRuleStateConfig.loadFromPath(legacyFile);
+
+        assertEquals(2, GameRuleStateConfig.getExpandedCategoriesCount());
+        assertTrue(GameRuleStateConfig.isExpanded("gamerule.category.spawning"));
+        assertTrue(GameRuleStateConfig.isExpanded("gamerule.category.player"));
+        assertTrue(GameRuleStateConfig.isDirty()); // Flagged for migration rewrite
+
+        // Saving should rewrite it in versioned schema
+        GameRuleStateConfig.saveToPath(legacyFile);
+        String updatedJson = Files.readString(legacyFile);
+        assertTrue(updatedJson.contains("schemaVersion"));
+    }
+
+    @Test
+    @DisplayName("Modern schema JSON object loads correctly and is clean")
+    void testModernSchemaLoad(@TempDir Path tempDir) throws IOException {
+        Path modernFile = tempDir.resolve("modern-config.json");
+        Files.writeString(modernFile, "{\n  \"schemaVersion\": 1,\n  \"expandedCategories\": [\"spawning\"]\n}");
+
+        GameRuleStateConfig.loadFromPath(modernFile);
+
+        assertEquals(1, GameRuleStateConfig.getExpandedCategoriesCount());
+        assertTrue(GameRuleStateConfig.isExpanded("spawning"));
+        assertFalse(GameRuleStateConfig.isDirty());
+    }
 }
