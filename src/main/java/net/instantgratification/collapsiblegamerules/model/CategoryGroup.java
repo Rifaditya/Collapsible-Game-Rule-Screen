@@ -30,6 +30,15 @@ public record CategoryGroup(
             String persistenceKey,
             List<AbstractGameRulesScreen.RuleEntry> rules
     ) {
+        this(displayLabel, persistenceKey, rules, 0);
+    }
+
+    public CategoryGroup(
+            Component displayLabel,
+            String persistenceKey,
+            List<AbstractGameRulesScreen.RuleEntry> rules,
+            int modifiedCount
+    ) {
         this(
                 displayLabel,
                 persistenceKey,
@@ -38,8 +47,8 @@ public record CategoryGroup(
                 createLegacyDisplay(displayLabel, "▶ ", rules != null ? rules.size() : 0),
                 Component.literal("▼ ").append(displayLabel),
                 Component.literal("▶ ").append(displayLabel),
-                createBadge(rules != null ? rules.size() : 0, 0),
-                0
+                createBadge(rules != null ? rules.size() : 0, modifiedCount),
+                modifiedCount
         );
     }
 

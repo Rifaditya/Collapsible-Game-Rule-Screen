@@ -1,3 +1,9 @@
+## [1.0.31+26.2]
+- **Category Reset Input Dispatch (`CollapsibleCategoryRuleEntry`)**: Wired mouse click hitbox detection on the `↺ Reset` button plate, reverting all modified rules within the category back to their default values in-place without screen stutter.
+- **Dynamic Live Modification Tracking**: Integrated `ResettableRuleEntry` interface across `BooleanRuleEntryMixin` and `IntegerRuleEntryMixin`, enabling real-time detection of modified rules as players toggle switches or drag sliders.
+- **Live Reversion & Widget Synchronization**: Instantly syncs slider positions, toggle switches, text input boxes, and underlying `GameRules` to default values upon reset, dynamically clearing the `↺ Reset` button and restoring `[X rules]` badges.
+- **Immediate Audio Feedback & Persistence**: Plays `SoundEvents.UI_BUTTON_CLICK` at pitch `1.0F`, flushes category state via `GameRuleStateConfig.saveIfDirty()`, and enriches screen reader narration with reset action hints.
+
 ## [1.0.30+26.2]
 - **Category Reset Button UI (`CollapsibleCategoryRuleEntry`)**: Rendered a subtle, elegant `↺ Reset` button plate in warm gold left of the rule count badge when a category contains modified rules (`modifiedCount > 0`).
 - **Dynamic Title Clearance & Layout**: Automatically offsets category title clearance to guarantee zero visual collisions between expanding titles, marquee scrolling text, and the reset button.

@@ -26,6 +26,7 @@ import java.util.List;
 import net.instantgratification.collapsiblegamerules.GameRuleStateConfig;
 import net.instantgratification.collapsiblegamerules.model.CategoryGroup;
 import net.instantgratification.collapsiblegamerules.model.CategoryTreeBuilder;
+import net.instantgratification.collapsiblegamerules.model.ResettableRuleEntry;
 import net.instantgratification.collapsiblegamerules.ui.GlobalActionsRuleEntry;
 
 @Mixin(AbstractGameRulesScreen.RuleList.class)
@@ -141,6 +142,9 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         private int lastBadgeWidth = -1;
         private boolean lastResetVisible = false;
         private boolean isTruncated = false;
+        private int lastModifiedCount = -1;
+        private boolean lastIsSearching = false;
+        private Component cachedBadge;
 
         public CollapsibleCategoryRuleEntry(CategoryGroup group, boolean expanded, Runnable toggleAction) {
             super(null);
@@ -151,6 +155,34 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
         public void setExpanded(boolean expanded) {
             this.expanded = expanded;
+        }
+
+        private int countModified() {
+            int count = 0;
+            List<AbstractGameRulesScreen.RuleEntry> rules = this.group.rules();
+            for (int i = 0; i < rules.size(); i++) {
+                AbstractGameRulesScreen.RuleEntry entry = rules.get(i);
+                if (entry instanceof ResettableRuleEntry resettable && resettable.collapsible_game_rules$isModified()) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private void resetCategory() {
+            List<AbstractGameRulesScreen.RuleEntry> rules = this.group.rules();
+            for (int i = 0; i < rules.size(); i++) {
+                AbstractGameRulesScreen.RuleEntry entry = rules.get(i);
+                if (entry instanceof ResettableRuleEntry resettable) {
+                    resettable.collapsible_game_rules$resetToDefault();
+                }
+            }
+            net.minecraft.client.Minecraft.getInstance().getSoundManager()
+                    .play(net.minecraft.client.resources.sounds.SimpleSoundInstance
+                            .forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            GameRuleStateConfig.saveIfDirty();
+            this.lastModifiedCount = -1;
+            this.cachedBadge = null;
         }
 
         private net.minecraft.util.FormattedCharSequence truncateIfNeeded(net.minecraft.client.gui.Font font, Component component, int maxWidth) {
@@ -173,11 +205,19 @@ public abstract class AbstractGameRulesScreenRuleListMixin
             int rightX = this.getX() + this.getWidth() - 8;
             int bottomY = this.getY() + 21;
 
-            Component badge = this.group.countBadge();
+            int modifiedCount = this.countModified();
+            boolean resetVisible = net.instantgratification.collapsiblegamerules.util.CategoryResetHelper.canReset(modifiedCount);
+            boolean isSearching = !AbstractGameRulesScreenRuleListMixin.this.collapsible_game_rules$currentFilter.isEmpty();
+
+            if (this.cachedBadge == null || modifiedCount != this.lastModifiedCount || isSearching != this.lastIsSearching) {
+                this.lastModifiedCount = modifiedCount;
+                this.lastIsSearching = isSearching;
+                this.cachedBadge = isSearching ? this.group.countBadge() : CategoryGroup.createBadge(this.group.ruleCount(), modifiedCount);
+            }
+            Component badge = this.cachedBadge;
             int badgeWidth = font.width(badge);
             int badgeX = rightX - badgeWidth;
 
-            boolean resetVisible = net.instantgratification.collapsiblegamerules.util.CategoryResetHelper.canReset(this.group.modifiedCount());
             int resetWidth = resetVisible ? font.width(RESET_LABEL) + 8 : 0;
             int resetX = badgeX - resetWidth - 4;
             int resetY = this.getY() + 4;
@@ -271,6 +311,29 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
         @Override
         public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean doubleClick) {
+            if (event.button() == 0) { // Left-click check on [↺ Reset]
+                double mx = event.x();
+                double my = event.y();
+                int modifiedCount = this.countModified();
+                boolean resetVisible = net.instantgratification.collapsiblegamerules.util.CategoryResetHelper.canReset(modifiedCount);
+                if (resetVisible) {
+                    net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
+                    int rightX = this.getX() + this.getWidth() - 8;
+                    Component badge = this.cachedBadge != null ? this.cachedBadge : this.group.countBadge();
+                    int badgeWidth = font.width(badge);
+                    int badgeX = rightX - badgeWidth;
+                    int resetWidth = font.width(RESET_LABEL) + 8;
+                    int resetX = badgeX - resetWidth - 4;
+                    int resetY = this.getY() + 4;
+                    int resetHeight = 14;
+
+                    if (mx >= resetX && mx <= resetX + resetWidth && my >= resetY && my <= resetY + resetHeight) {
+                        this.resetCategory();
+                        return true;
+                    }
+                }
+            }
+
             if (event.button() == 0 || event.button() == 1) { // Left or right click toggles
                 this.toggleAction.run();
                 net.minecraft.client.Minecraft.getInstance().getSoundManager()
@@ -320,7 +383,10 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         @Override
         public void updateNarration(NarrationElementOutput output) {
             output.add(NarratedElementType.TITLE, this.group.displayLabel());
-            output.add(NarratedElementType.USAGE, this.group.countBadge());
+            output.add(NarratedElementType.USAGE, this.cachedBadge != null ? this.cachedBadge : this.group.countBadge());
+            if (net.instantgratification.collapsiblegamerules.util.CategoryResetHelper.canReset(this.countModified())) {
+                output.add(NarratedElementType.HINT, RESET_LABEL);
+            }
         }
     }
 }

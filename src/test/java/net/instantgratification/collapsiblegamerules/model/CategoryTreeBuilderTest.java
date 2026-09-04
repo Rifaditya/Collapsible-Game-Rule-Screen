@@ -117,6 +117,20 @@ class CategoryTreeBuilderTest {
         assertEquals(3, matchedPlural.ruleCount());
     }
 
+    @Test
+    @DisplayName("CategoryTreeBuilder counts modified rules for resettable entries")
+    void testBuildGroupsCountsModifiedRules() {
+        DummyResettableRuleEntry unmodified = new DummyResettableRuleEntry(false);
+        DummyResettableRuleEntry modified = new DummyResettableRuleEntry(true);
+
+        List<CategoryGroup> groups = CategoryTreeBuilder.buildGroups(List.of(unmodified, modified));
+        assertEquals(1, groups.size());
+        CategoryGroup group = groups.get(0);
+        assertEquals(2, group.ruleCount());
+        assertEquals(1, group.modifiedCount());
+        assertEquals("[● 1 mod / 2 rules]", group.countBadge().getString());
+    }
+
     /**
      * Minimal concrete stub of RuleEntry for testing list containment and counts.
      */
@@ -138,6 +152,24 @@ class CategoryTreeBuilderTest {
         @Override
         public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
             // No-op for unit tests
+        }
+    }
+
+    private static class DummyResettableRuleEntry extends DummyRuleEntry implements ResettableRuleEntry {
+        private boolean modified;
+
+        public DummyResettableRuleEntry(boolean modified) {
+            this.modified = modified;
+        }
+
+        @Override
+        public boolean collapsible_game_rules$isModified() {
+            return this.modified;
+        }
+
+        @Override
+        public void collapsible_game_rules$resetToDefault() {
+            this.modified = false;
         }
     }
 }

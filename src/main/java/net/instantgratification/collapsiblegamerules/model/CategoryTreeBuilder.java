@@ -40,7 +40,7 @@ public final class CategoryTreeBuilder {
             if (entry instanceof AbstractGameRulesScreen.CategoryRuleEntry) {
                 // If we were already collecting a group, flush it before starting the next category
                 if (currentDisplayLabel != null && currentPersistenceKey != null) {
-                    groups.add(new CategoryGroup(currentDisplayLabel, currentPersistenceKey, currentRules));
+                    groups.add(new CategoryGroup(currentDisplayLabel, currentPersistenceKey, currentRules, countModified(currentRules)));
                     currentRules = new ArrayList<>();
                 }
 
@@ -79,9 +79,23 @@ public final class CategoryTreeBuilder {
 
         // Flush the final group
         if (currentDisplayLabel != null && currentPersistenceKey != null) {
-            groups.add(new CategoryGroup(currentDisplayLabel, currentPersistenceKey, currentRules));
+            groups.add(new CategoryGroup(currentDisplayLabel, currentPersistenceKey, currentRules, countModified(currentRules)));
         }
 
         return List.copyOf(groups);
+    }
+
+    private static int countModified(List<AbstractGameRulesScreen.RuleEntry> rules) {
+        if (rules == null || rules.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < rules.size(); i++) {
+            AbstractGameRulesScreen.RuleEntry entry = rules.get(i);
+            if (entry instanceof ResettableRuleEntry resettable && resettable.collapsible_game_rules$isModified()) {
+                count++;
+            }
+        }
+        return count;
     }
 }

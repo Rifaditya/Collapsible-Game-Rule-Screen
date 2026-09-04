@@ -1,7 +1,9 @@
 // Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.instantgratification.collapsiblegamerules.mixin;
 
+import net.instantgratification.collapsiblegamerules.model.ResettableRuleEntry;
 import net.instantgratification.collapsiblegamerules.ui.BooleanToggleWidget;
+import net.instantgratification.collapsiblegamerules.util.CategoryResetHelper;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen;
@@ -19,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(AbstractGameRulesScreen.BooleanRuleEntry.class)
-public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.RuleEntry {
+public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.RuleEntry implements ResettableRuleEntry {
 
     @Shadow
     @Final
@@ -27,6 +29,12 @@ public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.Rule
 
     @Unique
     private BooleanToggleWidget collapsible_game_rules$toggleWidget;
+
+    @Unique
+    private GameRule<Boolean> collapsible_game_rules$rule;
+
+    @Unique
+    private AbstractGameRulesScreen collapsible_game_rules$screen;
 
     public BooleanRuleEntryMixin() {
         super(null);
@@ -41,18 +49,56 @@ public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.Rule
             GameRule<Boolean> rule,
             CallbackInfo ci
     ) {
+        this.collapsible_game_rules$screen = screen;
+        this.collapsible_game_rules$rule = rule;
         this.checkbox.visible = false;
         boolean initialVal = Boolean.TRUE.equals(this.checkbox.getValue());
 
         this.collapsible_game_rules$toggleWidget = new BooleanToggleWidget(
                 10, 5, 44, 20, initialVal,
-                (newState) -> this.checkbox.setValue(newState)
+                (newState) -> {
+                    this.checkbox.setValue(newState);
+                    if (this.collapsible_game_rules$screen != null && this.collapsible_game_rules$rule != null) {
+                        ((AbstractGameRulesScreenAccessor) this.collapsible_game_rules$screen)
+                                .collapsible_game_rules$getGameRules()
+                                .set(this.collapsible_game_rules$rule, newState, null);
+                    }
+                }
         );
 
         @SuppressWarnings("rawtypes")
         List rawList = (List) this.children();
         rawList.remove(this.checkbox);
         rawList.add(this.collapsible_game_rules$toggleWidget);
+    }
+
+    @Override
+    public boolean collapsible_game_rules$isModified() {
+        if (this.collapsible_game_rules$rule == null) {
+            return false;
+        }
+        Boolean currentVal = this.checkbox.getValue();
+        if (currentVal == null) {
+            return false;
+        }
+        return CategoryResetHelper.isModified(currentVal, this.collapsible_game_rules$rule.defaultValue());
+    }
+
+    @Override
+    public void collapsible_game_rules$resetToDefault() {
+        if (this.collapsible_game_rules$rule == null) {
+            return;
+        }
+        boolean defaultVal = this.collapsible_game_rules$rule.defaultValue();
+        this.checkbox.setValue(defaultVal);
+        if (this.collapsible_game_rules$toggleWidget != null) {
+            this.collapsible_game_rules$toggleWidget.setState(defaultVal);
+        }
+        if (this.collapsible_game_rules$screen != null) {
+            ((AbstractGameRulesScreenAccessor) this.collapsible_game_rules$screen)
+                    .collapsible_game_rules$getGameRules()
+                    .set(this.collapsible_game_rules$rule, defaultVal, null);
+        }
     }
 
     @Inject(method = "extractContent", at = @At("TAIL"))

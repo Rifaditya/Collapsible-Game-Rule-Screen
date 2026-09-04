@@ -11,4 +11,10 @@ public interface AbstractGameRulesScreenAccessor {
 
     @Accessor("searchBox")
     EditBox collapsible_game_rules$getSearchBox();
+
+    @Accessor("gameRules")
+    net.minecraft.world.level.gamerules.GameRules collapsible_game_rules$getGameRules();
+
+    @org.spongepowered.asm.mixin.gen.Invoker("filterGameRules")
+    void collapsible_game_rules$invokeFilterGameRules(String filter);
 }

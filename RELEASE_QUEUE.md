@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.31+26.2`** - Category reset input dispatch, dynamic live modification tracking, sound, and persistence (`CollapsibleCategoryRuleEntry`).
 - [ ] **`1.0.30+26.2`** - Category reset button UI plate and visual inertia (`CollapsibleCategoryRuleEntry`).
 - [ ] **`1.0.29+26.2`** - Category reset engine and value reversion checks (`CategoryResetHelper` + 100% unit tests).
 - [ ] **`1.0.28+26.2`** - Rule tooltip & description search query substring highlighting (`RuleEntryAccessor` + `highlightSequence`).

@@ -1,7 +1,9 @@
 // Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.instantgratification.collapsiblegamerules.mixin;
 
+import net.instantgratification.collapsiblegamerules.model.ResettableRuleEntry;
 import net.instantgratification.collapsiblegamerules.ui.IntegerSliderWidget;
+import net.instantgratification.collapsiblegamerules.util.CategoryResetHelper;
 import net.instantgratification.collapsiblegamerules.util.GameRuleSliderHelper;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
@@ -20,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(AbstractGameRulesScreen.IntegerRuleEntry.class)
-public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.RuleEntry {
+public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.RuleEntry implements ResettableRuleEntry {
 
     @Shadow
     @Final
@@ -28,6 +30,12 @@ public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.Rule
 
     @Unique
     private IntegerSliderWidget collapsible_game_rules$sliderWidget;
+
+    @Unique
+    private GameRule<Integer> collapsible_game_rules$rule;
+
+    @Unique
+    private AbstractGameRulesScreen collapsible_game_rules$screen;
 
     public IntegerRuleEntryMixin() {
         super(null);
@@ -42,6 +50,8 @@ public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.Rule
             GameRule<Integer> rule,
             CallbackInfo ci
     ) {
+        this.collapsible_game_rules$screen = screen;
+        this.collapsible_game_rules$rule = rule;
         if (rule == null) {
             return;
         }
@@ -85,6 +95,37 @@ public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.Rule
             List rawList = (List) this.children();
             rawList.remove(this.input);
             rawList.add(this.collapsible_game_rules$sliderWidget);
+        }
+    }
+
+    @Override
+    public boolean collapsible_game_rules$isModified() {
+        if (this.collapsible_game_rules$rule == null) {
+            return false;
+        }
+        String valStr = this.input.getValue();
+        try {
+            int currentVal = Integer.parseInt(valStr.trim());
+            return CategoryResetHelper.isModified(currentVal, this.collapsible_game_rules$rule.defaultValue());
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    @Override
+    public void collapsible_game_rules$resetToDefault() {
+        if (this.collapsible_game_rules$rule == null) {
+            return;
+        }
+        int defaultVal = this.collapsible_game_rules$rule.defaultValue();
+        this.input.setValue(String.valueOf(defaultVal));
+        if (this.collapsible_game_rules$sliderWidget != null) {
+            this.collapsible_game_rules$sliderWidget.setValueAsInt(defaultVal);
+        }
+        if (this.collapsible_game_rules$screen != null) {
+            ((AbstractGameRulesScreenAccessor) this.collapsible_game_rules$screen)
+                    .collapsible_game_rules$getGameRules()
+                    .set(this.collapsible_game_rules$rule, defaultVal, null);
         }
     }
 
