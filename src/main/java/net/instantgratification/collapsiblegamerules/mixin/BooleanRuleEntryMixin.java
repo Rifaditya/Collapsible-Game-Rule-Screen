@@ -3,7 +3,6 @@ package net.instantgratification.collapsiblegamerules.mixin;
 
 import net.instantgratification.collapsiblegamerules.ui.BooleanToggleWidget;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen;
 import net.minecraft.network.chat.Component;
@@ -26,13 +25,6 @@ public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.Rule
     @Final
     private CycleButton<Boolean> checkbox;
 
-    @Shadow
-    @Final
-    protected List<AbstractWidget> children;
-
-    @Shadow
-    protected abstract void extractLabel(GuiGraphicsExtractor graphics, int y, int x);
-
     @Unique
     private BooleanToggleWidget collapsible_game_rules$toggleWidget;
 
@@ -49,6 +41,7 @@ public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.Rule
             GameRule<Boolean> rule,
             CallbackInfo ci
     ) {
+        this.checkbox.visible = false;
         boolean initialVal = Boolean.TRUE.equals(this.checkbox.getValue());
 
         this.collapsible_game_rules$toggleWidget = new BooleanToggleWidget(
@@ -56,12 +49,13 @@ public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.Rule
                 (newState) -> this.checkbox.setValue(newState)
         );
 
-        // Replace vanilla's checkbox inside children list so focus, events, and navigation route to toggleWidget
-        this.children.remove(this.checkbox);
-        this.children.add(this.collapsible_game_rules$toggleWidget);
+        @SuppressWarnings("rawtypes")
+        List rawList = (List) this.children();
+        rawList.remove(this.checkbox);
+        rawList.add(this.collapsible_game_rules$toggleWidget);
     }
 
-    @Inject(method = "extractContent", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "extractContent", at = @At("TAIL"))
     private void collapsible_game_rules$renderCustomToggle(
             GuiGraphicsExtractor graphics,
             int mouseX,
@@ -71,10 +65,6 @@ public abstract class BooleanRuleEntryMixin extends AbstractGameRulesScreen.Rule
             CallbackInfo ci
     ) {
         if (this.collapsible_game_rules$toggleWidget != null) {
-            ci.cancel();
-
-            this.extractLabel(graphics, this.getContentY(), this.getContentX());
-
             this.collapsible_game_rules$toggleWidget.setX(this.getContentRight() - 45);
             this.collapsible_game_rules$toggleWidget.setY(this.getContentY());
             this.collapsible_game_rules$toggleWidget.extractRenderState(graphics, mouseX, mouseY, partialTick);

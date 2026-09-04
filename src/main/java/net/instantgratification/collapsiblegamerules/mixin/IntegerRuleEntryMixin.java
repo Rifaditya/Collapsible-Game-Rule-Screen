@@ -4,7 +4,6 @@ package net.instantgratification.collapsiblegamerules.mixin;
 import net.instantgratification.collapsiblegamerules.ui.IntegerSliderWidget;
 import net.instantgratification.collapsiblegamerules.util.GameRuleSliderHelper;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen;
 import net.minecraft.network.chat.Component;
@@ -26,13 +25,6 @@ public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.Rule
     @Shadow
     @Final
     private EditBox input;
-
-    @Shadow
-    @Final
-    protected List<AbstractWidget> children;
-
-    @Shadow
-    protected abstract void extractLabel(GuiGraphicsExtractor graphics, int y, int x);
 
     @Unique
     private IntegerSliderWidget collapsible_game_rules$sliderWidget;
@@ -77,6 +69,7 @@ public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.Rule
         }
 
         if (config != null) {
+            this.input.visible = false;
             int initialVal = config.min();
             try {
                 initialVal = Integer.parseInt(this.input.getValue());
@@ -88,13 +81,14 @@ public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.Rule
                     (newVal) -> this.input.setValue(String.valueOf(newVal))
             );
 
-            // Replace vanilla's EditBox inside children list so focus, keyboard and mouse events route to slider
-            this.children.remove(this.input);
-            this.children.add(this.collapsible_game_rules$sliderWidget);
+            @SuppressWarnings("rawtypes")
+            List rawList = (List) this.children();
+            rawList.remove(this.input);
+            rawList.add(this.collapsible_game_rules$sliderWidget);
         }
     }
 
-    @Inject(method = "extractContent", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "extractContent", at = @At("TAIL"))
     private void collapsible_game_rules$renderCustomSlider(
             GuiGraphicsExtractor graphics,
             int mouseX,
@@ -104,10 +98,6 @@ public abstract class IntegerRuleEntryMixin extends AbstractGameRulesScreen.Rule
             CallbackInfo ci
     ) {
         if (this.collapsible_game_rules$sliderWidget != null) {
-            ci.cancel();
-
-            this.extractLabel(graphics, this.getContentY(), this.getContentX());
-
             this.collapsible_game_rules$sliderWidget.setX(this.getContentRight() - 65);
             this.collapsible_game_rules$sliderWidget.setY(this.getContentY());
             this.collapsible_game_rules$sliderWidget.extractRenderState(graphics, mouseX, mouseY, partialTick);
