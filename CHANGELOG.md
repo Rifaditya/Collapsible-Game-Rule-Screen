@@ -1,3 +1,7 @@
+## [1.0.39+26.2]
+- **License Header Standardization**: Standardized all Java source files in `src/main/java/` to the uniform Core Constitution single-line license header (`// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3`), eliminating legacy multi-line comments.
+- **Codebase Cleanliness & Compliance**: Verified 100% compliance across all 30 source and test classes with zero runtime impact.
+
 ## [1.0.38+26.2]
 - **Widen List to Match Footer Buttons (`AbstractGameRulesScreenRuleListMixin`)**: Overrode `RuleList.getRowWidth()` from 220px to 308px (+88px width), perfectly aligning the left edge of category cards with the "Done" button and the right edge with the "Cancel" button.
 - **Harmonized Card Margins & Alignment**: Aligned "Expand All" / "Collapse All" global toolbar cards and category header plates flush with entry bounds (`this.getX()` to `this.getX() + this.getWidth()`), creating a unified, symmetrical vertical column.

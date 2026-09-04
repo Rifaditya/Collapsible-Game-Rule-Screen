@@ -1,7 +1,4 @@
-/*
- * Sovereign Engineering
- * Verified against: FabricLoader.java (26.*)
- */
+// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.instantgratification.collapsiblegamerules;
 
 import com.google.gson.Gson;

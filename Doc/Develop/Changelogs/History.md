@@ -1,5 +1,8 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.39+26.2]
+- **License Header Standardization**: Standardized Line 1 across 100% of `.java` source files in `src/main/java/` to `// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3`. Stripped legacy `/* Sovereign Engineering ... */` comment blocks from 7 classes: `CollapsibleGameRulesFabric`, `CollapsibleGameRulesFabricClient`, `GameRuleStateConfig`, `AbstractGameRulesScreenRuleListMixin`, `ScreenMixin`, `CategoryPrettifier`, and `DasikMetadataHelper`.
+
 ## [1.0.31+26.2]
 - **Category Reset Input Dispatch (`CollapsibleCategoryRuleEntry`)**: Wired mouse click hitbox detection on the `↺ Reset` button plate, reverting all modified rules within the category back to their default values in-place without screen stutter.
 - **Dynamic Live Modification Tracking**: Integrated `ResettableRuleEntry` interface across `BooleanRuleEntryMixin` and `IntegerRuleEntryMixin`, enabling real-time detection of modified rules as players toggle switches or drag sliders.

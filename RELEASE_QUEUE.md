@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.39+26.2`** - License header standardization across 100% of Java source files (`// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3`).
 - [ ] **`1.0.38+26.2`** - List width expansion to 308px (matching bottom Done/Cancel buttons), margin alignment, and wider rule label splitting (`AbstractGameRulesScreenRuleListMixin`, `GlobalActionsRuleEntry`, `GameRuleEntryMixin`).
 - [ ] **`1.0.37+26.2`** - Scroll jump prevention on collapse, header anchoring, and refreshScrollAmount (`AbstractGameRulesScreenRuleListMixin`).
 - [ ] **`1.0.36+26.2`** - Extensible versioned config schema (v1), legacy array migration, and automated tests (`GameRuleStateConfig`).
