@@ -1,3 +1,8 @@
+## [1.0.37+26.2]
+- **Scroll Jump Prevention on Collapse (`AbstractGameRulesScreenRuleListMixin`)**: Added dynamic scroll boundary recalculation with `refreshScrollAmount()`, eliminating abrupt viewport jerks when collapsing categories with large rule lists (e.g. Vanilla with 104 rules).
+- **Targeted Category Header Anchoring**: Upon toggling a category closed or open, anchored the player's viewport to the clicked category card (`scrollToEntry(clickedEntry)`), ensuring it remains visible and focused.
+- **Smooth Global Collapse Reset**: Reset list scroll offset directly to `0.0` upon triggering "Collapse All", landing cleanly at the top of the folded category cards.
+
 ## [1.0.36+26.2]
 - **Extensible Versioned Config Schema (`GameRuleStateConfig`)**: Upgraded persistence format from raw JSON array to an extensible versioned JSON schema (`{"schemaVersion": 1, "expandedCategories": [...]}`).
 - **Seamless Legacy Config Migration**: Implemented dual-mode parser detecting legacy raw string arrays on load, automatically migrating them to the versioned schema format without data loss.

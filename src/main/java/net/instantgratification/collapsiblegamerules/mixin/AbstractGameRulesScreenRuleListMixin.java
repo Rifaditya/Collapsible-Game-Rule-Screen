@@ -69,6 +69,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                 GameRuleStateConfig.collapseAll();
                 GameRuleStateConfig.saveIfDirty();
                 this.collapsible_game_rules$updateVisibleEntries();
+                this.setScrollAmount(0.0);
             }
         );
 
@@ -87,7 +88,11 @@ public abstract class AbstractGameRulesScreenRuleListMixin
                         boolean newState = !GameRuleStateConfig.isExpanded(persistenceKey);
                         GameRuleStateConfig.setExpanded(persistenceKey, newState);
                         GameRuleStateConfig.saveIfDirty();
+                        CollapsibleCategoryRuleEntry clickedEntry = this.collapsible_game_rules$cachedCategoryEntries.get(persistenceKey);
                         this.collapsible_game_rules$updateVisibleEntries();
+                        if (clickedEntry != null) {
+                            this.scrollToEntry(clickedEntry);
+                        }
                     }
                 )
             );
@@ -126,6 +131,7 @@ public abstract class AbstractGameRulesScreenRuleListMixin
 
         // Force the abstract selection list to recalculate the Y layout for all existing children
         this.updateSizeAndPosition(this.getWidth(), this.getHeight(), this.getX(), this.getY());
+        this.refreshScrollAmount();
     }
 
     private class CollapsibleCategoryRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {

@@ -1,3 +1,9 @@
+## [1.0.37+26.2]
+### Core Changes
+- Added dynamic scroll boundary recalculation via `refreshScrollAmount()`, eliminating abrupt viewport jumps when collapsing large rule categories.
+- Anchored viewport directly to the clicked category card (`scrollToEntry(clickedEntry)`) when toggling, keeping the active card visible and centered.
+- Added instant scroll offset reset to `0.0` upon activating "Collapse All".
+
 ## [1.0.36+26.2]
 ### Core Changes
 - Upgraded configuration file structure to versioned JSON schema (`schemaVersion: 1`).
