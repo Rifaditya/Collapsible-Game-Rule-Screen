@@ -14,8 +14,8 @@ import java.util.List;
 
 public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry implements NarratableEntry {
 
-    private static final Component EXPAND_LABEL = Component.literal("[ ").append(Component.translatable("gui.collapsible-game-rules.expand_all")).append(" ]");
-    private static final Component COLLAPSE_LABEL = Component.literal("[ ").append(Component.translatable("gui.collapsible-game-rules.collapse_all")).append(" ]");
+    private static final Component EXPAND_LABEL = Component.literal("▼ ").append(Component.translatable("gui.collapsible-game-rules.expand_all"));
+    private static final Component COLLAPSE_LABEL = Component.literal("▶ ").append(Component.translatable("gui.collapsible-game-rules.collapse_all"));
     private static final Component NARRATION_TITLE = Component.translatable("gui.collapsible-game-rules.expand_all").append(" / ").append(Component.translatable("gui.collapsible-game-rules.collapse_all"));
 
     private final Runnable expandAll;
@@ -29,21 +29,38 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
 
     @Override
     public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-        boolean hoverExpand = hovered && mouseX < this.getX() + this.getWidth() / 2;
-        boolean hoverCollapse = hovered && mouseX >= this.getX() + this.getWidth() / 2;
+        int leftX = this.getX() + 8;
+        int rightX = this.getX() + this.getWidth() - 8;
+        int topY = this.getY() + 3;
+        int bottomY = this.getY() + 21;
+
+        int midX = leftX + (rightX - leftX) / 2;
+        int card1Right = midX - 3;
+        int card2Left = midX + 3;
+
+        boolean hoverExpand = hovered && mouseX >= leftX && mouseX <= card1Right && mouseY >= topY && mouseY <= bottomY;
+        boolean hoverCollapse = hovered && mouseX >= card2Left && mouseX <= rightX && mouseY >= topY && mouseY <= bottomY;
 
         int expandColor = hoverExpand ? 0xFFFFFFAA : 0xFFFFFFFF;
         int collapseColor = hoverCollapse ? 0xFFFFFFAA : 0xFFFFFFFF;
 
-        if (hoverExpand) {
-            graphics.fill(this.getX(), this.getY(), this.getX() + this.getWidth() / 2, this.getY() + 24, 0x22FFFFFF);
-        }
-        if (hoverCollapse) {
-            graphics.fill(this.getX() + this.getWidth() / 2, this.getY(), this.getX() + this.getWidth(), this.getY() + 24, 0x22FFFFFF);
-        }
+        // Card 1: Expand All plate and warm gold accent bar
+        int bgExpand = hoverExpand ? 0x24FFFFFF : 0x10FFFFFF;
+        graphics.fill(leftX, topY, card1Right, bottomY, bgExpand);
+        graphics.fill(leftX, topY, leftX + 2, bottomY, 0xFFFFAA00); // Warm gold accent
 
-        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, EXPAND_LABEL, this.getX() + this.getWidth() / 4, this.getContentY() + 5, expandColor);
-        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, COLLAPSE_LABEL, this.getX() + 3 * this.getWidth() / 4, this.getContentY() + 5, collapseColor);
+        // Card 2: Collapse All plate and crisp lime accent bar
+        int bgCollapse = hoverCollapse ? 0x24FFFFFF : 0x10FFFFFF;
+        graphics.fill(card2Left, topY, rightX, bottomY, bgCollapse);
+        graphics.fill(card2Left, topY, card2Left + 2, bottomY, 0xFF55FF55); // Crisp lime accent
+
+        // Centered labels inside each card
+        int card1CenterX = leftX + (card1Right - leftX) / 2;
+        int card2CenterX = card2Left + (rightX - card2Left) / 2;
+        int textY = this.getY() + 7;
+
+        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, EXPAND_LABEL, card1CenterX, textY, expandColor);
+        graphics.centeredText(net.minecraft.client.Minecraft.getInstance().font, COLLAPSE_LABEL, card2CenterX, textY, collapseColor);
 
         // Subtle separating line at the bottom
         graphics.fill(this.getX() + 10, this.getY() + 23, this.getX() + this.getWidth() - 10, this.getY() + 24, 0x44AAAAAA);

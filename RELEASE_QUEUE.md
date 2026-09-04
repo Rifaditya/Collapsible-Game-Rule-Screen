@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.18+26.2`** - Global action toolbar symmetrical card geometry, 6px gap, centered directional labels, and category-matching accents.
 - [ ] **`1.0.17+26.2`** - Horizontal marquee scrolling text on hover for long category titles with scissor clipping.
 - [ ] **`1.0.16+26.2`** - Fixed long category title collision with responsive ellipsis truncation and full-title hover tooltip.
 - [ ] **`1.0.15+26.2`** - Visual modified-from-default rule counters with golden badge indicators and screen reader narration.

@@ -1,3 +1,8 @@
+## [1.0.18+26.2]
+- **Global Action Toolbar Symmetrical Card Geometry & Accents**: Refactored the top global actions toolbar from a raw split text row into two balanced, symmetrical glassmorphic action cards separated by a 6px central gap.
+- **Directional Icons & Category-Matching Accent Bars**: Features centered directional icons (`▼ Expand All` and `▶ Collapse All`) with a warm gold 2px accent strip for the Expand card and a crisp lime 2px accent strip for the Collapse card, matching category card aesthetics.
+- **Dynamic Card Hover Elevation**: Card backgrounds illuminate cleanly on hover (`0x24FFFFFF`) with text highlights (`0xFFFFFFAA`) and 0B heap allocation per frame.
+
 ## [1.0.17+26.2]
 - **Horizontal Marquee Scrolling Text on Hover**: When hovering over a category header with a long title, the text smoothly scrolls sideways (ticker / marquee effect) within a hardware scissor box, allowing players to read the complete category title in-place directly on the card plate.
 - **Natural Timing & Ping-Pong Animation**: Features an initial 1000ms pause, smooth ~30px/sec scroll across the overflow distance, 1000ms end pause, and ping-pong return.
