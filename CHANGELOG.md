@@ -1,3 +1,7 @@
+## [1.0.43+26.2]
+- **In-Game Creator Support Quick-Action (`GlobalActionsRuleEntry`)**: Integrated a compact `☕` creator support button plate in the global actions bar atop the GameRules screen, directly linking to `https://ko-fi.com/dasikigaijin` via `DasikSupportHelper.openKofi(...)` with safe browser opening and translatable hover tooltip.
+- **Dependency Alignment**: Bumped `dasik-library` dependency to `1.8.37` to leverage centralized creator support and localization utilities.
+
 ## [1.0.42+26.2]
 - **ModMenu Native Creator Support Metadata (`fabric.mod.json`)**: Registered official donation and Ko-fi links (`modmenu.donate` and `modmenu.kofi`) pointing to `https://ko-fi.com/dasikigaijin`, enabling direct creator tipping for players browsing mods inside ModMenu.
 
