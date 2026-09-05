@@ -1,3 +1,6 @@
+## [1.0.42+26.2]
+- **ModMenu Native Creator Support Metadata (`fabric.mod.json`)**: Registered official donation and Ko-fi links (`modmenu.donate` and `modmenu.kofi`) pointing to `https://ko-fi.com/dasikigaijin`, enabling direct creator tipping for players browsing mods inside ModMenu.
+
 ## [1.0.41+26.2]
 - **Category Reset Tooltip Localization (`AbstractGameRulesScreenRuleListMixin`)**: Migrated hardcoded `Component.literal` tooltip on the `↺` reset button plate to `Component.translatable("gui.collapsible-game-rules.reset_category")`.
 - **Translation Suite Expansion (`en_us.json`)**: Added `"gui.collapsible-game-rules.reset_category": "Reset category to defaults"`, enabling complete localization across community resource packs and translation updates.

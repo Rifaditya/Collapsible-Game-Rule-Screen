@@ -16,6 +16,12 @@
         "modrinth": {
             "projectId": "lObgjyJl",
             "slug": "collapsible-gamerules"
+        },
+        "modmenu": {
+            "links": {
+                "modmenu.donate": "https://ko-fi.com/dasikigaijin",
+                "modmenu.kofi": "https://ko-fi.com/dasikigaijin"
+            }
         }
     },
     "license": "GPL-3.0-or-later",

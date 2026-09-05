@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.42+26.2`** - ModMenu native creator support metadata and Ko-fi links (`fabric.mod.json`).
 - [ ] **`1.0.41+26.2`** - Category reset tooltip localization migration to `Component.translatable` (`AbstractGameRulesScreenRuleListMixin` + `en_us.json`).
 - [ ] **`1.0.40+26.2`** - Platform manifest metadata (`modrinth` custom block) and git remote contact URLs parity (`fabric.mod.json`).
 - [ ] **`1.0.39+26.2`** - License header standardization across 100% of Java source files (`// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3`).
