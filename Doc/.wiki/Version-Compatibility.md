@@ -108,16 +108,6 @@ The mod declares its exact dependencies in `src/main/resources/fabric.mod.json`:
 }
 ```
 
-### Dependency Analysis Table
-
-| Dependency ID | Version Constraint | Type | Rationale & Enforcement |
-| :--- | :--- | :--- | :--- |
-| `minecraft` | `>=26.2-` | Game Core | Open-ended lower bound for 26.2+ Annual Drop readiness. |
-| `fabricloader` | `>=0.19.1` | Mod Loader | Native Java 25 Mixin subsystem support and Knot loader resolution. |
-| `java` | `>=25` | Toolchain | Required for modern record patterns, sealed interfaces, and memory efficiency. |
-| `fabric-api` | `*` | Hook Layer | Standard Fabric lifecycle events and client rendering hooks. |
-| `dasik-library`| `>=1.7.0` | Shared Core | Hard requirement for dynamic category metadata and social AI parity. |
-
 ---
 
 ## 🗄️ Release Archives & Build Artifacts
@@ -132,7 +122,6 @@ Official builds are archived in the repository's `Archive Jar of all versions/` 
 
 ## 🔗 Related Documentation
 
-* [[Master Wiki Portal|Home]]
-* [[MC 26.2 Version Portal|26.2-Home]]
-* [[Developer Setup & Gradle Builds|26.2-Developer-Setup-and-Building]]
-* [[DasikLibrary API Integration|26.2-API-and-Library-Integration]]
+* [[Overview & Home|Home]]
+* [[Developer Setup & Gradle Builds|Developer-Setup-and-Building]]
+* [[DasikLibrary API Integration|API-and-Library-Integration]]

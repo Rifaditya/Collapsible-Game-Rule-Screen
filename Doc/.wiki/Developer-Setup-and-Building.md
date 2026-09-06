@@ -1,0 +1,139 @@
+# 🛠️ Developer Setup & Gradle Builds
+
+| Parameter | Specification |
+| :--- | :--- |
+| **Target Minecraft Version** | **Minecraft 26.2** (`minecraft: >=26.2-`) |
+| **Java Toolchain** | **Java 25** (`release = 25`, `org.gradle.java.home=E:/JDK25`) |
+| **Fabric Loom Plugin** | `net.fabricmc.fabric-loom` version `1.15.2` |
+| **Fabric Loader** | `0.19.1` (`loader_version`) |
+| **Fabric API** | `0.145.4+26.1.2` |
+| **DasikLibrary** | `1.7.4` (Hard Requirement) |
+| **Build Command** | `./gradlew build --no-daemon` |
+| **Primary Build Artifact** | `build/libs/collapsible-game-rules-1.0.9+26.2.jar` |
+| **Sources Artifact** | `build/libs/collapsible-game-rules-1.0.9+26.2-sources.jar` |
+
+---
+
+## 📖 Prerequisites & Environment Setup
+
+To compile and contribute to Collapsible Game Rules from source, ensure your environment meets the following requirements:
+
+1. **Java Development Kit (JDK)**: **JDK 25+** (e.g. Eclipse Temurin, OpenJDK 25).
+2. **Build System**: Gradle 9.3+ (managed automatically via `./gradlew` wrapper).
+3. **IDE**: IntelliJ IDEA, VS Code, or Antigravity with modern Java 25 & Loom support.
+
+---
+
+## 🔨 Build & Compilation Workflow
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Rifaditya/Collapsible-Game-Rule-Screen.git
+cd Collapsible-Game-Rule-Screen/collapsible-game-rules
+```
+
+### 2. Configure Local JDK
+Ensure `gradle.properties` references your local JDK 25 installation path:
+```properties
+org.gradle.parallel=true
+org.gradle.java.home=E:/JDK25
+```
+
+### 3. Build the Release JAR
+Execute the Gradle build task:
+```bash
+./gradlew build --no-daemon
+```
+
+The compiled release artifact will be generated in `build/libs/`:
+* `collapsible-game-rules-1.0.9+26.2.jar`
+* `collapsible-game-rules-1.0.9+26.2-sources.jar`
+
+---
+
+## 📜 Build Configuration (`build.gradle`)
+
+```groovy
+plugins {
+    id 'net.fabricmc.fabric-loom' version '1.15.2'
+    id 'maven-publish'
+    id 'me.modmuss50.mod-publish-plugin' version '2.0.0-beta.1'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    mavenLocal()
+    maven { url = "https://maven.fabricmc.net/" }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+    implementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    
+    // Standalone Library (No JiJ)
+    implementation "net.dasik.social:dasik-library:${project.dasik_library_version}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 25
+}
+
+loom {
+    mixin {
+        defaultRefmapName = "collapsible-game-rules-refmap.json"
+    }
+}
+```
+
+---
+
+## 🔒 Runtime Safety: `ModVersionGuard`
+
+All builds include zero-dependency runtime classloader verification:
+
+```java
+public class CollapsibleGameRulesFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
+        ModVersionGuard.checkClass("Collapsible Game Rules", "net.minecraft.world.level.gamerules.GameRules");
+        
+        // Hard Dependency Enforcement
+        if (!FabricLoader.getInstance().isModLoaded("dasik-library")) {
+            throw new RuntimeException("Collapsible Game Rules requires DasikLibrary to function. Please install it.");
+        }
+    }
+}
+```
+
+---
+
+## 🚀 Publishing Pipeline
+
+The project integrates `me.modmuss50.mod-publish-plugin` for automated multi-platform release publishing:
+
+```bash
+./gradlew publishMods
+```
+
+Target distribution endpoints:
+* **Modrinth**: Project ID `lObgjyJl`
+* **CurseForge**: Project ID `1468932`
+* **GitHub Releases**: `Rifaditya/Collapsible-Game-Rule-Screen`
+
+---
+
+## 🔗 Related Documentation
+
+* [[Overview & Home|Home]]
+* [[Version Compatibility Matrix|Version-Compatibility]]
+* [[Architecture & Mixin Subsystem|Architecture-and-Mixins]]
+* [[DasikLibrary API Integration|API-and-Library-Integration]]
