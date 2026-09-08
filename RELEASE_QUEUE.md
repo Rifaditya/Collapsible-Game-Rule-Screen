@@ -35,7 +35,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 - [ ] **`1.0.15+26.2`** - Visual modified-from-default rule counters with golden badge indicators and screen reader narration.
 - [ ] **`1.0.14+26.2`** - Left-aligned category titles and right-anchored count badges with card hover highlight.
 - [ ] **`1.0.13+26.2`** - Toggle-path entry reuse and view splice eliminating GC churn on list rebuilds.
-- [ ] **`1.0.12+26.2`** - Render-path zero-allocation caching (`expandedDisplay`/`collapsedDisplay` and `GlobalActionsRuleEntry` static labels).
+- [x] **`1.0.12+26.2`** - Render-path zero-allocation caching (`expandedDisplay`/`collapsedDisplay` and `GlobalActionsRuleEntry` static labels).
 - [x] **`1.0.11+26.2`** - Single-pass Mixin ingestion eliminating O(N²) nested scans and zero-allocation category toggling.
 - [x] **`1.0.10+26.2`** - Category Data Model (`CategoryGroup`), linear `CategoryTreeBuilder`, and JUnit 5 test harness.
 - [x] **`1.0.9+26.2`** (2026-08-04) - Fixed startup crash by removing obsolete `BooleanRuleEntryMixin` from `mixins.json`.
