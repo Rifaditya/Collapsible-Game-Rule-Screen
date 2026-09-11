@@ -1,11 +1,11 @@
 ## [1.0.45+26.2]
 - **Mixin Package Isolation & Duck Interface Relocation (`CategoryRuleEntryDuck`)**: Relocated the category duck interface out of the mixin package to `net.instantgratification.collapsiblegamerules.duck.CategoryRuleEntryDuck`. This cleanly resolves Mixin's `IllegalClassLoadError` on Minecraft 26.3 caused by direct class reference within the designated mixin package boundary.
 
-## [1.0.44+26.2]
-- **Universal Multi-Version Category Label Mixin (`CategoryRuleEntryMixin`)**: Replaced fragile field accessor `@Accessor("label")` with a universal duck interface `CategoryRuleEntryAccessor` and constructor injection. This dynamically captures `Component label` on `<init>` across all modern versions, preventing classloading crashes and ensuring seamless runtime compatibility with Minecraft 26.2, 26.3, and beyond.
+## [1.0.44+26.2] (CRASHING ON 26.3 - SUPERSEDED)
+- **Universal Multi-Version Category Label Mixin (`CategoryRuleEntryMixin`)**: Replaced fragile field accessor `@Accessor("label")` with a universal duck interface `CategoryRuleEntryAccessor` and constructor injection. *(Note: Superseded by 1.0.45+26.2 due to `IllegalClassLoadError` on Minecraft 26.3 caused by duck interface placement in mixin package).*
 
-## [1.0.43+26.2]
-- **In-Game Creator Support Quick-Action (`GlobalActionsRuleEntry`)**: Integrated a compact `☕` creator support button plate in the global actions bar atop the GameRules screen, directly linking to `https://ko-fi.com/dasikigaijin` via `DasikSupportHelper.openKofi(...)` with safe browser opening and translatable hover tooltip.
+## [1.0.43+26.2] (CRASHING ON 26.3 - SUPERSEDED)
+- **In-Game Creator Support Quick-Action (`GlobalActionsRuleEntry`)**: Integrated a compact `☕` creator support button plate in the global actions bar atop the GameRules screen, directly linking to `https://ko-fi.com/dasikigaijin` via `DasikSupportHelper.openKofi(...)` with safe browser opening and translatable hover tooltip. *(Note: Superseded by 1.0.45+26.2; crashes on Minecraft 26.3 due to missing `label` field in Mojang's internal `CategoryRuleEntry` refactor).*
 - **Dependency Alignment**: Bumped `dasik-library` dependency to `1.8.37` to leverage centralized creator support and localization utilities.
 
 ## [1.0.42+26.2]
