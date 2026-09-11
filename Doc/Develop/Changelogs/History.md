@@ -1,5 +1,12 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.44+26.2]
+- **Universal Multi-Version Category Label Mixin (`CategoryRuleEntryMixin`)**: Replaced fragile field accessor `@Accessor("label")` with a universal duck interface `CategoryRuleEntryAccessor` and constructor injection. This dynamically captures `Component label` on `<init>` across all modern versions, preventing classloading crashes and ensuring seamless runtime compatibility with Minecraft 26.2, 26.3, and beyond.
+
+## [1.0.43+26.2]
+- **In-Game Creator Support Quick-Action (`GlobalActionsRuleEntry`)**: Integrated a compact `☕` creator support button plate in the global actions bar atop the GameRules screen, directly linking to `https://ko-fi.com/dasikigaijin` via `DasikSupportHelper.openKofi(...)` with safe browser opening and translatable hover tooltip.
+- **Dependency Alignment**: Bumped `dasik-library` dependency to `1.8.37` to leverage centralized creator support and localization utilities.
+
 ## [1.0.41+26.2]
 - **Category Reset Tooltip Localization (`AbstractGameRulesScreenRuleListMixin`)**: Replaced hardcoded `Component.literal("Reset category to defaults")` with `Component.translatable("gui.collapsible-game-rules.reset_category")` on the `↺` reset icon plate.
 - **Language Key Parity (`en_us.json`)**: Registered translation mapping `"gui.collapsible-game-rules.reset_category": "Reset category to defaults"`.
