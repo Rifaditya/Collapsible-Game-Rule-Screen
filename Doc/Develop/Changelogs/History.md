@@ -1,5 +1,8 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.45+26.2]
+- **Mixin Package Isolation & Duck Interface Relocation (`CategoryRuleEntryDuck`)**: Relocated the category duck interface out of the mixin package to `net.instantgratification.collapsiblegamerules.duck.CategoryRuleEntryDuck`. This cleanly resolves Mixin's `IllegalClassLoadError` on Minecraft 26.3 caused by direct class reference within the designated mixin package boundary.
+
 ## [1.0.44+26.2]
 - **Universal Multi-Version Category Label Mixin (`CategoryRuleEntryMixin`)**: Replaced fragile field accessor `@Accessor("label")` with a universal duck interface `CategoryRuleEntryAccessor` and constructor injection. This dynamically captures `Component label` on `<init>` across all modern versions, preventing classloading crashes and ensuring seamless runtime compatibility with Minecraft 26.2, 26.3, and beyond.
 

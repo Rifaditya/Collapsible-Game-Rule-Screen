@@ -1,7 +1,7 @@
 // Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.instantgratification.collapsiblegamerules.model;
 
-import net.instantgratification.collapsiblegamerules.mixin.CategoryRuleEntryAccessor;
+import net.instantgratification.collapsiblegamerules.duck.CategoryRuleEntryDuck;
 import net.instantgratification.collapsiblegamerules.util.CategoryPrettifier;
 import net.instantgratification.collapsiblegamerules.util.DasikMetadataHelper;
 import net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen;
@@ -44,7 +44,7 @@ public final class CategoryTreeBuilder {
                     currentRules = new ArrayList<>();
                 }
 
-                Component label = ((CategoryRuleEntryAccessor) entry).collapsible_game_rules$getLabel();
+                Component label = ((CategoryRuleEntryDuck) entry).collapsible_game_rules$getLabel();
                 String categoryKey = label.getString();
                 String persistenceKey = categoryKey;
 

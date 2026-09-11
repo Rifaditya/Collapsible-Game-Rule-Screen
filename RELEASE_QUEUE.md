@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.45+26.2`** - Mixin package isolation and duck interface relocation to dedicated `duck` package (`CategoryRuleEntryDuck`).
 - [ ] **`1.0.44+26.2`** - Universal multi-version category label mixin with duck interface constructor injection (`CategoryRuleEntryMixin`).
 - [ ] **`1.0.43+26.2`** - In-game creator support quick-action plate and DasikLibrary dependency alignment (`GlobalActionsRuleEntry`).
 - [ ] **`1.0.42+26.2`** - ModMenu native creator support metadata and Ko-fi links (`fabric.mod.json`).
