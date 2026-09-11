@@ -35,7 +35,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 - [ ] **`1.0.18+26.2`** - Global action toolbar symmetrical card geometry, 6px gap, centered directional labels, and category-matching accents.
 - [ ] **`1.0.17+26.2`** - Horizontal marquee scrolling text on hover for long category titles with scissor clipping.
 - [ ] **`1.0.16+26.2`** - Fixed long category title collision with responsive ellipsis truncation and full-title hover tooltip.
-- [ ] **`1.0.15+26.2`** - Visual modified-from-default rule counters with golden badge indicators and screen reader narration.
+- [x] **`1.0.15+26.2`** - Visual modified-from-default rule counters with golden badge indicators and screen reader narration.
 - [x] **`1.0.14+26.2`** - Left-aligned category titles and right-anchored count badges with card hover highlight.
 - [x] **`1.0.13+26.2`** - Toggle-path entry reuse and view splice eliminating GC churn on list rebuilds.
 - [x] **`1.0.12+26.2`** - Render-path zero-allocation caching (`expandedDisplay`/`collapsedDisplay` and `GlobalActionsRuleEntry` static labels).
