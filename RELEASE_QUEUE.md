@@ -30,7 +30,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 - [ ] **`1.0.23+26.2`** (SKIP - BUGGED) - Bounded integer slider metadata & helper registry (superseded by 1.0.24+26.2).
 - [ ] **`1.0.22+26.2`** (SKIP - BUGGED) - Wired BooleanToggleWidget into BooleanRuleEntry (superseded by 1.0.24+26.2).
 - [ ] **`1.0.21+26.2`** - Modernized BooleanToggleWidget with high-contrast emerald/ruby pill aesthetics, border lines, and sound feedback.
-- [ ] **`1.0.20+26.2`** - Global action immediate config persistence and enhanced screen reader usage narration.
+- [x] **`1.0.20+26.2`** - Global action immediate config persistence and enhanced screen reader usage narration.
 - [x] **`1.0.19+26.2`** - Global action bounded hitbox input validation, UI button click audio, and aligned hairline footer.
 - [x] **`1.0.18+26.2`** - Global action toolbar symmetrical card geometry, 6px gap, centered directional labels, and category-matching accents.
 - [x] **`1.0.17+26.2`** - Horizontal marquee scrolling text on hover for long category titles with scissor clipping.
