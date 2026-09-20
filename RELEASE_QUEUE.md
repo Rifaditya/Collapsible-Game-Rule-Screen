@@ -24,7 +24,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 - [ ] **`1.0.29+26.2`** - Category reset engine and value reversion checks (`CategoryResetHelper` + 100% unit tests).
 - [ ] **`1.0.28+26.2`** - Rule tooltip & description search query substring highlighting (`RuleEntryAccessor` + `highlightSequence`).
 - [ ] **`1.0.27+26.2`** - Rule label search query substring highlighting (`GameRuleEntryMixin` + `SearchHighlightHelper`).
-- [ ] **`1.0.26+26.2`** - Search highlight engine (`SearchHighlightHelper`) with styled yellow span partitioning and 100% test coverage.
+- [x] **`1.0.26+26.2`** - Search highlight engine (`SearchHighlightHelper`) with styled yellow span partitioning and 100% test coverage.
 - [x] **`1.0.25+26.2`** - Live search category match count badges (`[● X matches]`) and dynamic accessibility narration.
 - [x] **`1.0.24+26.2`** - Wired IntegerSliderWidget into IntegerRuleEntry for bounded rules with graceful unbounded fallback (includes critical Mixin superclass shadow fix).
 - [x] **`1.0.23+26.2`** (SKIP - BUGGED) - Bounded integer slider metadata & helper registry (superseded by 1.0.24+26.2).
