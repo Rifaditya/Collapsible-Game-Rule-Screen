@@ -1,7 +1,6 @@
 plugins {
     id 'net.fabricmc.fabric-loom' version '1.15.2'
     id 'maven-publish'
-    id 'me.modmuss50.mod-publish-plugin' version '2.0.0-beta.1'
 }
 
 version = project.mod_version
@@ -78,45 +77,6 @@ jar {
     }
 }
 
-publishMods {
-    file = jar.archiveFile
-    additionalFiles.from(sourcesJar.archiveFile)
-    changelog = "Build ${project.mod_version}: Core Alignment & Hard Dependency Enforcement"
-    type = STABLE
-    modLoaders.add("fabric")
-
-    modrinth {
-        projectId = project.modrinth_id
-        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add(project.minecraft_version)
-        requires {
-            slug = "fabric-api"
-        }
-        requires {
-            slug = "dasik-library"
-        }
-    }
-
-    curseforge {
-        projectId = project.curseforge_id
-        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        minecraftVersions.add(project.minecraft_version)
-        requires {
-            slug = "fabric-api"
-        }
-        requires {
-            slug = "dasik-libary"
-        }
-    }
-
-    github {
-        repository = project.github_repo
-        accessToken = providers.environmentVariable("GITHUB_TOKEN")
-        commitish = providers.environmentVariable("GITHUB_SHA").orElse("main")
-        tagName = project.mod_version
-    }
-}
-
 afterEvaluate {
     def targetJarTask = tasks.findByName('remapJar') ?: tasks.findByName('jar')
     if (targetJarTask != null) {
@@ -185,3 +145,5 @@ afterEvaluate {
         build.finalizedBy(archiveTask)
     }
 }
+
+

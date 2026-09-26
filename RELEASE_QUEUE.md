@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.46+26.3`** - Official Minecraft 26.3 release port, InputConstants navigation alignment, and DasikLibrary 1.9.2 integration.
 - [ ] **`1.0.45+26.2`** - Mixin package isolation and duck interface relocation to dedicated `duck` package (`CategoryRuleEntryDuck`).
 - [ ] **`1.0.44+26.2`** (SKIP - BUGGED ON 26.3) - Universal multi-version category label mixin with duck interface constructor injection (`CategoryRuleEntryMixin`) (superseded by 1.0.45+26.2; caused IllegalClassLoadError on 26.3 due to mixin package boundary).
 - [ ] **`1.0.43+26.2`** (SKIP - BUGGED ON 26.3) - In-game creator support quick-action plate and DasikLibrary dependency alignment (`GlobalActionsRuleEntry`) (superseded by 1.0.45+26.2; crashed on 26.3 due to missing label field accessor).
@@ -18,7 +19,6 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 - [ ] **`1.0.35+26.2`** - Corrupted config JSON recovery, path abstraction, and test suite (`GameRuleStateConfig` + `GameRuleStateConfigTest`).
 - [ ] **`1.0.34+26.2`** - Category Prettifier unit test suite and enhanced multi-word delimiter capitalization (`CategoryPrettifierTest`).
 - [ ] **`1.0.33+26.2`** - Responsive category title clearance tuning and scissor boundary optimization (`CollapsibleCategoryRuleEntry`).
-- [ ] **`1.0.32+26.2`** - Compact 14x14 category reset icon button (`↺`) with hover tooltip, reclaiming ~34px horizontal clearance to eliminate title truncation.
 - [x] **`1.0.31+26.2`** - Category reset input dispatch, dynamic live modification tracking, sound, and persistence (`CollapsibleCategoryRuleEntry`).
 - [x] **`1.0.30+26.2`** - Category reset button UI plate and visual inertia (`CollapsibleCategoryRuleEntry`).
 - [x] **`1.0.29+26.2`** - Category reset engine and value reversion checks (`CategoryResetHelper` + 100% unit tests).
@@ -27,8 +27,13 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 - [x] **`1.0.26+26.2`** - Search highlight engine (`SearchHighlightHelper`) with styled yellow span partitioning and 100% test coverage.
 - [x] **`1.0.25+26.2`** - Live search category match count badges (`[● X matches]`) and dynamic accessibility narration.
 - [x] **`1.0.24+26.2`** - Wired IntegerSliderWidget into IntegerRuleEntry for bounded rules with graceful unbounded fallback (includes critical Mixin superclass shadow fix).
+<<<<<<< HEAD
 - [x] **`1.0.23+26.2`** (SKIP - BUGGED) - Bounded integer slider metadata & helper registry (superseded by 1.0.24+26.2).
 - [x] **`1.0.22+26.2`** (SKIP - BUGGED) - Wired BooleanToggleWidget into BooleanRuleEntry (superseded by 1.0.24+26.2).
+=======
+- [ ] **`1.0.23+26.2`** (SKIP - BUGGED) - Bounded integer slider metadata & helper registry (superseded by 1.0.24+26.2).
+- [ ] **`1.0.22+26.2`** (SKIP - BUGGED) - Wired BooleanToggleWidget into BooleanRuleEntry (superseded by 1.0.24+26.2).
+>>>>>>> d1260a7 (feat(26.3): port Collapsible Game Rules to Minecraft 26.3 stable release (v1.0.46+26.3))
 - [x] **`1.0.21+26.2`** - Modernized BooleanToggleWidget with high-contrast emerald/ruby pill aesthetics, border lines, and sound feedback.
 - [x] **`1.0.20+26.2`** - Global action immediate config persistence and enhanced screen reader usage narration.
 - [x] **`1.0.19+26.2`** - Global action bounded hitbox input validation, UI button click audio, and aligned hairline footer.

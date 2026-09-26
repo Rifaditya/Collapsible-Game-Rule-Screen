@@ -360,17 +360,17 @@ public abstract class AbstractGameRulesScreenRuleListMixin
         @Override
         public boolean keyPressed(KeyEvent event) {
             int keyCode = event.key();
-            if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER || keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_KP_ENTER || keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE) {
+            if (keyCode == com.mojang.blaze3d.platform.InputConstants.KEY_RETURN || keyCode == com.mojang.blaze3d.platform.InputConstants.KEY_NUMPADENTER || keyCode == com.mojang.blaze3d.platform.InputConstants.KEY_SPACE) {
                 this.toggleAction.run();
                 net.minecraft.client.Minecraft.getInstance().getSoundManager()
                         .play(net.minecraft.client.resources.sounds.SimpleSoundInstance
                                 .forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
-            } else if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT && this.expanded) {
+            } else if (keyCode == com.mojang.blaze3d.platform.InputConstants.KEY_LEFT && this.expanded) {
                 this.toggleAction.run();
                 net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
-            } else if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT && !this.expanded) {
+            } else if (keyCode == com.mojang.blaze3d.platform.InputConstants.KEY_RIGHT && !this.expanded) {
                 this.toggleAction.run();
                 net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;

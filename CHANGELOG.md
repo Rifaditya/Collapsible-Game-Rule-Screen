@@ -1,3 +1,8 @@
+## [1.0.46+26.3]
+- **Official Minecraft 26.3 Release Compatibility**: Full native support for the stable Minecraft 26.3 release runtime.
+- **Modern Input & Keyboard Navigation Architecture**: Updated key navigation to align natively with Minecraft 26.3's unified input subsystem for keyboard shortcuts and arrow-key category expanding/collapsing.
+- **Universal Dasik Library 1.9.2 Alignment**: Updated dependencies to consume the latest DasikLibrary APIs.
+
 ## [1.0.45+26.2]
 - **Mixin Package Isolation & Duck Interface Relocation (`CategoryRuleEntryDuck`)**: Relocated the category duck interface out of the mixin package to `net.instantgratification.collapsiblegamerules.duck.CategoryRuleEntryDuck`. This cleanly resolves Mixin's `IllegalClassLoadError` on Minecraft 26.3 caused by direct class reference within the designated mixin package boundary.
 
