@@ -59,8 +59,8 @@ releases/
 *.log.tar.zstd
 # Build Logs
 build_log.txt
-build_log_utf8.txt
-*log*
+*.log
+!BACKLOG.md
 
 # Marketing / Hype exclusion
 Doc/Marketing/
