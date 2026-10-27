@@ -4,24 +4,24 @@
 - **Universal Dasik Library 1.9.2 Alignment**: Updated dependencies to consume the latest DasikLibrary APIs.
 
 ## [1.0.45+26.2]
-- **Mixin Package Isolation & Duck Interface Relocation (`CategoryRuleEntryDuck`)**: Relocated the category duck interface out of the mixin package to `net.instantgratification.collapsiblegamerules.duck.CategoryRuleEntryDuck`. This cleanly resolves Mixin's `IllegalClassLoadError` on Minecraft 26.3 caused by direct class reference within the designated mixin package boundary.
+- **Mixin Package Isolation & Duck Interface Relocation** (`CategoryRuleEntryDuck`): Relocated the category duck interface out of the mixin package to `net.instantgratification.collapsiblegamerules.duck.CategoryRuleEntryDuck`. This cleanly resolves Mixin's `IllegalClassLoadError` on Minecraft 26.3 caused by direct class reference within the designated mixin package boundary.
 
 ## [1.0.44+26.2] (CRASHING ON 26.3 - SUPERSEDED)
-- **Universal Multi-Version Category Label Mixin (`CategoryRuleEntryMixin`)**: Replaced fragile field accessor `@Accessor("label")` with a universal duck interface `CategoryRuleEntryAccessor` and constructor injection. *(Note: Superseded by 1.0.45+26.2 due to `IllegalClassLoadError` on Minecraft 26.3 caused by duck interface placement in mixin package).*
+- **Universal Multi-Version Category Label Mixin** (`CategoryRuleEntryMixin`): Replaced fragile field accessor `@Accessor("label")` with a universal duck interface `CategoryRuleEntryAccessor` and constructor injection. *(Note: Superseded by 1.0.45+26.2 due to `IllegalClassLoadError` on Minecraft 26.3 caused by duck interface placement in mixin package).*
 
 ## [1.0.43+26.2] (CRASHING ON 26.3 - SUPERSEDED)
-- **In-Game Creator Support Quick-Action (`GlobalActionsRuleEntry`)**: Integrated a compact `☕` creator support button plate in the global actions bar atop the GameRules screen, directly linking to `https://ko-fi.com/dasikigaijin` via `DasikSupportHelper.openKofi(...)` with safe browser opening and translatable hover tooltip. *(Note: Superseded by 1.0.45+26.2; crashes on Minecraft 26.3 due to missing `label` field in Mojang's internal `CategoryRuleEntry` refactor).*
+- **In-Game Creator Support Quick-Action** (`GlobalActionsRuleEntry`): Integrated a compact `☕` creator support button plate in the global actions bar atop the GameRules screen, directly linking to `https://ko-fi.com/dasikigaijin` via `DasikSupportHelper.openKofi(...)` with safe browser opening and translatable hover tooltip. *(Note: Superseded by 1.0.45+26.2; crashes on Minecraft 26.3 due to missing `label` field in Mojang's internal `CategoryRuleEntry` refactor).*
 - **Dependency Alignment**: Bumped `dasik-library` dependency to `1.8.37` to leverage centralized creator support and localization utilities.
 
 ## [1.0.42+26.2]
-- **ModMenu Native Creator Support Metadata (`fabric.mod.json`)**: Registered official donation and Ko-fi links (`modmenu.donate` and `modmenu.kofi`) pointing to `https://ko-fi.com/dasikigaijin`, enabling direct creator tipping for players browsing mods inside ModMenu.
+- **ModMenu Native Creator Support Metadata** (`fabric.mod.json`): Registered official donation and Ko-fi links (`modmenu.donate` and `modmenu.kofi`) pointing to `https://ko-fi.com/dasikigaijin`, enabling direct creator tipping for players browsing mods inside ModMenu.
 
 ## [1.0.41+26.2]
-- **Category Reset Tooltip Localization (`AbstractGameRulesScreenRuleListMixin`)**: Migrated hardcoded `Component.literal` tooltip on the `↺` reset button plate to `Component.translatable("gui.collapsible-game-rules.reset_category")`.
-- **Translation Suite Expansion (`en_us.json`)**: Added `"gui.collapsible-game-rules.reset_category": "Reset category to defaults"`, enabling complete localization across community resource packs and translation updates.
+- **Category Reset Tooltip Localization** (`AbstractGameRulesScreenRuleListMixin`): Migrated hardcoded `Component.literal` tooltip on the `↺` reset button plate to `Component.translatable("gui.collapsible-game-rules.reset_category")`.
+- **Translation Suite Expansion** (`en_us.json`): Added `"gui.collapsible-game-rules.reset_category": "Reset category to defaults"`, enabling complete localization across community resource packs and translation updates.
 
 ## [1.0.40+26.2]
-- **Platform Manifest & Git Remote Parity (`fabric.mod.json`)**: Configured the official Modrinth metadata block (`custom.modrinth.projectId = "lObgjyJl"`, `custom.modrinth.slug = "collapsible-gamerules"`).
+- **Platform Manifest & Git Remote Parity** (`fabric.mod.json`): Configured the official Modrinth metadata block (`custom.modrinth.projectId = "lObgjyJl"`, `custom.modrinth.slug = "collapsible-gamerules"`).
 - **Synchronized Contact URLs**: Aligned `contact.sources` and `contact.issues` directly with the active repository remote (`https://github.com/Rifaditya/Collapsible-Game-Rule-Screen`), resolving stale repository references.
 - **Dedicated Homepage Link**: Populated `contact.homepage` with the canonical Modrinth project page (`https://modrinth.com/mod/collapsible-gamerules`).
 
@@ -30,58 +30,58 @@
 - **Codebase Cleanliness & Compliance**: Verified 100% compliance across all 30 source and test classes with zero runtime impact.
 
 ## [1.0.38+26.2]
-- **Widen List to Match Footer Buttons (`AbstractGameRulesScreenRuleListMixin`)**: Overrode `RuleList.getRowWidth()` from 220px to 308px (+88px width), perfectly aligning the left edge of category cards with the "Done" button and the right edge with the "Cancel" button.
+- **Widen List to Match Footer Buttons** (`AbstractGameRulesScreenRuleListMixin`): Overrode `RuleList.getRowWidth()` from 220px to 308px (+88px width), perfectly aligning the left edge of category cards with the "Done" button and the right edge with the "Cancel" button.
 - **Harmonized Card Margins & Alignment**: Aligned "Expand All" / "Collapse All" global toolbar cards and category header plates flush with entry bounds (`this.getX()` to `this.getX() + this.getWidth()`), creating a unified, symmetrical vertical column.
-- **Expanded Rule Label Splitting Width (`GameRuleEntryMixin`)**: Widened rule title text splitting from 170px to 250px in both search-highlighted and default states, maximizing title visibility and minimizing multi-line wrapping.
+- **Expanded Rule Label Splitting Width** (`GameRuleEntryMixin`): Widened rule title text splitting from 170px to 250px in both search-highlighted and default states, maximizing title visibility and minimizing multi-line wrapping.
 
 ## [1.0.37+26.2]
-- **Scroll Jump Prevention on Collapse (`AbstractGameRulesScreenRuleListMixin`)**: Added dynamic scroll boundary recalculation with `refreshScrollAmount()`, eliminating abrupt viewport jerks when collapsing categories with large rule lists (e.g. Vanilla with 104 rules).
+- **Scroll Jump Prevention on Collapse** (`AbstractGameRulesScreenRuleListMixin`): Added dynamic scroll boundary recalculation with `refreshScrollAmount()`, eliminating abrupt viewport jerks when collapsing categories with large rule lists (e.g. Vanilla with 104 rules).
 - **Targeted Category Header Anchoring**: Upon toggling a category closed or open, anchored the player's viewport to the clicked category card (`scrollToEntry(clickedEntry)`), ensuring it remains visible and focused.
 - **Smooth Global Collapse Reset**: Reset list scroll offset directly to `0.0` upon triggering "Collapse All", landing cleanly at the top of the folded category cards.
 
 ## [1.0.36+26.2]
-- **Extensible Versioned Config Schema (`GameRuleStateConfig`)**: Upgraded persistence format from raw JSON array to an extensible versioned JSON schema (`{"schemaVersion": 1, "expandedCategories": [...]}`).
+- **Extensible Versioned Config Schema** (`GameRuleStateConfig`): Upgraded persistence format from raw JSON array to an extensible versioned JSON schema (`{"schemaVersion": 1, "expandedCategories": [...]}`).
 - **Seamless Legacy Config Migration**: Implemented dual-mode parser detecting legacy raw string arrays on load, automatically migrating them to the versioned schema format without data loss.
-- **Automated Schema Test Coverage (`GameRuleStateConfigTest`)**: Added automated JUnit 5 tests asserting schema version 1 persistence output, legacy array migration, and modern schema loading.
+- **Automated Schema Test Coverage** (`GameRuleStateConfigTest`): Added automated JUnit 5 tests asserting schema version 1 persistence output, legacy array migration, and modern schema loading.
 
 ## [1.0.35+26.2]
-- **Corrupted Config Recovery (`GameRuleStateConfig`)**: Added comprehensive error recovery catching `JsonSyntaxException` alongside `IOException`. If a user manually edits and corrupts the configuration JSON file, the mod logs a clean warning and cleanly restores safe default state without failing or crashing.
+- **Corrupted Config Recovery** (`GameRuleStateConfig`): Added comprehensive error recovery catching `JsonSyntaxException` alongside `IOException`. If a user manually edits and corrupts the configuration JSON file, the mod logs a clean warning and cleanly restores safe default state without failing or crashing.
 - **Config I/O Path Abstraction**: Introduced path-parameterized `loadFromPath()` and `saveToPath()` alongside lazy `getDefaultConfigFile()` fallback for safe headless testing environments.
-- **Config Unit Test Suite (`GameRuleStateConfigTest`)**: Created automated test suite asserting save/load cycles, missing file tolerance, corrupted JSON syntax recovery, and dirty tracking.
+- **Config Unit Test Suite** (`GameRuleStateConfigTest`): Created automated test suite asserting save/load cycles, missing file tolerance, corrupted JSON syntax recovery, and dirty tracking.
 
 ## [1.0.34+26.2]
-- **Category Prettifier Automated Test Suite (`CategoryPrettifierTest`)**: Added complete automated JUnit 5 test coverage asserting translation key parsing, namespace stripping, redundant path deduplication, and mixed casing/delimiters.
-- **Enhanced Delimiter Parsing (`CategoryPrettifier`)**: Treated whitespace alongside hyphens and underscores during word splitting, ensuring multi-token compound categories are capitalized consistently across every word.
+- **Category Prettifier Automated Test Suite** (`CategoryPrettifierTest`): Added complete automated JUnit 5 test coverage asserting translation key parsing, namespace stripping, redundant path deduplication, and mixed casing/delimiters.
+- **Enhanced Delimiter Parsing** (`CategoryPrettifier`): Treated whitespace alongside hyphens and underscores during word splitting, ensuring multi-token compound categories are capitalized consistently across every word.
 
 ## [1.0.33+26.2]
-- **Responsive Category Title Clearance Tuning (`CollapsibleCategoryRuleEntry`)**: Refined dynamic clearance bounds between the category title, the 14x14 reset button, and metric count badge (`titleRight = resetX - 4`), giving category titles additional pixel clearance while preserving crisp visual separation.
+- **Responsive Category Title Clearance Tuning** (`CollapsibleCategoryRuleEntry`): Refined dynamic clearance bounds between the category title, the 14x14 reset button, and metric count badge (`titleRight = resetX - 4`), giving category titles additional pixel clearance while preserving crisp visual separation.
 - **Scissor Boundary Optimization**: Aligned hardware scissor clipping boundaries with updated clearance calculations to ensure seamless marquee scrolling text on hover without edge artifacting.
 
 ## [1.0.32+26.2]
-- **Compact Category Reset Icon (`CollapsibleCategoryRuleEntry`)**: Refactored the text-padded `↺ Reset` button into a sleek, minimalist 14x14 icon-only plate (`↺`), reclaiming **~34px of horizontal clearance** to eliminate aggressive category title truncation.
+- **Compact Category Reset Icon** (`CollapsibleCategoryRuleEntry`): Refactored the text-padded `↺ Reset` button into a sleek, minimalist 14x14 icon-only plate (`↺`), reclaiming **~34px of horizontal clearance** to eliminate aggressive category title truncation.
 - **Interactive Hover Tooltip**: Added an interactive tooltip (`Reset category to defaults`) appearing dynamically when hovering over the `↺` button box.
 - **Precise Hitbox Input & Centering**: Centered the icon inside the 14x14 geometry and aligned mouse click hitboxes strictly within the compact square plate.
 - **Full Verbal A11y Narration**: Retained comprehensive verbal screen reader narration (`NarratedElementType.HINT`) so accessibility tools announce the full action context.
 
 ## [1.0.31+26.2]
-- **Category Reset Input Dispatch (`CollapsibleCategoryRuleEntry`)**: Wired mouse click hitbox detection on the `↺ Reset` button plate, reverting all modified rules within the category back to their default values in-place without screen stutter.
+- **Category Reset Input Dispatch** (`CollapsibleCategoryRuleEntry`): Wired mouse click hitbox detection on the `↺ Reset` button plate, reverting all modified rules within the category back to their default values in-place without screen stutter.
 - **Dynamic Live Modification Tracking**: Integrated `ResettableRuleEntry` interface across `BooleanRuleEntryMixin` and `IntegerRuleEntryMixin`, enabling real-time detection of modified rules as players toggle switches or drag sliders.
 - **Live Reversion & Widget Synchronization**: Instantly syncs slider positions, toggle switches, text input boxes, and underlying `GameRules` to default values upon reset, dynamically clearing the `↺ Reset` button and restoring `[X rules]` badges.
 - **Immediate Audio Feedback & Persistence**: Plays `SoundEvents.UI_BUTTON_CLICK` at pitch `1.0F`, flushes category state via `GameRuleStateConfig.saveIfDirty()`, and enriches screen reader narration with reset action hints.
 
 ## [1.0.30+26.2]
-- **Category Reset Button UI (`CollapsibleCategoryRuleEntry`)**: Rendered a subtle, elegant `↺ Reset` button plate in warm gold left of the rule count badge when a category contains modified rules (`modifiedCount > 0`).
+- **Category Reset Button UI** (`CollapsibleCategoryRuleEntry`): Rendered a subtle, elegant `↺ Reset` button plate in warm gold left of the rule count badge when a category contains modified rules (`modifiedCount > 0`).
 - **Dynamic Title Clearance & Layout**: Automatically offsets category title clearance to guarantee zero visual collisions between expanding titles, marquee scrolling text, and the reset button.
 - **Visual Hover Illumination & Inert Fallthrough**: Added smooth glassmorphic plate hover highlights with border framing (`0x44FFAA00`), keeping clicks visually inert in preparation for action wiring in Step 18.
 
 ## [1.0.29+26.2]
-- **Category Reset Engine (`CategoryResetHelper`)**: Implemented headless logic for comparing current game rule values (boolean, integer, and serialized string) against vanilla defaults to accurately detect category modification state.
+- **Category Reset Engine** (`CategoryResetHelper`): Implemented headless logic for comparing current game rule values (boolean, integer, and serialized string) against vanilla defaults to accurately detect category modification state.
 - **Zero-Allocation State Evaluation**: Designed pure functional comparison checks and count boundary clamping (`clampModifiedCount`) to maintain 0B heap allocation on UI tick paths.
 - **Comprehensive Automated Tests**: Added complete JUnit 5 test suite in `CategoryResetHelperTest` covering boolean/integer deviations, trimmed strings, null-safe equality, and boundary clamping.
 
 ## [1.0.28+26.2]
 - **Rule Tooltip & Description Search Highlighting**: Extended search highlighting to rule tooltips and description text via `RuleEntryAccessor`, allowing players to instantly see why a rule matched even when the matched query resides in its description.
-- **Visual Sequence Highlighting (`highlightSequence`)**: Added character stream reconstruction and span partitioning to `SearchHighlightHelper` for `FormattedCharSequence` instances with zero-allocation fast-pathing on non-matches.
+- **Visual Sequence Highlighting** (`highlightSequence`): Added character stream reconstruction and span partitioning to `SearchHighlightHelper` for `FormattedCharSequence` instances with zero-allocation fast-pathing on non-matches.
 - **RuleEntry Mutator Accessor**: Implemented `RuleEntryAccessor` exposing safe getters and `@Mutable` setters for `AbstractGameRulesScreen$RuleEntry.tooltip`.
 
 ## [1.0.27+26.2]
@@ -100,11 +100,11 @@
 - **Zero-Allocation Data Model Caching**: Integrated `withMatchCount(int)` and `createMatchBadge(int)` within immutable `CategoryGroup` records, pre-caching visual components during list population to maintain 0B/frame heap allocation during active search scrolling.
 
 ## [1.0.24+26.2]
-- **Interactive Integer Sliders (`IntegerRuleEntryMixin`)**: Replaced vanilla text edit boxes with interactive `IntegerSliderWidget` for bounded integer game rules (`random_tick_speed`, `respawn_radius`, `players_sleeping_percentage`, `max_entity_cramming`, etc.).
+- **Interactive Integer Sliders** (`IntegerRuleEntryMixin`): Replaced vanilla text edit boxes with interactive `IntegerSliderWidget` for bounded integer game rules (`random_tick_speed`, `respawn_radius`, `players_sleeping_percentage`, `max_entity_cramming`, etc.).
 - **Graceful Unbounded Fallback**: Automatically preserves vanilla `EditBox` for unbounded rules (`max_command_sequence_length`, `max_command_forks`, etc.), ensuring full player flexibility for arbitrary numeric entry.
 - **Discrete Step Snapping & Value Sync**: Snaps slider position and handle cleanly to configured step intervals (e.g. 5% increments for `players_sleeping_percentage`), seamlessly updating vanilla game rules via `input.setValue()`.
 - **Bounded Integer Slider Metadata & Helper Registry**: Created `GameRuleSliderHelper` defining safe numerical bounds, step intervals, and unit formatters for standard vanilla integer rules with comprehensive automated JUnit 5 test coverage.
-- **Modern Boolean Toggle Switch Hook (`BooleanRuleEntryMixin`)**: Wired `BooleanToggleWidget` into `BooleanRuleEntry`, replacing vanilla checkboxes with the modern emerald/ruby toggle switch across all boolean game rules with precision right-alignment (`getContentRight() - 45`).
+- **Modern Boolean Toggle Switch Hook** (`BooleanRuleEntryMixin`): Wired `BooleanToggleWidget` into `BooleanRuleEntry`, replacing vanilla checkboxes with the modern emerald/ruby toggle switch across all boolean game rules with precision right-alignment (`getContentRight() - 45`).
 - **Superclass Shadow Mixin Fix**: Eliminated superclass `@Shadow` calls on `extractLabel` and `children`, permanently fixing the `InvalidMixinException` that caused the screen to freeze on `"Retrieving game rules... o O o"`.
 
 ## [1.0.21+26.2]
@@ -180,9 +180,9 @@
 
 ### Added
 - **Game Rules Control Center Overhaul**: Total redesign of the Game Rules Screen into a 2-pane navigation layout.
-- **Interactive Integer Sliders (`IntegerSliderWidget`)**: Added dynamic numeric sliders with step buttons (`-1`, `+1`), live value formatting, and direct text input.
-- **Visual Boolean Toggle Switches (`BooleanToggleWidget`)**: Added emerald green `[ON]` / ruby red `[OFF]` toggle switches.
-- **Game Rules Preset Engine (`GameRulePresetEngine`)**: 1-click apply built-in presets (Vanilla Defaults, Builder Mode, Fast Survival, Hardcore Realism) and custom JSON preset saving/loading.
+- **Interactive Integer Sliders** (`IntegerSliderWidget`): Added dynamic numeric sliders with step buttons (`-1`, `+1`), live value formatting, and direct text input.
+- **Visual Boolean Toggle Switches** (`BooleanToggleWidget`): Added emerald green `[ON]` / ruby red `[OFF]` toggle switches.
+- **Game Rules Preset Engine** (`GameRulePresetEngine`): 1-click apply built-in presets (Vanilla Defaults, Builder Mode, Fast Survival, Hardcore Realism) and custom JSON preset saving/loading.
 - **Single-Click Reset (`[↺]`) & Category Metrics**: Added per-rule and per-category reset buttons and category rule count badges (`▼ Category (X/Y modified)`).
 
 ## [1.0.6+26.2] - 2026-08-01

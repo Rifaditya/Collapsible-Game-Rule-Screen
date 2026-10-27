@@ -11,7 +11,6 @@ public class CollapsibleGameRulesFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        net.instantgratification.collapsiblegamerules.util.ModVersionGuard.checkClass("Collapsible Game Rules", "net.minecraft.world.level.gamerules.GameRules");
         LOGGER.info("Initializing Collapsible Game Rules [Core Align 2.1]");
 
         // Hard Dependency Enforcement (Constitution Section 5.7)
