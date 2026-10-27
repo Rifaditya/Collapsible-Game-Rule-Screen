@@ -20,6 +20,13 @@ public final class SearchHighlightHelper {
     private SearchHighlightHelper() {}
 
     /**
+     * Alias for {@link #highlight(String, String)}.
+     */
+    public static Component buildHighlightedSpans(String text, String query) {
+        return highlight(text, query);
+    }
+
+    /**
      * Highlights occurrences of {@code query} within {@code text} using {@link #DEFAULT_HIGHLIGHT}.
      *
      * @param text  the raw text to search
@@ -52,6 +59,12 @@ public final class SearchHighlightHelper {
             return Component.literal(text);
         }
 
+        // If lowercasing changed string length (e.g. Unicode expansion), return plain literal
+        // to guarantee zero StringIndexOutOfBoundsException.
+        if (lowerText.length() != text.length()) {
+            return Component.literal(text);
+        }
+
         int idx = lowerText.indexOf(lowerQuery);
         if (idx == -1) {
             return Component.literal(text);
@@ -66,7 +79,9 @@ public final class SearchHighlightHelper {
             if (idx > lastIndex) {
                 root.append(Component.literal(text.substring(lastIndex, idx)));
             }
-            root.append(Component.literal(text.substring(idx, idx + queryLen)).withStyle(format));
+            if (idx + queryLen <= text.length()) {
+                root.append(Component.literal(text.substring(idx, idx + queryLen)).withStyle(format));
+            }
             lastIndex = idx + queryLen;
             idx = lowerText.indexOf(lowerQuery, lastIndex);
         }

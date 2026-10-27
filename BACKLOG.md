@@ -11,7 +11,7 @@ This file tracks planned features, technical refinements, performance optimizati
 
 | ID | Category | Title | Priority | Target Version | Status | Specification |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| [`BL-CGR-002`](tickets/BL-CGR-002.md) | `[TECH_DEBT]` | Adopt 5-Pillar Testing & Sidedness Verification Harness | `[MEDIUM]` | All Anchors | 📌 DEFERRED | [View Ticket](tickets/BL-CGR-002.md) |
+| - | - | *No active backlog items* | - | - | - | - |
 
 ---
 

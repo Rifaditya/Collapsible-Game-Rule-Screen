@@ -54,6 +54,18 @@ public final class GameRuleSliderHelper {
     private GameRuleSliderHelper() {
     }
 
+    /**
+     * Calculates the bounded step count between min and max given a step size.
+     * Safely returns 0 if step <= 0 or min >= max without throwing ArithmeticException.
+     */
+    public static int calculateBoundedSteps(int min, int max, int step) {
+        if (step <= 0 || min >= max) {
+            return 0;
+        }
+        long range = (long) max - (long) min;
+        return (int) Math.min(Integer.MAX_VALUE, range / step);
+    }
+
     public static String normalizeKey(String key) {
         if (key == null) {
             return "";

@@ -1,3 +1,10 @@
+## [1.0.47+26.3]
+### Core Changes
+- Adopted autonomous 5-pillar verification test harness (fuzzing, concurrency stress, search highlight invariants, client state machine simulation).
+- Purged legacy and obsolete `ModVersionGuard.java` and its associated unit test suite.
+- Fortified `GameRuleStateConfig` with synchronized locks on file I/O operations and defensive set encapsulation, preventing concurrent race conditions.
+- Added headless simulated client state machine asserting state transitions across collapse/expand, search filtering, and persistence roundtrips.
+
 ## [1.0.38+26.2]
 ### Core Changes
 - Expanded selection list row width to 308px via `RuleList.getRowWidth()`, aligning card edges perfectly with the bottom "Done" and "Cancel" buttons.

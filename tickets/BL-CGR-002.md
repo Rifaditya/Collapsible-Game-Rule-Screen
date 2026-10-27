@@ -4,7 +4,7 @@
 - **Category**: `[TECH_DEBT]`
 - **Priority**: `[MEDIUM]`
 - **Scope**: `Universal (>=26.1.2- / Modern 26.3 Sovereign)`
-- **Status**: `📌 DEFERRED`
+- **Status**: ✅ RESOLVED
 - **Target Repository / Root**: `Collapsible Game Rule Screen\collapsible-game-rules`
 
 ---
@@ -48,10 +48,10 @@ Currently, `collapsible-game-rules` lacks the studio's mandatory 5-Pillar Testin
 6. **Step 5**: Full compilation, SemVer bump (`1.0.47+26.3`), 5-point archive distribution, queue update, backlog sweep, and git lockstep push (`Build = Push`).
 
 ## 🏁 6. 5-Pillar Verification Checklist
-- [ ] **Step 0 (Quarantine Sweep)**: `code_auditor.py` reports 0 critical errors; clean working tree.
-- [ ] **Pillar 1 (Chaos Fuzzing)**: Chaos property & config fuzzing passes 20k-50k iterations.
-- [ ] **Pillar 2 (Concurrency Load)**: Concurrency harness passes 50 virtual threads with zero race conditions.
-- [ ] **Pillar 3 (GUI & Lang AST)**: ModMenu metadata and `en_us.json` translation keys validated headlessly.
-- [ ] **Pillar 4 (State Simulation)**: Client state machine transitions (toggle, search, reset) pass headlessly without OpenGL.
-- [ ] **Pillar 5 (Sidedness & Hygiene)**: Sidedness contract asserts `"environment": "client"`, 0 `ModVersionGuard` references, 0 unmapped `Class.forName`, and 100% GPLv3 headers.
-- [ ] **Clean Build & 5-Point Deploy**: Clean `./gradlew test build` and 5-point distribution parity.
+- [x] **Step 0 (Quarantine Sweep)**: `code_auditor.py` reports 0 critical errors; clean working tree.
+- [x] **Pillar 1 (Chaos Fuzzing)**: Chaos property & config fuzzing passes 20k-50k iterations.
+- [x] **Pillar 2 (Concurrency Load)**: Concurrency harness passes 50 virtual threads with zero race conditions.
+- [x] **Pillar 3 (GUI & Lang AST)**: ModMenu metadata and `en_us.json` translation keys validated headlessly.
+- [x] **Pillar 4 (State Simulation)**: Client state machine transitions (toggle, search, reset) pass headlessly without OpenGL.
+- [x] **Pillar 5 (Sidedness & Hygiene)**: Sidedness contract asserts `"environment": "client"`, 0 `ModVersionGuard` references, 0 unmapped `Class.forName`, and 100% GPLv3 headers.
+- [x] **Clean Build & 5-Point Deploy**: Clean `./gradlew test build` and 5-point distribution parity.

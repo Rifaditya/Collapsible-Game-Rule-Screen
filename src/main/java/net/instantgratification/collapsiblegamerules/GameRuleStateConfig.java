@@ -49,11 +49,45 @@ public class GameRuleStateConfig {
         }
     }
 
-    public static void load() {
+    /**
+     * Deserializes JSON string directly into memory state with Freedom Over Anti-Crash fallback.
+     */
+    public static synchronized void deserializeJson(String json) {
+        if (json == null || json.isBlank()) {
+            resetState();
+            return;
+        }
+        try {
+            com.google.gson.JsonElement root = com.google.gson.JsonParser.parseString(json);
+            if (root == null || root.isJsonNull()) {
+                resetState();
+            } else if (root.isJsonArray()) {
+                // Legacy raw set format e.g. ["spawning", "player"]
+                Set<String> legacy = GSON.fromJson(root, new TypeToken<Set<String>>(){}.getType());
+                expandedCategories = (legacy != null) ? legacy : new HashSet<>();
+                isDirty = true; // Flag for automatic migration to versioned schema
+            } else if (root.isJsonObject()) {
+                ConfigData data = GSON.fromJson(root, ConfigData.class);
+                if (data != null && data.expandedCategories != null) {
+                    expandedCategories = new HashSet<>(data.expandedCategories);
+                } else {
+                    resetState();
+                }
+                isDirty = false;
+            } else {
+                resetState();
+            }
+        } catch (com.google.gson.JsonSyntaxException | IllegalArgumentException e) {
+            LOGGER.warn("Corrupted JSON syntax detected during deserialization, resetting to default state: {}", e.getMessage());
+            resetState();
+        }
+    }
+
+    public static synchronized void load() {
         loadFromPath(getDefaultConfigFile());
     }
 
-    public static void loadFromPath(Path path) {
+    public static synchronized void loadFromPath(Path path) {
         if (path == null || !Files.exists(path)) {
             return;
         }
@@ -79,7 +113,7 @@ public class GameRuleStateConfig {
                 expandedCategories = new HashSet<>();
                 isDirty = false;
             }
-        } catch (com.google.gson.JsonSyntaxException e) {
+        } catch (com.google.gson.JsonSyntaxException | IllegalArgumentException e) {
             LOGGER.warn("Corrupted JSON syntax detected in config file '{}', resetting to default state: {}", path, e.getMessage());
             expandedCategories = new HashSet<>();
             isDirty = false;
@@ -88,11 +122,11 @@ public class GameRuleStateConfig {
         }
     }
 
-    public static void save() {
+    public static synchronized void save() {
         saveToPath(getDefaultConfigFile());
     }
 
-    public static void saveToPath(Path path) {
+    public static synchronized void saveToPath(Path path) {
         if (path == null) {
             return;
         }
@@ -101,7 +135,7 @@ public class GameRuleStateConfig {
                 Files.createDirectories(path.getParent());
             }
             try (Writer writer = Files.newBufferedWriter(path)) {
-                ConfigData data = new ConfigData(CURRENT_SCHEMA_VERSION, expandedCategories);
+                ConfigData data = new ConfigData(CURRENT_SCHEMA_VERSION, new HashSet<>(expandedCategories));
                 GSON.toJson(data, writer);
             }
         } catch (IOException e) {
@@ -109,47 +143,55 @@ public class GameRuleStateConfig {
         }
     }
 
-    public static void saveIfDirty() {
+    public static synchronized void saveIfDirty() {
         if (isDirty) {
             save();
             isDirty = false;
         }
     }
 
-    public static boolean isExpanded(String categoryKey) {
+    public static synchronized boolean isExpanded(String categoryKey) {
         return expandedCategories.contains(categoryKey);
     }
 
-    public static void setExpanded(String categoryKey, boolean expanded) {
+    public static synchronized void setExpanded(String categoryKey, boolean expanded) {
         if (expanded) {
             if (expandedCategories.add(categoryKey)) isDirty = true;
         } else {
             if (expandedCategories.remove(categoryKey)) isDirty = true;
         }
     }
+
+    public static synchronized boolean isCategoryCollapsed(String categoryKey) {
+        return !isExpanded(categoryKey);
+    }
+
+    public static synchronized void setCategoryCollapsed(String categoryKey, boolean collapsed) {
+        setExpanded(categoryKey, !collapsed);
+    }
     
-    public static void expandAll(Iterable<String> allKeys) {
+    public static synchronized void expandAll(Iterable<String> allKeys) {
         for (String key : allKeys) {
             if (expandedCategories.add(key)) isDirty = true;
         }
     }
 
-    public static void collapseAll() {
+    public static synchronized void collapseAll() {
         if (!expandedCategories.isEmpty()) {
             expandedCategories.clear();
             isDirty = true;
         }
     }
 
-    public static int getExpandedCategoriesCount() {
+    public static synchronized int getExpandedCategoriesCount() {
         return expandedCategories.size();
     }
 
-    public static boolean isDirty() {
+    public static synchronized boolean isDirty() {
         return isDirty;
     }
 
-    public static void resetState() {
+    public static synchronized void resetState() {
         expandedCategories.clear();
         isDirty = false;
     }

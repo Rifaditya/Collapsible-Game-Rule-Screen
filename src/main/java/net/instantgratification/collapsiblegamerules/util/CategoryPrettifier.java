@@ -10,6 +10,13 @@ public final class CategoryPrettifier {
     private CategoryPrettifier() {}
 
     /**
+     * Alias for {@link #prettifyCategoryKey(String)}.
+     */
+    public static String prettifyCategoryName(String key) {
+        return prettifyCategoryKey(key);
+    }
+
+    /**
      * Prettifies a raw translation key for a game rule category.
      * E.g., "gamerule.category.better-bats.better_bats" -> "Better Bats"
      */
