@@ -1,5 +1,9 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.48+26.3]
+- **Baseline Static Refmap (collapsible-game-rules-refmap.json)**: Packaged a baseline static refmap in src/main/resources/ eliminating FabricLoader startup warnings (Reference map 'collapsible-game-rules-refmap.json' could not be read) in published release JARs on Minecraft 26.3.
+- **Pillar 5 Refmap Integrity Contract Test**: Added automated contract test in CollapsibleGameRulesSidednessContractTest verifying physical existence and JSON structure of refmap files declared in mixins.json.
+
 ## [1.0.45+26.2]
 - **Mixin Package Isolation & Duck Interface Relocation (`CategoryRuleEntryDuck`)**: Relocated the category duck interface out of the mixin package to `net.instantgratification.collapsiblegamerules.duck.CategoryRuleEntryDuck`. This cleanly resolves Mixin's `IllegalClassLoadError` on Minecraft 26.3 caused by direct class reference within the designated mixin package boundary.
 

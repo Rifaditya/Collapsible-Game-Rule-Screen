@@ -8,7 +8,9 @@ This directory contains individual atomic ticket specifications for **Collapsibl
 
 | Ticket ID | Category | Title | Priority | Status | Specification |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `[BL-CGR-002]` | `[TECH_DEBT]` | Adopt 5-Pillar Testing & Sidedness Verification Harness | `[MEDIUM]` | 📌 DEFERRED | [BL-CGR-002.md](BL-CGR-002.md) |
+| `[BL-CGR-004]` | `[BUGFIX]` | Package Baseline Refmap for Production Mixin Stability | `[HIGH]` | 🚧 IN_PROGRESS | [BL-CGR-004.md](BL-CGR-004.md) |
+| `[BL-CGR-003]` | `[GOVERNANCE]` | Storefront Reconciliation: Align Mod Pages with Current Public Release | `[HIGH]` | 📌 DEFERRED | [BL-CGR-003.md](BL-CGR-003.md) |
+| `[BL-CGR-002]` | `[TECH_DEBT]` | Adopt 5-Pillar Testing & Sidedness Verification Harness | `[MEDIUM]` | ✅ RESOLVED | [BL-CGR-002.md](BL-CGR-002.md) |
 
 ---
 

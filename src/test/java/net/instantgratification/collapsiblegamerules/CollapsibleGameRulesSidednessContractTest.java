@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * - Zero unmapped Class.forName invocations in production source code.
  * - All mixin targets declared in collapsible-game-rules.mixins.json exist on disk.
  * - dasik-library dependency is strictly declared in fabric.mod.json depends block.
+ * - Mixin refmap declared in mixins.json exists on disk and has valid mappings/data structure.
  */
 @DisplayName("Pillar 5: Collapsible Game Rules Sidedness & Hygiene Contract Tests")
 public class CollapsibleGameRulesSidednessContractTest {
@@ -178,5 +179,26 @@ public class CollapsibleGameRulesSidednessContractTest {
         assertTrue(depends.has("dasik-library"), "fabric.mod.json depends must declare 'dasik-library'");
         assertFalse(depends.get("dasik-library").getAsString().isEmpty(),
                 "'dasik-library' version constraint must not be empty");
+    }
+
+    @Test
+    @DisplayName("Verify mixin refmap declared in mixins.json exists on disk and has valid mappings/data structure")
+    void testRefmapIntegrity() throws IOException {
+        Path root = findProjectRoot();
+        Path mixinJsonPath = root.resolve("src/main/resources/collapsible-game-rules.mixins.json");
+        assertTrue(Files.exists(mixinJsonPath), "collapsible-game-rules.mixins.json must exist at: " + mixinJsonPath);
+
+        JsonObject mixinJson = JsonParser.parseReader(Files.newBufferedReader(mixinJsonPath, StandardCharsets.UTF_8)).getAsJsonObject();
+        if (mixinJson.has("refmap")) {
+            String refmapFileName = mixinJson.get("refmap").getAsString();
+            Path refmapPath = root.resolve("src/main/resources").resolve(refmapFileName);
+            assertTrue(Files.exists(refmapPath), "Referenced refmap file must exist at: " + refmapPath);
+
+            JsonObject refmapJson = JsonParser.parseReader(Files.newBufferedReader(refmapPath, StandardCharsets.UTF_8)).getAsJsonObject();
+            assertTrue(refmapJson.has("mappings"), "Refmap must contain 'mappings' JsonObject");
+            assertTrue(refmapJson.get("mappings").isJsonObject(), "'mappings' in refmap must be a JsonObject");
+            assertTrue(refmapJson.has("data"), "Refmap must contain 'data' JsonObject");
+            assertTrue(refmapJson.get("data").isJsonObject(), "'data' in refmap must be a JsonObject");
+        }
     }
 }
