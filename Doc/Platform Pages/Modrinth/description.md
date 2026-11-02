@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://discord.gg/EV99bgAFqb"><img src="https://img.shields.io/badge/Discord-Join_Community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join Discord"></a>
+  <a href="https://discord.gg/EV99bgAFqb"><img src="https://img.shields.io/badge/Discord-Join_Community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join Discord"></a>
   <img src="https://raw.githubusercontent.com/Rifaditya/Collapsible-Game-Rule-Screen/main/Images/2026-08-04_11.06.33.png" alt="Collapsible Game Rules Banner" width="85%">
 </p>
 
@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Environment-100%25_Client--Side-brightgreen?style=for-the-badge" alt="100% Client-Side">
   <img src="https://img.shields.io/badge/Language-Java_25-orange?style=for-the-badge&logo=java" alt="Java 25">
   <img src="https://img.shields.io/badge/License-GPLv3-red?style=for-the-badge" alt="License GPLv3">
-  <img src="https://img.shields.io/badge/Minecraft-26.2+-brightgreen?style=for-the-badge" alt="Minecraft 26.2+">
+  <img src="https://img.shields.io/badge/Minecraft-26.2%20|%2026.3+-brightgreen?style=for-the-badge" alt="Minecraft 26.2 | 26.3+">
 </p>
 
 # ⚒️ Collapsible Game Rules
@@ -22,13 +22,13 @@
 
 Minecraft's default **Edit Game Rules** screen is an intimidating, endless wall of disorganized settings. The moment you install gameplay mods or create a complex world, dozens upon dozens of custom rules get tossed into a flat, sluggish list. Finding a single specific toggle—like keep inventory, mob griefing, or crop ticks—turns into a frustrating marathon of squinting and scrolling.
 
-**Collapsible Game Rules** completely modernizes the Game Rules screen. It transforms the flat list into an elegant, hierarchical interface with folding category drawers, instant global fold/unfold toggles, real-time search auto-expansion, dedicated per-category defaults resetting, and persistent layout memory across game sessions. Built from the ground up as a **100% client-side** quality-of-life upgrade, it runs with zero server footprint and zero allocation churn on the render path.
+**Collapsible Game Rules** completely modernizes the Game Rules screen. It transforms the flat list into an elegant, hierarchical interface with folding category drawers, instant global fold/unfold toggles, real-time search auto-expansion with styled substring highlighting, interactive toggle switches and bounded sliders, dedicated per-category defaults resetting, and persistent layout memory across game sessions. Built from the ground up as a **100% client-side** quality-of-life upgrade, it runs with zero server footprint and zero allocation churn on the render path.
 
 > [!IMPORTANT]
 > **1 Jar 1 Version Policy:** I build **1 dedicated JAR for each Minecraft version** (e.g. MC 26.2, MC 26.3). Please download the exact build that matches your Minecraft installation.
 > 
 > **Dependency Callout:**
-> * **Minecraft 26.2+ (Modern Era):** Requires both **Fabric API** AND **Dasik Library** (`v1.7.0+`).
+> * **Minecraft Modern Sovereigns (26.2 - 26.3+):** Requires both **Fabric API** AND **Dasik Library** (`v1.9.0+` on MC 26.3, `v1.7.0+` on MC 26.2).
 > * **Zero Server Requirement:** This is a 100% client-side visual overhaul. You can install it on your client and join any vanilla, Fabric, Forge, Paper, or Purpur server without needing the mod installed on the server!
 
 ---
@@ -41,24 +41,30 @@ Minecraft's default **Edit Game Rules** screen is an intimidating, endless wall 
 
 ### 🖱️ Interactive Headers & Expand/Collapse Carats
 - **Visual State Indicators:** Clearly indicates folder states with responsive toggle carats (`▼` for expanded, `▶` for collapsed) alongside exact rule counters.
-- **Effortless Toggle:** Click any category header to instantly expand or collapse that section. Fold away rules you rarely touch to keep your screen distraction-free.
+- **Effortless Toggle:** Click any category header or press Space/Enter while focused to instantly expand or collapse that section. Fold away rules you rarely touch to keep your screen distraction-free.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Rifaditya/Collapsible-Game-Rule-Screen/main/Images/2026-08-04_11.06.33.png" alt="Collapsible Game Rules Screen In-Game Preview" width="85%"><br><br>
   <img src="https://raw.githubusercontent.com/Rifaditya/Collapsible-Game-Rule-Screen/main/Images/2026-08-04_10.59.57.png" alt="Expanded and Collapsed Categories Overview" width="85%">
 </p>
 
-### 🌐 Global Actions: Expand All & Collapse All
-- **One-Click Mastery:** A dedicated sticky top control bar provides `[ Expand All ]` and `[ Collapse All ]` buttons.
+### 🌐 Global Actions: Expand All, Collapse All & Dev Support
+- **One-Click Mastery:** A dedicated sticky top control bar provides `[ Expand All ]` (`▼`) and `[ Collapse All ]` (`▶`) cards.
 - **Rapid Navigation:** Expand every single category when you want to audit your entire configuration, or collapse everything with a single tap to view a high-level table of contents.
+- **Integrated Support Button:** Quick-access `☕` Ko-fi plate allows supporting ongoing mod development directly from the game rules toolbar.
 
-### 🔍 Smart Vanilla Search Integration & Auto-Expansion
+### 🔍 Smart Vanilla Search Integration & Substring Highlighting
 - **Seamless Vanilla Compatibility:** Type keywords directly into Minecraft's native search bar.
-- **Dynamic Unfolding:** As you type, any category containing matching rules automatically unfolds, while non-matching categories collapse. Clear the search bar to immediately restore your previous layout!
+- **Dynamic Unfolding:** As you type, any category containing matching rules automatically unfolds with match badges (`[● X matches]`), while non-matching categories collapse. Clear the search bar to immediately restore your previous layout!
+- **High-Contrast Highlighting:** Substring queries in rule labels and descriptions are highlighted with bright yellow formatting (`SearchHighlightHelper`) for instant visual scanning.
 
 ### ↺ Per-Category Defaults Reset Plate
 - **Isolated Reset:** Each category header features a compact `↺` icon plate with dedicated hover tooltips (`gui.collapsible-game-rules.reset_category`).
 - **Precision Resetting:** Reset an entire category's rules back to vanilla or mod defaults in one swift action without accidentally wiping custom tweaks made in other categories.
+
+### 🎚️ Modern Toggle Switches & Bounded Sliders
+- **Glassmorphic Toggles:** High-contrast Emerald `[● ON]` and Ruby `[OFF ●]` pill buttons for boolean rules with zero allocation overhead per render frame.
+- **Bounded Sliders:** Intuitive numeric sliders for key rules (tick speed, entity cramming, sleeping percentage, spawn radius, nether portal delays) with graceful unbounded fallbacks.
 
 ### 🧠 Persistent Layout Memory Across Sessions
 - **Session Continuity:** Never repeat your collapsing preferences. Layout states are tracked via translation keys and saved locally to `config/collapsible-game-rules-state.json`.
@@ -78,13 +84,13 @@ Minecraft's default **Edit Game Rules** screen is an intimidating, endless wall 
 
 ## 📊 Quick Reference & Mechanics Matrix
 
-| Feature Dimension | Vanilla Game Rules Screen | Collapsible Game Rules (`v1.0.10+26.2`) |
+| Feature Dimension | Vanilla Game Rules Screen | Collapsible Game Rules |
 | :--- | :---: | :---: |
 | **Visual Structure** | Giant, flat scrolling list | **Collapsible hierarchical category drawers** |
 | **Navigation Speed** | Endless manual scrolling | **One-click folding & unfolding** |
-| **Global Controls** | None | **`[ Expand All ]` & `[ Collapse All ]` Header** |
+| **Global Controls** | None | **`[ Expand All ]` & `[ Collapse All ]` Toolbar** |
 | **Rule Resetting** | Global world reset only | **Dedicated per-category `↺` Reset Plate** |
-| **Search Interaction** | Filters flat list; hard to track | **Auto-expands matching category drawers** |
+| **Search Interaction** | Filters flat list; hard to track | **Auto-expands drawers with yellow highlights** |
 | **Layout Persistence** | Resets on every screen close | **Persistent JSON memory (`collapsible-game-rules-state.json`)** |
 | **Modded Rule Support** | Flat, unorganized mod dumping | **Auto-grouped with Namespace Prettification** |
 | **Server Footprint** | N/A | **100% Client-Side (Zero server install required)** |
@@ -101,9 +107,11 @@ Collapsible Game Rules is ready to use immediately upon installation. Operate th
 | **Left-Click** | Category Header Bar | Expands or collapses the selected category drawer. |
 | **Left-Click** | `[ Expand All ]` Button | Expands all category drawers simultaneously. |
 | **Left-Click** | `[ Collapse All ]` Button | Collapses all categories and resets scroll to the top. |
+| **Left-Click** | `☕` Ko-fi Button | Opens creator support link in external browser. |
 | **Left-Click** | `↺` Reset Plate | Resets all game rules within that category to default values. |
 | **Right Arrow (`→`)** | Highlighted Category | Keyboard shortcut to expand the selected category. |
 | **Left Arrow (`←`)** | Highlighted Category | Keyboard shortcut to collapse the selected category. |
+| **Enter / Space** | Highlighted Category | Keyboard shortcut to toggle the selected category. |
 | **Search Input** | Vanilla Search Bar | Real-time filtering with automatic expansion of matching categories. |
 
 ---
@@ -152,7 +160,7 @@ config/collapsible-game-rules-state.json
 ### 3. Finding Settings with Smart Search
 1. Click the vanilla search bar at the top of the screen.
 2. Type any keyword (e.g. `tick`, `drop`, or `fire`).
-3. Only categories containing matching rules will remain visible, and they will automatically unfold to display the search results.
+3. Only categories containing matching rules will remain visible, with matched terms highlighted in yellow and drawers automatically unfolded to display results.
 4. When you delete your search text, your custom expanded/collapsed view is restored.
 
 ### 4. Precision Resetting for a Single Category
@@ -180,7 +188,7 @@ If you enjoy **Collapsible Game Rules**, these companion mods plug in seamlessly
 ---
 
 ### 💬 Join the Community & Get Support
-Looking for help, want to test early beta builds, or vote on upcoming features? Join our official Discord community!
+Looking for help, want to test early beta builds, or vote on upcoming features? Join my official Discord community!
 <p align="center">
   <a href="https://discord.gg/EV99bgAFqb">
     <img src="https://img.shields.io/badge/💬_Discord-Join_Community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join Official Discord">
@@ -223,6 +231,7 @@ If you enjoy the ecosystem, consider fueling future updates!
 > **⚖️ License & Fork Guidelines (No Zero-Change Re-uploads):**<br>
 > This project is open-source under the **GNU GPLv3**. You are fully encouraged to inspect the code, learn from it, and fork the repository to create genuine modifications, substantial feature expansions, or community ports—provided your project remains open-source under GPLv3 with proper attribution.<br>
 > **However, straight 1:1 re-uploads, clone forks with no meaningful functional changes, or re-publishing identical builds under different project names (e.g. to farm downloads or rewards) are strictly forbidden.**
+
 ---
 
 <div align="center">
