@@ -1,3 +1,7 @@
+## [1.0.49+26.3]
+- **Ko-fi Button Crash Fix (`DasikLibrary 1.13.x` Compatibility)**: Updated the in-game Ko-fi support button in the GameRules screen toolbar to use `ClientSupportScreenHelper.openKofi((Screen) null)`, resolving a `NoSuchMethodError` crash on `DasikLibrary 1.13.2+`.
+- **Dependency Alignment**: Updated required `dasik-library` dependency constraint to `>=1.11.2`.
+
 ## [1.0.47+26.3]
 - **Autonomous 5-Pillar Testing Harness Adoption**: Implemented comprehensive testing suite covering fuzzing, concurrent multi-threaded safety, search highlight invariants, and client UI state machine simulation.
 - **Obsolete Artifact Cleanliness**: Purged deprecated and unused `ModVersionGuard.java` and its unit test suite, eliminating historical dead code.

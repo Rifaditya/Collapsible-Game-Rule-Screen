@@ -5,10 +5,11 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.49+26.3`** - Migrated `GlobalActionsRuleEntry` Ko-fi click handler to `ClientSupportScreenHelper.openKofi((Screen) null)` for `DasikLibrary 1.13.2` ABI compatibility (`>=1.11.2`) and added Pillar 4 bytecode constant-pool ABI contract test `[BL-CGR-007]`.
 - [x] **1.0.48+26.3** - Packaged baseline static refmap (collapsible-game-rules-refmap.json) eliminating FabricLoader startup warning in published JARs, and added automated Pillar 5 refmap contract test.
 - [x] **`1.0.47+26.3`** - Adopted 5-Pillar Testing Harness, purged obsolete ModVersionGuard, fortified thread safety, and added client state machine simulation.
 - [x] **`1.0.46+26.3`** - Official Minecraft 26.3 release port, InputConstants navigation alignment, and DasikLibrary 1.9.2 integration.
-- [ ] **`1.0.45+26.2`** - Mixin package isolation and duck interface relocation to dedicated `duck` package (`CategoryRuleEntryDuck`).
+- [ ] **`1.0.45+26.2`** (SKIP - SUPERSEDED BY 26.3 / ABI MISMATCH) - Mixin package isolation and duck interface relocation to dedicated `duck` package (`CategoryRuleEntryDuck`).
 - [ ] **`1.0.44+26.2`** (SKIP - BUGGED ON 26.3) - Universal multi-version category label mixin with duck interface constructor injection (`CategoryRuleEntryMixin`) (superseded by 1.0.45+26.2; caused IllegalClassLoadError on 26.3 due to mixin package boundary).
 - [ ] **`1.0.43+26.2`** (SKIP - BUGGED ON 26.3) - In-game creator support quick-action plate and DasikLibrary dependency alignment (`GlobalActionsRuleEntry`) (superseded by 1.0.45+26.2; crashed on 26.3 due to missing label field accessor).
 - [ ] **`1.0.42+26.2`** - ModMenu native creator support metadata and Ko-fi links (`fabric.mod.json`).

@@ -2,12 +2,14 @@
 package net.instantgratification.collapsiblegamerules.ui;
 
 import com.google.common.collect.ImmutableList;
+import net.dasik.social.api.client.gui.ClientSupportScreenHelper;
 import net.dasik.social.api.config.DasikSupportHelper;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen;
 import net.minecraft.network.chat.Component;
 
@@ -122,7 +124,7 @@ public class GlobalActionsRuleEntry extends AbstractGameRulesScreen.RuleEntry im
                 return true;
             } else if (mouseX >= kofiLeft && mouseX <= totalRight) {
                 net.minecraft.client.Minecraft.getInstance().getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
-                DasikSupportHelper.openKofi(null);
+                ClientSupportScreenHelper.openKofi((Screen) null);
                 return true;
             }
         }

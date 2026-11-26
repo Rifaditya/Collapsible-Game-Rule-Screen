@@ -8,12 +8,17 @@ import com.google.gson.JsonParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -200,5 +205,96 @@ public class CollapsibleGameRulesSidednessContractTest {
             assertTrue(refmapJson.has("data"), "Refmap must contain 'data' JsonObject");
             assertTrue(refmapJson.get("data").isJsonObject(), "'data' in refmap must be a JsonObject");
         }
+    }
+
+    @Test
+    @DisplayName("Verify GlobalActionsRuleEntry bytecode uses ClientSupportScreenHelper.openKofi(Screen) ABI")
+    void testGlobalActionsRuleEntryKofiAbiParity() throws IOException {
+        Path root = findProjectRoot();
+        Path classFile = root.resolve("build/classes/java/main/net/instantgratification/collapsiblegamerules/ui/GlobalActionsRuleEntry.class");
+        assertTrue(Files.exists(classFile), "Compiled GlobalActionsRuleEntry.class must exist at: " + classFile);
+
+        byte[] bytes = Files.readAllBytes(classFile);
+        List<String> methodRefs = new ArrayList<>();
+        List<String> utf8Entries = new ArrayList<>();
+
+        try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(bytes))) {
+            int magic = in.readInt();
+            assertEquals(0xCAFEBABE, magic, "Invalid Java class file magic header");
+            in.readUnsignedShort(); // minor_version
+            in.readUnsignedShort(); // major_version
+            int cpCount = in.readUnsignedShort();
+
+            Map<Integer, String> utf8Map = new HashMap<>();
+            Map<Integer, Integer> classNameMap = new HashMap<>();
+            Map<Integer, int[]> nameAndTypeMap = new HashMap<>();
+            List<int[]> rawMethodRefs = new ArrayList<>();
+
+            for (int i = 1; i < cpCount; i++) {
+                int tag = in.readUnsignedByte();
+                switch (tag) {
+                    case 1 -> { // CONSTANT_Utf8
+                        String s = in.readUTF();
+                        utf8Map.put(i, s);
+                        utf8Entries.add(s);
+                    }
+                    case 3, 4 -> in.readInt(); // Integer, Float
+                    case 5, 6 -> { // Long, Double (occupy 2 constant pool slots)
+                        in.readLong();
+                        i++;
+                    }
+                    case 7 -> classNameMap.put(i, in.readUnsignedShort()); // Class
+                    case 8, 16, 19, 20 -> in.readUnsignedShort(); // String, MethodType, Module, Package
+                    case 9, 17, 18 -> { // Fieldref, Dynamic, InvokeDynamic
+                        in.readUnsignedShort();
+                        in.readUnsignedShort();
+                    }
+                    case 10, 11 -> { // Methodref, InterfaceMethodref
+                        int classIdx = in.readUnsignedShort();
+                        int natIdx = in.readUnsignedShort();
+                        rawMethodRefs.add(new int[] { classIdx, natIdx });
+                    }
+                    case 12 -> { // NameAndType
+                        int nameIdx = in.readUnsignedShort();
+                        int descIdx = in.readUnsignedShort();
+                        nameAndTypeMap.put(i, new int[] { nameIdx, descIdx });
+                    }
+                    case 15 -> { // MethodHandle
+                        in.readUnsignedByte();
+                        in.readUnsignedShort();
+                    }
+                    default -> fail("Unsupported constant pool tag " + tag + " at index " + i);
+                }
+            }
+
+            for (int[] ref : rawMethodRefs) {
+                Integer classNameIdx = classNameMap.get(ref[0]);
+                int[] nat = nameAndTypeMap.get(ref[1]);
+                if (classNameIdx != null && nat != null) {
+                    String owner = utf8Map.get(classNameIdx);
+                    String name = utf8Map.get(nat[0]);
+                    String desc = utf8Map.get(nat[1]);
+                    if (owner != null && name != null && desc != null) {
+                        methodRefs.add(owner + ";" + name + desc);
+                    }
+                }
+            }
+        }
+
+        String obsoleteOwner = "net/dasik/social/api/config/" + "DasikSupport" + "Helper";
+        String obsoleteMethod = "open" + "Kofi";
+        String screenDesc = "(Lnet/minecraft/client/gui/screens/Screen;)V";
+        String obsoleteSig = obsoleteOwner + ";" + obsoleteMethod + screenDesc;
+        String obsoleteShortSig = "DasikSupport" + "Helper;" + obsoleteMethod + screenDesc;
+
+        long obsoleteCount = methodRefs.stream().filter(s -> s.equals(obsoleteSig)).count();
+        long obsoleteUtf8Count = utf8Entries.stream().filter(s -> s.contains(obsoleteShortSig)).count();
+
+        assertEquals(0L, obsoleteCount, "Forbidden obsolete method invocation found in constant pool: " + obsoleteSig);
+        assertEquals(0L, obsoleteUtf8Count, "Forbidden obsolete descriptor string found in UTF-8 constant pool: " + obsoleteShortSig);
+
+        String expectedSig = "net/dasik/social/api/client/gui/ClientSupportScreenHelper;openKofi" + screenDesc;
+        long expectedCount = methodRefs.stream().filter(s -> s.equals(expectedSig)).count();
+        assertTrue(expectedCount >= 1L, "Expected ClientSupportScreenHelper.openKofi(Screen) invocation not found. Found: " + methodRefs);
     }
 }

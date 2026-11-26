@@ -1,5 +1,10 @@
 # Version History: Collapsible Game Rules
 
+## [1.0.49+26.3]
+- **Ko-fi Button ABI Migration (`GlobalActionsRuleEntry`)**: Replaced obsolete `DasikSupportHelper.openKofi(null)` invocation with `ClientSupportScreenHelper.openKofi((Screen) null)` at line 125 for `DasikLibrary 1.13.2` ABI compatibility (`[BL-CGR-007]`).
+- **Dependency Alignment (`gradle.properties` & `fabric.mod.json`)**: Updated compile target `dasik_library_version=1.13.2` and runtime minimum `"dasik-library": ">=1.11.2"`.
+- **Bytecode Constant-Pool ABI Contract Test (`CollapsibleGameRulesSidednessContractTest`)**: Added `testGlobalActionsRuleEntryKofiAbiParity()` parsing `GlobalActionsRuleEntry.class` constant pool via `DataInputStream` to assert zero obsolete `DasikSupportHelper;openKofi(Screen)V` references and at least one `ClientSupportScreenHelper;openKofi(Screen)V` invocation.
+
 ## [1.0.48+26.3]
 - **Baseline Static Refmap (collapsible-game-rules-refmap.json)**: Packaged a baseline static refmap in src/main/resources/ eliminating FabricLoader startup warnings (Reference map 'collapsible-game-rules-refmap.json' could not be read) in published release JARs on Minecraft 26.3.
 - **Pillar 5 Refmap Integrity Contract Test**: Added automated contract test in CollapsibleGameRulesSidednessContractTest verifying physical existence and JSON structure of refmap files declared in mixins.json.
@@ -208,3 +213,24 @@
 
 ## [1.0.0+build.8] - 2026-03-02
 - Fixed Minecraft 26.1 `KeyEvent` signature changes in `AbstractGameRulesScreenRuleListMixin.java` fixing build failure.
+
+---
+
+## 📜 Resolved Backlog Archive
+
+### `[BL-CGR-004]` Package Baseline Refmap for Production Mixin Stability
+- **Resolved**: 2026-11-25
+- **Category**: `[BUGFIX]` | **Priority**: `[HIGH]`
+- **Target Scope**: `Modern 26.3 Sovereign Lead`
+
+### `[BL-CGR-003]` Storefront Reconciliation: Align Mod Pages with Current Public Release
+- **Resolved**: 2026-11-25
+- **Category**: `[GOVERNANCE]` | **Priority**: `[HIGH]`
+- **Target Scope**: `Platform Documentation & Metadata`
+- **Summary**: Reconcile Modrinth and CurseForge storefront descriptions to reflect 100% ground-truth features of the current public release (Modrinth `1.0.46+26.3` / CurseForge `1.0.46+26.3`), strictly purging unreleased, in-development, or early-access mechanics.
+
+### `[BL-CGR-007]` Fix `DasikSupportHelper.openKofi(Screen)` ABI Mismatch in `GlobalActionsRuleEntry` (`26.3` + Retire `1.0.45+26.2`)
+- **Resolved**: 2026-11-26
+- **Category**: `[BUGFIX]` | **Priority**: `[CRITICAL]`
+- **Target Scope**: `Modern 26.3 Sovereign Lead (1.0.49+26.3)`
+- **Summary**: Migrated `GlobalActionsRuleEntry` Ko-fi click invocation to `ClientSupportScreenHelper.openKofi((Screen) null)`, updated `dasik_library_version=1.13.2` and `"dasik-library": ">=1.11.2"`, added constant-pool bytecode ABI test, retired `1.0.45+26.2` from `Fabric 26.2 (1)` profile and `RELEASE_QUEUE.md`, and verified `code_auditor.py --check-profiles` with 0 findings.

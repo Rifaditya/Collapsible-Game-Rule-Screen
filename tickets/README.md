@@ -13,7 +13,7 @@ This directory contains individual atomic ticket specifications for **Collapsibl
 | `[BL-CGR-002]` | `[TECH_DEBT]` | Adopt 5-Pillar Testing & Sidedness Verification Harness | `[MEDIUM]` | ✅ RESOLVED | [BL-CGR-002.md](BL-CGR-002.md) |
 | `[BL-CGR-005]` | `[TECH_DEBT]` | Wiki Audit & Update to Latest Version: collapsible-game-rules | `📌 DEFERRED` | [BL-CGR-005.md](BL-CGR-005.md) |
 | `[BL-CGR-006]` | `[TECH_DEBT]` | Adopt Per-Mod Advancement-Triggered Early Access Support Prompt (`DasikPromptRegistry`) | `[MEDIUM]` | `📌 DEFERRED` | [BL-CGR-006.md](./BL-CGR-006.md) |
-| `[BL-CGR-007]` | `[BUGFIX]` | Fix `DasikSupportHelper.openKofi(Screen)` ABI Mismatch in `GlobalActionsRuleEntry` (`v26.2` & `v26.3`) | `[CRITICAL]` | `📌 DEFERRED` | [`BL-CGR-007.md`](BL-CGR-007.md) |
+| `[BL-CGR-007]` | `[BUGFIX]` | Fix `DasikSupportHelper.openKofi(Screen)` ABI Mismatch in `GlobalActionsRuleEntry` (`26.3` + Retire `1.0.45+26.2`) | `[CRITICAL]` | ✅ RESOLVED | [`BL-CGR-007.md`](BL-CGR-007.md) |
 
 ---
 
